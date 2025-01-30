@@ -47,7 +47,7 @@
     font-size: 14px;
   }
   .ct_dash_right_content {
-    padding-inline: 30px;
+    padding-inline: 15px;
   }
 
   .ct_middle_navbar ul.show {
@@ -95,7 +95,14 @@
     display: block;
   }
   .ct_middile_sidebar {
-    max-width: 313px;
+    max-width: 280px;
+    min-width: 280px;
+  }
+  .ct_step-circle {
+    padding-inline: 3px;
+  }
+  .ct_step-circle p {
+    font-size: 14px;
   }
   .ct_close_bar {
     position: absolute;

@@ -348,58 +348,18 @@ window.onload = function () {
   }, 2500); // Match this with the count-up animation duration
 };
 
-// Step Form Js S
-var currentStep = 1;
-var updateProgressBar;
+const rangeInput = document.getElementById("customRange3");
 
-function displayStep(stepNumber) {
-  if (stepNumber >= 1 && stepNumber <= 3) {
-    $(".step-" + currentStep).hide();
-    $(".step-" + stepNumber).show();
-    currentStep = stepNumber;
-    updateProgressBar();
-  }
+function updateRangeBackground() {
+  const min = rangeInput.min;
+  const max = rangeInput.max;
+  const val = rangeInput.value;
+  const percentage = ((val - min) / (max - min)) * 100;
+
+  rangeInput.style.background = `linear-gradient(to right, #1b83c1 ${percentage}%, #ddd ${percentage}%)`;
 }
 
-$(document).ready(function () {
-  $("#multi-step-form").find(".ct_step").slice(1).hide();
+rangeInput.addEventListener("input", updateRangeBackground);
 
-  $(".next-step").click(function () {
-    if (currentStep < 3) {
-      $(".step-" + currentStep).addClass(
-        "animate__animated animate__fadeOutLeft"
-      );
-      currentStep++;
-      setTimeout(function () {
-        $(".ct_step").removeClass("animate__animated animate__fadeOutLeft").hide();
-        $(".step-" + currentStep)
-          .show()
-          .addClass("animate__animated animate__fadeInRight");
-        updateProgressBar();
-      }, 500);
-    }
-  });
-
-  $(".prev-step").click(function () {
-    if (currentStep > 1) {
-      $(".step-" + currentStep).addClass(
-        "animate__animated animate__fadeOutRight"
-      );
-      currentStep--;
-      setTimeout(function () {
-        $(".ct_step")
-          .removeClass("animate__animated animate__fadeOutRight")
-          .hide();
-        $(".step-" + currentStep)
-          .show()
-          .addClass("animate__animated animate__fadeInLeft");
-        updateProgressBar();
-      }, 500);
-    }
-  });
-
-  updateProgressBar = function () {
-    var progressPercentage = ((currentStep - 1) / 2) * 100;
-    $(".progress-bar").css("width", progressPercentage + "%");
-  };
-});
+// Initialize on page load
+updateRangeBackground();
