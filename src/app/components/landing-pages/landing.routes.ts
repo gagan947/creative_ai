@@ -46,7 +46,5 @@ export const LandingRoutes: Routes = [
       {
             path: 'pricing', loadComponent: () => import('./pricing/pricing.component').then(c => c.PricingComponent)
       },
-      {
-            path: 'main', loadComponent: () => import('./main/main.component').then(c => c.MainComponent)
-      }
+     
 ]

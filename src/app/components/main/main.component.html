@@ -115,7 +115,6 @@
                                           </p>
                                     </div>
                               </div>
-
                               <div class="ct_creative_action_bar mt-3">
                                     <div class="ct_creative_action_card">
                                           <div class="ct_creative_action_icon">
@@ -189,212 +188,51 @@
 
                               </div>
                         </div>
-                        <div class=" col-xl-4 col-lg-6 mb-4">
-                              <div class="ct_white_bg ct_ecommerse_web_card">
-                                    <div class="d-flex align-items-center justify-content-between gap-2 mb-4">
-                                          <div class="ct_ecommerse_web_icon mb-0">
-                                                <img src="assets/img/flipcart.png" alt="">
+                        @for (item of projectsData; track $index) {
+                              <div class=" col-xl-4 col-lg-6 mb-4">
+                                    <div class="ct_white_bg ct_ecommerse_web_card">
+                                          <div class="d-flex align-items-center justify-content-between gap-2 mb-4">
+                                                <div class="ct_ecommerse_web_icon mb-0">
+                                                      <img [src]="item.projectImage" alt="">
+                                                </div>
+                                                <div class="ct_bash_icon12" data-bs-toggle="modal"
+                                                      data-bs-target="#ct_base_modal_1">
+                                                      <i class="fa-solid fa-plus"></i>
+                                                </div>
                                           </div>
-                                          <div class="ct_bash_icon12" data-bs-toggle="modal"
-                                                data-bs-target="#ct_base_modal_1">
-                                                <i class="fa-solid fa-plus"></i>
+                                          <div class="d-flex align-items-center gap-2 justify-content-between flex-wrap mb-1">
+                                                <p class="mb-0 ct_fw_500">BUILD AN APP LIKE</p>
+                                                <p class="mb-0 ct_fs_14 ct_fw_500"><span
+                                                            class="ct_fw_700 ct_dark_blue_text">Features:</span> 51
+                                                </p>
                                           </div>
-                                    </div>
-                                    <div class="d-flex align-items-center gap-2 justify-content-between flex-wrap mb-1">
-                                          <p class="mb-0 ct_fw_500">BUILD AN APP LIKE</p>
-                                          <p class="mb-0 ct_fs_14 ct_fw_500"><span
-                                                      class="ct_fw_700 ct_dark_blue_text">Features:</span> 51
-                                          </p>
-                                    </div>
-                                    <p class="mb-0 ct_fw_700 mb-3">Flipkart</p>
-                                    <ul class="mb-5">
-                                          <li>Shop online effortlessly</li>
-                                          <li>Track your orders in real-time</li>
-                                          <li>Secure and easy checkout</li>
-                                          <li>24/7 customer support</li>
-                                    </ul>
+                                          <p class="mb-0 ct_fw_700 mb-3">{{item.projectName}}</p>
+                                          <ul class="mb-5">
+                                                @for (menu of item.contain; track $index) {
+                                                      <li>{{menu}}</li>
 
-                                    <button class="ct_schedule_call_btn w-100 justify-content-center"
-                                          data-bs-toggle="modal" data-bs-target="#ct_schedule_call_modal">Schedule a
-                                          call <i class="bi bi-telephone"></i></button>
+                                                }
+                                            
+                                          </ul>
+      
+                                          <!-- <button class="ct_schedule_call_btn w-100 justify-content-center"
 
+                                                data-bs-toggle="modal" data-bs-target="#ct_schedule_call_modal"
+                                                 (click)="openCalendly()">Schedule a
+
+                                                call <i class="bi bi-telephone"></i></button> -->
+                                          <button class="ct_schedule_call_btn w-100 justify-content-center"
+
+                                          data-bs-toggle="modal" data-bs-target="#calendlyModal">Schedule a
+
+                                                call <i class="bi bi-telephone"></i></button>
+      
+                                    </div>
                               </div>
-                        </div>
-                        <div class=" col-xl-4 col-lg-6 mb-4">
-                              <div class="ct_white_bg ct_ecommerse_web_card">
-                                    <div class="ct_ecommerse_web_icon">
-                                          <img src="assets/img/9_shape_icon.png" alt="">
-                                    </div>
-                                    <div class="d-flex align-items-center gap-2 justify-content-between flex-wrap mb-1">
-                                          <p class="mb-0 ct_fw_500">BUILD AN APP LIKE</p>
-                                          <p class="mb-0 ct_fs_14 ct_fw_500"><span
-                                                      class="ct_fw_700 ct_dark_blue_text">Features:</span> 51
-                                          </p>
-                                    </div>
-                                    <p class="mb-0 ct_fw_700 mb-3">Flipkart</p>
-                                    <ul class="mb-5">
-                                          <li>Shop online effortlessly</li>
-                                          <li>Track your orders in real-time</li>
-                                          <li>Secure and easy checkout</li>
-                                          <li>24/7 customer support</li>
-                                    </ul>
 
-                                    <button class="ct_schedule_call_btn w-100 justify-content-center"
-                                          data-bs-toggle="modal" data-bs-target="#ct_schedule_call_modal">Schedule a
-                                          call <i class="bi bi-telephone"></i></button>
-
-                              </div>
-                        </div>
-                        <div class=" col-xl-4 col-lg-6 mb-4">
-                              <div class="ct_white_bg ct_ecommerse_web_card">
-                                    <div class="ct_ecommerse_web_icon">
-                                          <img src="assets/img/flipcart.png" alt="">
-                                    </div>
-                                    <div class="d-flex align-items-center gap-2 justify-content-between flex-wrap mb-1">
-                                          <p class="mb-0 ct_fw_500">BUILD AN APP LIKE</p>
-                                          <p class="mb-0 ct_fs_14 ct_fw_500"><span
-                                                      class="ct_fw_700 ct_dark_blue_text">Features:</span> 51
-                                          </p>
-                                    </div>
-                                    <p class="mb-0 ct_fw_700 mb-3">Flipkart</p>
-                                    <ul class="mb-5">
-                                          <li>Shop online effortlessly</li>
-                                          <li>Track your orders in real-time</li>
-                                          <li>Secure and easy checkout</li>
-                                          <li>24/7 customer support</li>
-                                    </ul>
-
-                                    <button class="ct_schedule_call_btn w-100 justify-content-center"
-                                          data-bs-toggle="modal" data-bs-target="#ct_schedule_call_modal">Schedule a
-                                          call <i class="bi bi-telephone"></i></button>
-
-                              </div>
-                        </div>
-                        <div class=" col-xl-4 col-lg-6 mb-4">
-                              <div class="ct_white_bg ct_ecommerse_web_card">
-                                    <div class="ct_ecommerse_web_icon">
-                                          <img src="assets/img/chakra_icon.png" alt="">
-                                    </div>
-                                    <div class="d-flex align-items-center gap-2 justify-content-between flex-wrap mb-1">
-                                          <p class="mb-0 ct_fw_500">BUILD AN APP LIKE</p>
-                                          <p class="mb-0 ct_fs_14 ct_fw_500"><span
-                                                      class="ct_fw_700 ct_dark_blue_text">Features:</span> 51
-                                          </p>
-                                    </div>
-                                    <p class="mb-0 ct_fw_700 mb-3">Flipkart</p>
-                                    <ul class="mb-5">
-                                          <li>Shop online effortlessly</li>
-                                          <li>Track your orders in real-time</li>
-                                          <li>Secure and easy checkout</li>
-                                          <li>24/7 customer support</li>
-                                    </ul>
-
-                                    <button class="ct_schedule_call_btn w-100 justify-content-center"
-                                          data-bs-toggle="modal" data-bs-target="#ct_schedule_call_modal">Schedule a
-                                          call <i class="bi bi-telephone"></i></button>
-
-                              </div>
-                        </div>
-                        <div class=" col-xl-4 col-lg-6 mb-4">
-                              <div class="ct_white_bg ct_ecommerse_web_card">
-                                    <div class="ct_ecommerse_web_icon">
-                                          <img src="assets/img/9_shape_icon.png" alt="">
-                                    </div>
-                                    <div class="d-flex align-items-center gap-2 justify-content-between flex-wrap mb-1">
-                                          <p class="mb-0 ct_fw_500">BUILD AN APP LIKE</p>
-                                          <p class="mb-0 ct_fs_14 ct_fw_500"><span
-                                                      class="ct_fw_700 ct_dark_blue_text">Features:</span> 51
-                                          </p>
-                                    </div>
-                                    <p class="mb-0 ct_fw_700 mb-3">Flipkart</p>
-                                    <ul class="mb-5">
-                                          <li>Shop online effortlessly</li>
-                                          <li>Track your orders in real-time</li>
-                                          <li>Secure and easy checkout</li>
-                                          <li>24/7 customer support</li>
-                                    </ul>
-
-                                    <button class="ct_schedule_call_btn w-100 justify-content-center"
-                                          data-bs-toggle="modal" data-bs-target="#ct_schedule_call_modal">Schedule a
-                                          call <i class="bi bi-telephone"></i></button>
-
-                              </div>
-                        </div>
-                        <div class=" col-xl-4 col-lg-6 mb-4">
-                              <div class="ct_white_bg ct_ecommerse_web_card">
-                                    <div class="ct_ecommerse_web_icon">
-                                          <img src="assets/img/flipcart.png" alt="">
-                                    </div>
-                                    <div class="d-flex align-items-center gap-2 justify-content-between flex-wrap mb-1">
-                                          <p class="mb-0 ct_fw_500">BUILD AN APP LIKE</p>
-                                          <p class="mb-0 ct_fs_14 ct_fw_500"><span
-                                                      class="ct_fw_700 ct_dark_blue_text">Features:</span> 51
-                                          </p>
-                                    </div>
-                                    <p class="mb-0 ct_fw_700 mb-3">Flipkart</p>
-                                    <ul class="mb-5">
-                                          <li>Shop online effortlessly</li>
-                                          <li>Track your orders in real-time</li>
-                                          <li>Secure and easy checkout</li>
-                                          <li>24/7 customer support</li>
-                                    </ul>
-
-                                    <button class="ct_schedule_call_btn w-100 justify-content-center"
-                                          data-bs-toggle="modal" data-bs-target="#ct_schedule_call_modal">Schedule a
-                                          call <i class="bi bi-telephone"></i></button>
-
-                              </div>
-                        </div>
-                        <div class=" col-xl-4 col-lg-6 mb-4">
-                              <div class="ct_white_bg ct_ecommerse_web_card">
-                                    <div class="ct_ecommerse_web_icon">
-                                          <img src="assets/img/chakra_icon.png" alt="">
-                                    </div>
-                                    <div class="d-flex align-items-center gap-2 justify-content-between flex-wrap mb-1">
-                                          <p class="mb-0 ct_fw_500">BUILD AN APP LIKE</p>
-                                          <p class="mb-0 ct_fs_14 ct_fw_500"><span
-                                                      class="ct_fw_700 ct_dark_blue_text">Features:</span> 51
-                                          </p>
-                                    </div>
-                                    <p class="mb-0 ct_fw_700 mb-3">Flipkart</p>
-                                    <ul class="mb-5">
-                                          <li>Shop online effortlessly</li>
-                                          <li>Track your orders in real-time</li>
-                                          <li>Secure and easy checkout</li>
-                                          <li>24/7 customer support</li>
-                                    </ul>
-
-                                    <button class="ct_schedule_call_btn w-100 justify-content-center"
-                                          data-bs-toggle="modal" data-bs-target="#ct_schedule_call_modal">Schedule a
-                                          call <i class="bi bi-telephone"></i></button>
-
-                              </div>
-                        </div>
-                        <div class=" col-xl-4 col-lg-6 mb-4">
-                              <div class="ct_white_bg ct_ecommerse_web_card">
-                                    <div class="ct_ecommerse_web_icon">
-                                          <img src="assets/img/9_shape_icon.png" alt="">
-                                    </div>
-                                    <div class="d-flex align-items-center gap-2 justify-content-between flex-wrap mb-1">
-                                          <p class="mb-0 ct_fw_500">BUILD AN APP LIKE</p>
-                                          <p class="mb-0 ct_fs_14 ct_fw_500"><span
-                                                      class="ct_fw_700 ct_dark_blue_text">Features:</span> 51
-                                          </p>
-                                    </div>
-                                    <p class="mb-0 ct_fw_700 mb-3">Flipkart</p>
-                                    <ul class="mb-5">
-                                          <li>Shop online effortlessly</li>
-                                          <li>Track your orders in real-time</li>
-                                          <li>Secure and easy checkout</li>
-                                          <li>24/7 customer support</li>
-                                    </ul>
-
-                                    <button class="ct_schedule_call_btn w-100 justify-content-center"
-                                          data-bs-toggle="modal" data-bs-target="#ct_schedule_call_modal">Schedule a
-                                          call <i class="bi bi-telephone"></i></button>
-
-                              </div>
-                        </div>
+                        }
+                     
+                    
 
                   </div>
             </div>
@@ -632,3 +470,18 @@
       </div>
 </div>
 <!-- Refrsh page modal E -->
+
+<div class="modal fade" id="calendlyModal" tabindex="-1" aria-labelledby="calendlyModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="calendlyModalLabel">Schedule a Call</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div id="calendly-inline-widget" style="min-width:320px;height:630px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    

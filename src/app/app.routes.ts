@@ -14,6 +14,9 @@ export const routes: Routes = [
             path: 'free-demo', loadComponent: () => import('./components/free-demo/free-demo.component').then(c => c.FreeDemoComponent)
       },
       {
+            path: 'main', loadComponent: () => import('./components/main/main.component').then(c => c.MainComponent)
+      },
+      {
             path: 'make-it-mine', loadComponent: () => import('./components/make-it-mine/make-it-mine.component').then(c => c.MakeItMineComponent)
       },
       {

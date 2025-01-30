@@ -13,7 +13,7 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor() { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const authToken = localStorage.getItem('ctiToken');
+    const authToken = localStorage.getItem('tokenCTi');
 
     // Check if the request body is FormData
     if (request.body instanceof FormData) {
@@ -28,7 +28,7 @@ export class AuthInterceptor implements HttpInterceptor {
       // For other requests, keep the original Content-Type header
       const modifiedRequest = request.clone({
         setHeaders: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${authToken}`
         }
       });

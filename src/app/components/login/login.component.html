@@ -22,33 +22,60 @@
                         <p class="mb-0">Sign in with email</p>
                   </div>
 
-                  <form action="javascript:void(0)" class="ct_mt_18">
+                  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="ct_mt_18">
+                        <!-- Email Field -->
                         <div class="form-group mb-3">
-                              <label for="" class="ct_fw_400 mb-2">Company Email <span
-                                          class="ct_red_text">*</span></label>
-                              <div class="position-relative">
-                                    <img src="assets/img/message_icon.svg" alt="" class="ct_left_input_icon">
-                                    <input type="email" class="form-control ct_input">
-
-                              </div>
-
+                          <label class="ct_fw_400 mb-2">Company Email <span class="ct_red_text">*</span></label>
+                          <div class="position-relative">
+                            <img src="assets/img/message_icon.svg" alt="" class="ct_left_input_icon">
+                            <input 
+                              type="email" 
+                              formControlName="email" 
+                              class="form-control ct_input" 
+                              placeholder="Enter email"
+                            />
+                          </div>
+                          <small class="text-danger" *ngIf="formControls['email'].invalid && formControls['email'].touched">
+                            Enter a valid email address.
+                          </small>
                         </div>
-                        <div class="form-group mb-2">
-                              <label for="" class="ct_fw_400 mb-2">Password <span class="ct_red_text">*</span></label>
-                              <div class="position-relative">
-                                    <img src="assets/img/lock_icon.svg" alt="" class="ct_left_input_icon">
-                                    <input type="password" class="form-control ct_input">
-                                    <i class="fa-regular fa-eye-slash ct_eys_password"></i>
-                              </div>
+                      
+                        <!-- Password Field -->
+                        <div class="form-group mb-3">
+                          <label class="ct_fw_400 mb-2">Password <span class="ct_red_text">*</span></label>
+                          <div class="position-relative">
+                            <img src="assets/img/lock_icon.svg" alt="" class="ct_left_input_icon">
+                            <input 
+                              [type]="showPassword ? 'text' : 'password'" 
+                              formControlName="password" 
+                              class="form-control ct_input px-5" 
+                              placeholder="Enter password"
+                            />
+                            <button type="button" class="position-absolute end-0 top-50 translate-middle-y border-0 bg-transparent me-3" (click)="togglePasswordVisibility()">
+                              <i class="fa" [ngClass]="showPassword ? 'fa-eye' : 'fa-eye-slash'"></i>
+                            </button>
+                          </div>
+                          <small class="text-danger" *ngIf="formControls['password'].invalid && formControls['password'].touched">
+                            Password must be at least 8 characters, include uppercase, lowercase, number & special character.
+                          </small>
                         </div>
-                        <a href="forgot-password.html" class="ct_forgot_link">Forgot your password?</a>
-
+                      
+                        <!-- Forgot Password -->
+                        <a routerLink="/forgot-password" class="ct_forgot_link">Forgot your password?</a>
+                      
+                        <!-- Submit Button -->
                         <div class="mt-5">
-                              <button class="ct_blue_btn_fill py-3 w-100" data-bs-toggle="modal"
-                                    data-bs-target="#ct_signup_modal">Sign in</button>
+                          <button type="submit" class="ct_blue_btn_fill py-3 w-100">
+                            Sign in
+                          </button>
                         </div>
-                        <p class="mb-0 mt-3 text-center">Don’t have an account? <a routerLink="/signup">Sign up</a></p>
-                  </form>
+                      
+                        <!-- Sign Up Link -->
+                        <p class="mb-0 mt-3 text-center">Don’t have an account? 
+                          <a routerLink="/signup">Sign up</a>
+                        </p>
+                      </form>
+                      
 
             </div>
       </div>
