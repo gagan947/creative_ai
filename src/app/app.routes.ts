@@ -17,7 +17,7 @@ export const routes: Routes = [
             path: 'main', loadComponent: () => import('./components/main/main.component').then(c => c.MainComponent)
       },
       {
-            path: 'make-it-mine', loadComponent: () => import('./components/make-it-mine/make-it-mine.component').then(c => c.MakeItMineComponent)
+            path: 'make-it-mine/:id', loadComponent: () => import('./components/make-it-mine/make-it-mine.component').then(c => c.MakeItMineComponent)
       },
       {
             path: 'schedule-a-call', loadComponent: () => import('./components/schedule-a-call/schedule-a-call.component').then(c => c.ScheduleACallComponent)

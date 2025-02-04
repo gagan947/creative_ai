@@ -348,18 +348,18 @@ window.onload = function () {
   }, 2500); // Match this with the count-up animation duration
 };
 
-const rangeInput = document.getElementById("customRange3");
+// const rangeInput = document.getElementById("customRange3");
 
-function updateRangeBackground() {
-  const min = rangeInput.min;
-  const max = rangeInput.max;
-  const val = rangeInput.value;
-  const percentage = ((val - min) / (max - min)) * 100;
+// function updateRangeBackground() {
+//   const min = rangeInput.min;
+//   const max = rangeInput.max;
+//   const val = rangeInput.value;
+//   const percentage = ((val - min) / (max - min)) * 100;
 
-  rangeInput.style.background = `linear-gradient(to right, #1b83c1 ${percentage}%, #ddd ${percentage}%)`;
-}
+//   rangeInput.style.background = `linear-gradient(to right, #1b83c1 ${percentage}%, #ddd ${percentage}%)`;
+// }
 
-rangeInput.addEventListener("input", updateRangeBackground);
+// rangeInput.addEventListener("input", updateRangeBackground);
 
-// Initialize on page load
-updateRangeBackground();
+
+// updateRangeBackground();

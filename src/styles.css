@@ -55,3 +55,14 @@ ul.iti__country-list {
       height: 147px;
       overflow-x: hidden;
 }
+
+.color-picker{
+      top: 360.746px !important;
+      left: 123.128px !important;
+  }
+
+  .color-picker .arrow.arrow-top-right, .color-picker .arrow.arrow-right-top {
+      bottom: -5px !important;
+      left: 59px !important;
+      transform: rotate(150deg) !important;
+  }

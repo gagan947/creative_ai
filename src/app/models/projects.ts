@@ -12,7 +12,7 @@ export interface ProjectResponse {
     contain: string[];
     projectImage: string;
     status: number;
-    createdAt: string; // or Date if you parse it
-    updatedAt: string; // or Date if you parse it
+    createdAt: string;
+    updatedAt: string; 
   }
   

@@ -14,7 +14,7 @@ declare var Calendly: any;
 })
 export class MainComponent {
 projectsData:Project[]=[]
-
+projectId :any;
 
   ngOnInit(): void {
    
@@ -31,16 +31,11 @@ projectsData:Project[]=[]
 
   getProjects() {
 
-    
     this.apiservice.getApi<ProjectResponse>(`api/user/fetchAllProjects`)
       .subscribe({
         next: (res) => {
           if (res.success == true) {
             this.projectsData = res.data;
-            console.log(res);
-            // this.projectInfo = res.projectInfo
-            // this, this.getProjectMedia()
-            // this.loading = false
           } else {
             // this.loading = false
           }
@@ -50,6 +45,7 @@ projectsData:Project[]=[]
         }
       });
   };
+
 
   openCalendly() {
     Calendly.initPopupWidget({ url: 'https://calendly.com/mohdfaraz-ctinfotech/30min' });
@@ -63,5 +59,10 @@ projectsData:Project[]=[]
         parentElement: calendlyContainer
       });
     }
+  };
+
+  updateProjectId(id:any){
+    console.log(id);
+    this.projectId = id
   }
 }
