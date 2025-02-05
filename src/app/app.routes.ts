@@ -23,10 +23,10 @@ export const routes: Routes = [
             path: 'schedule-a-call', loadComponent: () => import('./components/schedule-a-call/schedule-a-call.component').then(c => c.ScheduleACallComponent)
       },
       {
-            path: 'refine-idea', loadComponent: () => import('./components/refine-idea/refine-idea.component').then(c => c.RefineIdeaComponent)
+            path: 'refine-idea/:id', loadComponent: () => import('./components/refine-idea/refine-idea.component').then(c => c.RefineIdeaComponent)
       },
       {
-            path: 'plan-delivery', loadComponent: () => import('./components/plan-delivery/plan-delivery.component').then(c => c.PlanDeliveryComponent)
+            path: 'plan-delivery/:id', loadComponent: () => import('./components/plan-delivery/plan-delivery.component').then(c => c.PlanDeliveryComponent)
       },
       {
             path: 'review-buildcard', loadComponent: () => import('./components/review-buildcard/review-buildcard.component').then(c => c.ReviewBuildcardComponent)

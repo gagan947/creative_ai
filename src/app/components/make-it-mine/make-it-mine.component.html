@@ -112,7 +112,8 @@
                                                       class="form-control ct_input ct_border_radius_10 ct_fs_14 ct_input_h_32"
                                                       placeholder="Enter Project Name" #project_name>
                                                 <button
-                                                      class="ct_schedule_call_btn w-100 mt-3 justify-content-center ct_fs_14 ct_fw_500 py-2" (click)="updateName(project_name.value)">Update
+                                                      class="ct_schedule_call_btn w-100 mt-3 justify-content-center ct_fs_14 ct_fw_500 py-2"
+                                                      (click)="updateName(project_name.value)">Update
                                                       app
                                                       name</button>
                                           </div>
@@ -151,20 +152,23 @@
                                                       <div class="tab-pane fade show active" id="pills-Upcoming-Calls"
                                                             role="tabpanel" aria-labelledby="pills-Upcoming-Calls-tab">
                                                             <label for="ct_upload_logo" class="d-block">
-                                                                  <input type="file" class="d-none" id="ct_upload_logo" accept="image/*" (change)="onFileSelected($event)">
+                                                                  <input type="file" class="d-none" id="ct_upload_logo"
+                                                                        accept="image/*"
+                                                                        (change)="onFileSelected($event)">
                                                                   <div class="ct_upload_logo_div">
                                                                         @if(imagePreview){
-                                                                              <img [src]="imagePreview" alt="Preview" class="preview-image w-100" >
+                                                                        <img [src]="imagePreview" alt="Preview"
+                                                                              class="preview-image w-100">
 
                                                                         }@else {
-                                                                              <svg width="22" height="21" viewBox="0 0 22 21"
-                                                                                    fill="none"
-                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                    <path d="M3 14.7422C1.79401 13.935 1 12.5602 1 11C1 8.65643 2.79151 6.73129 5.07974 6.51937C5.54781 3.67213 8.02024 1.5 11 1.5C13.9798 1.5 16.4522 3.67213 16.9203 6.51937C19.2085 6.73129 21 8.65643 21 11C21 12.5602 20.206 13.935 19 14.7422M7 14.5L11 10.5M11 10.5L15 14.5M11 10.5V19.5"
-                                                                                          stroke="#1B83C1" stroke-width="2"
-                                                                                          stroke-linecap="round"
-                                                                                          stroke-linejoin="round" />
-                                                                              </svg>
+                                                                        <svg width="22" height="21" viewBox="0 0 22 21"
+                                                                              fill="none"
+                                                                              xmlns="http://www.w3.org/2000/svg">
+                                                                              <path d="M3 14.7422C1.79401 13.935 1 12.5602 1 11C1 8.65643 2.79151 6.73129 5.07974 6.51937C5.54781 3.67213 8.02024 1.5 11 1.5C13.9798 1.5 16.4522 3.67213 16.9203 6.51937C19.2085 6.73129 21 8.65643 21 11C21 12.5602 20.206 13.935 19 14.7422M7 14.5L11 10.5M11 10.5L15 14.5M11 10.5V19.5"
+                                                                                    stroke="#1B83C1" stroke-width="2"
+                                                                                    stroke-linecap="round"
+                                                                                    stroke-linejoin="round" />
+                                                                        </svg>
 
                                                                         }
                                                                   </div>
@@ -181,9 +185,12 @@
                                                                   </div>
                                                             </label>
                                                       </div>
-                                                      <div class="tab-pane fade d-flex justify-content-center" id="pills-Past_Calls" role="tabpanel"
+                                                      <div class="tab-pane fade d-flex justify-content-center"
+                                                            id="pills-Past_Calls" role="tabpanel"
                                                             aria-labelledby="pills-Past_Calls-tab">
-                                                            <input [(colorPicker)]="color" [style.background]="color" (colorPickerChange)="onColorChange($event)" class="colorPickdr"/>
+                                                            <input [(colorPicker)]="color" [style.background]="color"
+                                                                  (colorPickerChange)="onColorChange($event)"
+                                                                  class="colorPickdr" />
                                                       </div>
 
                                                 </div>
@@ -269,9 +276,9 @@
                                           <div class="ct_base_section_main">
                                                 <div class="position-relative ct_w_fit_content mx-auto">
                                                       @if(!imagePreview){
-                                                            <img src="assets/img/iPhone_14 Plus_.png" alt="">
+                                                      <img src="assets/img/iPhone_14 Plus_.png" alt="">
                                                       }@else {
-                                                            <img [src]="imagePreview" alt="" class="ct_mobile_w_screen">
+                                                      <img [src]="imagePreview" alt="" class="ct_mobile_w_screen">
                                                       }
                                                       <div class="ct_mob_overlay_top_cnt_12">
                                                             <div class="ct_add_logo_by_ai">
@@ -296,7 +303,7 @@
                                                             class="d-flex align-items-center justify-content-between gap-3 mt-3">
                                                             <button type="button"
                                                                   class="ct_blue_outline_btn w-100">Cancel</button>
-                                                            <a routerLink="/refine-idea" type="button"
+                                                            <a (click)="Navigate(id)" type="button"
                                                                   class="ct_blue_btn_fill  w-100">Next</a>
                                                       </div>
                                                 </div>

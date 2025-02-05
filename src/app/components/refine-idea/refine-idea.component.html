@@ -118,7 +118,7 @@
                                           </div>
                                     </div>
                                     <div class="ct_chat_item_right">
-                                          <p class="mb-0 ct_fs_14 ct_line_h_25">My Creative Project</p>
+                                          <p class="mb-0 ct_fs_14 ct_line_h_25">{{projectsData.projectName}}</p>
                                     </div>
 
                                     <div class="ct_chat_item_left mt-2">
@@ -419,8 +419,9 @@
                                                             <!-- Step 2 form fields here -->
                                                             <div class="ct_make_it_mine_section_main position-relative">
                                                                   <div class="d-flex align-items-center">
-                                                                        <div class="position-relative ct_w_fit_content">
-                                                                              <img src="assets/img/Frame1437253511.png"
+                                                                        <div class="position-relative ct_w_fit_content"
+                                                                              style="max-width: 328px;width: 100%;">
+                                                                              <img [src]="projectsData.projectLogo ? projectsData.projectLogo : 'assets/img/Frame1437253511.png'"
                                                                                     alt=""
                                                                                     style="max-width: 328px;width: 100%; height: 203px; object-fit: cover; border-radius: 10px;">
                                                                               <div class="ct_mob_overlay_top_cnt_12">
@@ -441,8 +442,9 @@
                                                                                                       stroke-linejoin="round" />
                                                                                           </svg>
                                                                                     </div>
-                                                                                    <h6 class="text-white ct_fs_14">My
-                                                                                          Creative Project</h6>
+                                                                                    <h6 class="text-white ct_fs_14">
+                                                                                          {{projectsData.projectName}}
+                                                                                    </h6>
                                                                               </div>
                                                                         </div>
                                                                         <div class="ct_connecting_shape_res">
@@ -461,18 +463,18 @@
                                                                         </div>
                                                                         <div class="ct_project_detail_point_list_2">
                                                                               <ul>
-                                                                                    <li>Send notifications & engage
-                                                                                          users</li>
-                                                                                    <li>Get data, analytics & reports
-                                                                                    </li>
-                                                                                    <li>Offer extra security</li>
+                                                                                    @for (item of
+                                                                                    projectsFeaturs.slice(0,3); track
+                                                                                    $index) {
+                                                                                    <li>{{item.featuresName}}</li>
+                                                                                    }
                                                                               </ul>
                                                                               <ul>
-                                                                                    <li>Send notifications & engage
-                                                                                          users</li>
-                                                                                    <li>Get data, analytics & reports
-                                                                                    </li>
-                                                                                    <li>Offer extra security</li>
+                                                                                    @for (item of
+                                                                                    projectsFeaturs.slice(3,6); track
+                                                                                    $index) {
+                                                                                    <li>{{item.featuresName}}</li>
+                                                                                    }
                                                                               </ul>
                                                                         </div>
                                                                   </div>
@@ -481,30 +483,45 @@
                                                                         <div class="ct_overlay_detail_icon_top">
                                                                               <i class="fa-solid fa-chevron-up"></i>
                                                                         </div>
-                                                                        <div class="d-flex align-items-center  gap-5">
-                                                                              <div>
-                                                                                    <span
-                                                                                          class="ct_text_clr_7F8188  ct_fs_14">MY
-                                                                                          APP</span>
-                                                                                    <p class="mb-0 mt-1 ct_fw_700">MY
-                                                                                          CREATIVE PROJECT</p>
+                                                                        <div
+                                                                              class="d-flex align-items-center justify-content-between">
+                                                                              <div
+                                                                                    class="d-flex align-items-center gap-5">
+                                                                                    <div>
+                                                                                          <span
+                                                                                                class="ct_text_clr_7F8188  ct_fs_14">MY
+                                                                                                APP</span>
+                                                                                          <p
+                                                                                                class="mb-0 mt-1 ct_fw_700">
+                                                                                                MY
+                                                                                                CREATIVE PROJECT</p>
 
+                                                                                    </div>
+                                                                                    <div>
+                                                                                          <span
+                                                                                                class="ct_text_clr_7F8188 ct_fs_14">ESTIMATED
+                                                                                                DURATION</span>
+                                                                                          <p
+                                                                                                class="mb-0 mt-1 ct_fw_700">
+                                                                                                17
+                                                                                                WEEKS</p>
+
+                                                                                    </div>
                                                                               </div>
                                                                               <div>
                                                                                     <span
-                                                                                          class="ct_text_clr_7F8188 ct_fs_14">ESTIMATED
-                                                                                          DURATION</span>
-                                                                                    <p class="mb-0 mt-1 ct_fw_700">17
-                                                                                          WEEKS</p>
-
+                                                                                          class="ct_text_clr_7F8188 ct_fs_14">TOTAL
+                                                                                    </span>
+                                                                                    <p class="mb-0 mt-1 ct_fw_700">
+                                                                                          {{totalPrice | currency :'INR'}}
+                                                                                    </p>
                                                                               </div>
                                                                         </div>
                                                                         <div
                                                                               class="d-flex align-items-center justify-content-between gap-3 mt-3">
                                                                               <button type="button"
                                                                                     class="ct_blue_outline_btn w-100 prev-step">Cancel</button>
-                                                                              <a routerLink="/plan-delivery"
-                                                                                    type="button"
+                                                                              <a (click)="Navigate()" type="button"
                                                                                     class="ct_blue_btn_fill next-step w-100">Save
                                                                                     & Continue</a>
                                                                         </div>
@@ -567,10 +584,10 @@
                                                                                                                               TOTAL
                                                                                                                               COST
                                                                                                                         </th>
-                                                                                                                        <th
+                                                                                                                        <!-- <th
                                                                                                                               class="ct_fw_400 pb-4">
                                                                                                                               QTY
-                                                                                                                        </th>
+                                                                                                                        </th> -->
                                                                                                                         <th>
                                                                                                                         </th>
                                                                                                                         <th>
@@ -579,15 +596,17 @@
                                                                                                                   </tr>
                                                                                                             </thead>
                                                                                                             <tbody>
+                                                                                                                  @for
+                                                                                                                  (item
+                                                                                                                  of
+                                                                                                                  projectsFeaturs;
+                                                                                                                  track
+                                                                                                                  $index)
+                                                                                                                  {
                                                                                                                   <tr>
                                                                                                                         <td>
                                                                                                                               <span
-                                                                                                                                    class="ct_fw_600">Help
-                                                                                                                                    users
-                                                                                                                                    sign
-                                                                                                                                    up
-                                                                                                                                    &
-                                                                                                                                    login</span>
+                                                                                                                                    class="ct_fw_600">{{item.featuresName}}</span>
                                                                                                                         </td>
                                                                                                                         <td><span
                                                                                                                                     class="ct_fw_600">₹1,26,844.69</span>
@@ -596,418 +615,81 @@
                                                                                                                                     class="ct_fw_600">₹1,26,844.69</span>
                                                                                                                         </td>
                                                                                                                         <td><span
-                                                                                                                                    class="ct_fw_600">₹1,26,844.69</span>
+                                                                                                                                    class="ct_fw_600">{{item.totalSubFeaturedPrice | currency : 'INR'}}</span>
                                                                                                                         </td>
-                                                                                                                        <td><span
+                                                                                                                        <!-- <td><span
                                                                                                                                     class="ct_fw_600">₹1,26,844.69</span>
-                                                                                                                        </td>
+                                                                                                                        </td> -->
                                                                                                                         <td><span
                                                                                                                                     class="ct_fw_600">5
                                                                                                                                     HRS</span>
                                                                                                                         </td>
-                                                                                                                        <td>
+                                                                                                                        <td id="dropdownMenuButton1"
+                                                                                                                              data-bs-toggle="dropdown"
+                                                                                                                              aria-expanded="false">
                                                                                                                               <div
                                                                                                                                     class="dropdown ct_table_action_drop">
-                                                                                                                                    <i class="fa-solid fa-ellipsis-vertical"
-                                                                                                                                          id="dropdownMenuButton1"
-                                                                                                                                          data-bs-toggle="dropdown"
-                                                                                                                                          aria-expanded="false"></i>
+                                                                                                                                    <i
+                                                                                                                                          class="fa-solid fa-ellipsis-vertical"></i>
 
                                                                                                                                     <ul class="dropdown-menu"
                                                                                                                                           aria-labelledby="dropdownMenuButton1">
                                                                                                                                           <li><a class="dropdown-item"
-                                                                                                                                                      href="#">Delete</a>
+                                                                                                                                                      (click)="removeFeture(item)">Delete</a>
                                                                                                                                           </li>
 
                                                                                                                                     </ul>
                                                                                                                               </div>
                                                                                                                         </td>
                                                                                                                   </tr>
+                                                                                                                  @for
+                                                                                                                  (item2
+                                                                                                                  of
+                                                                                                                  item.subFeaturesListWithPrice;
+                                                                                                                  track
+                                                                                                                  $index)
+                                                                                                                  {
                                                                                                                   <tr>
-                                                                                                                        <td>Splash
-                                                                                                                              Screen
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>5 HRS
-                                                                                                                        </td>
-                                                                                                                        <td>1
-                                                                                                                        </td>
                                                                                                                         <td>
+                                                                                                                              <span
+                                                                                                                                    class="">{{item2.subFeaturesName}}</span>
+                                                                                                                        </td>
+                                                                                                                        <td><span
+                                                                                                                                    class="">₹1,26,844.69</span>
+                                                                                                                        </td>
+                                                                                                                        <td><span
+                                                                                                                                    class="">₹1,26,844.69</span>
+                                                                                                                        </td>
+                                                                                                                        <td><span
+                                                                                                                                    class="">{{item2.subFeaturedPrice | currency : 'INR'}}</span>
+                                                                                                                        </td>
+                                                                                                                        <!-- <td><span
+                                                                                                                                    class="">₹1,26,844.69</span>
+                                                                                                                        </td> -->
+                                                                                                                        <td><span
+                                                                                                                                    class="">5
+                                                                                                                                    HRS</span>
+                                                                                                                        </td>
+                                                                                                                        <td id="dropdownMenuButton1"
+                                                                                                                              data-bs-toggle="dropdown"
+                                                                                                                              aria-expanded="false">
                                                                                                                               <div
                                                                                                                                     class="dropdown ct_table_action_drop">
-                                                                                                                                    <i class="fa-solid fa-ellipsis-vertical"
-                                                                                                                                          id="dropdownMenuButton1"
-                                                                                                                                          data-bs-toggle="dropdown"
-                                                                                                                                          aria-expanded="false"></i>
+                                                                                                                                    <i
+                                                                                                                                          class="fa-solid fa-ellipsis-vertical"></i>
 
                                                                                                                                     <ul class="dropdown-menu"
                                                                                                                                           aria-labelledby="dropdownMenuButton1">
                                                                                                                                           <li><a class="dropdown-item"
-                                                                                                                                                      href="#">Delete</a>
+                                                                                                                                                      (click)="removeSubFeture(item2)">Delete</a>
                                                                                                                                           </li>
 
                                                                                                                                     </ul>
                                                                                                                               </div>
                                                                                                                         </td>
                                                                                                                   </tr>
-                                                                                                                  <tr>
-                                                                                                                        <td>Landing
-                                                                                                                              Page
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>5 HRS
-                                                                                                                        </td>
-                                                                                                                        <td>1
-                                                                                                                        </td>
-                                                                                                                        <td>
-                                                                                                                              <div
-                                                                                                                                    class="dropdown ct_table_action_drop">
-                                                                                                                                    <i class="fa-solid fa-ellipsis-vertical"
-                                                                                                                                          id="dropdownMenuButton1"
-                                                                                                                                          data-bs-toggle="dropdown"
-                                                                                                                                          aria-expanded="false"></i>
-
-                                                                                                                                    <ul class="dropdown-menu"
-                                                                                                                                          aria-labelledby="dropdownMenuButton1">
-                                                                                                                                          <li><a class="dropdown-item"
-                                                                                                                                                      href="#">Delete</a>
-                                                                                                                                          </li>
-
-                                                                                                                                    </ul>
-                                                                                                                              </div>
-                                                                                                                        </td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                        <td>Signup/Login
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>5 HRS
-                                                                                                                        </td>
-                                                                                                                        <td>1
-                                                                                                                        </td>
-                                                                                                                        <td>
-                                                                                                                              <div
-                                                                                                                                    class="dropdown ct_table_action_drop">
-                                                                                                                                    <i class="fa-solid fa-ellipsis-vertical"
-                                                                                                                                          id="dropdownMenuButton1"
-                                                                                                                                          data-bs-toggle="dropdown"
-                                                                                                                                          aria-expanded="false"></i>
-
-                                                                                                                                    <ul class="dropdown-menu"
-                                                                                                                                          aria-labelledby="dropdownMenuButton1">
-                                                                                                                                          <li><a class="dropdown-item"
-                                                                                                                                                      href="#">Delete</a>
-                                                                                                                                          </li>
-
-                                                                                                                                    </ul>
-                                                                                                                              </div>
-                                                                                                                        </td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                        <td>Terms
-                                                                                                                              And
-                                                                                                                              Conditions
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>5 HRS
-                                                                                                                        </td>
-                                                                                                                        <td>1
-                                                                                                                        </td>
-                                                                                                                        <td>
-                                                                                                                              <div
-                                                                                                                                    class="dropdown ct_table_action_drop">
-                                                                                                                                    <i class="fa-solid fa-ellipsis-vertical"
-                                                                                                                                          id="dropdownMenuButton1"
-                                                                                                                                          data-bs-toggle="dropdown"
-                                                                                                                                          aria-expanded="false"></i>
-
-                                                                                                                                    <ul class="dropdown-menu"
-                                                                                                                                          aria-labelledby="dropdownMenuButton1">
-                                                                                                                                          <li><a class="dropdown-item"
-                                                                                                                                                      href="#">Delete</a>
-                                                                                                                                          </li>
-
-                                                                                                                                    </ul>
-                                                                                                                              </div>
-                                                                                                                        </td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                        <td>Phone
-                                                                                                                              Login
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>5 HRS
-                                                                                                                        </td>
-                                                                                                                        <td>1
-                                                                                                                        </td>
-                                                                                                                        <td>
-                                                                                                                              <div
-                                                                                                                                    class="dropdown ct_table_action_drop">
-                                                                                                                                    <i class="fa-solid fa-ellipsis-vertical"
-                                                                                                                                          id="dropdownMenuButton1"
-                                                                                                                                          data-bs-toggle="dropdown"
-                                                                                                                                          aria-expanded="false"></i>
-
-                                                                                                                                    <ul class="dropdown-menu"
-                                                                                                                                          aria-labelledby="dropdownMenuButton1">
-                                                                                                                                          <li><a class="dropdown-item"
-                                                                                                                                                      href="#">Delete</a>
-                                                                                                                                          </li>
-
-                                                                                                                                    </ul>
-                                                                                                                              </div>
-                                                                                                                        </td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                        <td>Phone
-                                                                                                                              Verification
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>5 HRS
-                                                                                                                        </td>
-                                                                                                                        <td>1
-                                                                                                                        </td>
-                                                                                                                        <td>
-                                                                                                                              <div
-                                                                                                                                    class="dropdown ct_table_action_drop">
-                                                                                                                                    <i class="fa-solid fa-ellipsis-vertical"
-                                                                                                                                          id="dropdownMenuButton1"
-                                                                                                                                          data-bs-toggle="dropdown"
-                                                                                                                                          aria-expanded="false"></i>
-
-                                                                                                                                    <ul class="dropdown-menu"
-                                                                                                                                          aria-labelledby="dropdownMenuButton1">
-                                                                                                                                          <li><a class="dropdown-item"
-                                                                                                                                                      href="#">Delete</a>
-                                                                                                                                          </li>
-
-                                                                                                                                    </ul>
-                                                                                                                              </div>
-                                                                                                                        </td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                        <td>Google
-                                                                                                                              Login
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>5 HRS
-                                                                                                                        </td>
-                                                                                                                        <td>1
-                                                                                                                        </td>
-                                                                                                                        <td>
-                                                                                                                              <div
-                                                                                                                                    class="dropdown ct_table_action_drop">
-                                                                                                                                    <i class="fa-solid fa-ellipsis-vertical"
-                                                                                                                                          id="dropdownMenuButton1"
-                                                                                                                                          data-bs-toggle="dropdown"
-                                                                                                                                          aria-expanded="false"></i>
-
-                                                                                                                                    <ul class="dropdown-menu"
-                                                                                                                                          aria-labelledby="dropdownMenuButton1">
-                                                                                                                                          <li><a class="dropdown-item"
-                                                                                                                                                      href="#">Delete</a>
-                                                                                                                                          </li>
-
-                                                                                                                                    </ul>
-                                                                                                                              </div>
-                                                                                                                        </td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                        <td>Google
-                                                                                                                              Login
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>5 HRS
-                                                                                                                        </td>
-                                                                                                                        <td>1
-                                                                                                                        </td>
-                                                                                                                        <td>
-                                                                                                                              <div
-                                                                                                                                    class="dropdown ct_table_action_drop">
-                                                                                                                                    <i class="fa-solid fa-ellipsis-vertical"
-                                                                                                                                          id="dropdownMenuButton1"
-                                                                                                                                          data-bs-toggle="dropdown"
-                                                                                                                                          aria-expanded="false"></i>
-
-                                                                                                                                    <ul class="dropdown-menu"
-                                                                                                                                          aria-labelledby="dropdownMenuButton1">
-                                                                                                                                          <li><a class="dropdown-item"
-                                                                                                                                                      href="#">Delete</a>
-                                                                                                                                          </li>
-
-                                                                                                                                    </ul>
-                                                                                                                              </div>
-                                                                                                                        </td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                        <td>Apple
-                                                                                                                              Login
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>5 HRS
-                                                                                                                        </td>
-                                                                                                                        <td>1
-                                                                                                                        </td>
-                                                                                                                        <td>
-                                                                                                                              <div
-                                                                                                                                    class="dropdown ct_table_action_drop">
-                                                                                                                                    <i class="fa-solid fa-ellipsis-vertical"
-                                                                                                                                          id="dropdownMenuButton1"
-                                                                                                                                          data-bs-toggle="dropdown"
-                                                                                                                                          aria-expanded="false"></i>
-
-                                                                                                                                    <ul class="dropdown-menu"
-                                                                                                                                          aria-labelledby="dropdownMenuButton1">
-                                                                                                                                          <li><a class="dropdown-item"
-                                                                                                                                                      href="#">Delete</a>
-                                                                                                                                          </li>
-
-                                                                                                                                    </ul>
-                                                                                                                              </div>
-                                                                                                                        </td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                        <td>Terms
-                                                                                                                              &
-                                                                                                                              Conditions
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>5 HRS
-                                                                                                                        </td>
-                                                                                                                        <td>1
-                                                                                                                        </td>
-                                                                                                                        <td>
-                                                                                                                              <div
-                                                                                                                                    class="dropdown ct_table_action_drop">
-                                                                                                                                    <i class="fa-solid fa-ellipsis-vertical"
-                                                                                                                                          id="dropdownMenuButton1"
-                                                                                                                                          data-bs-toggle="dropdown"
-                                                                                                                                          aria-expanded="false"></i>
-
-                                                                                                                                    <ul class="dropdown-menu"
-                                                                                                                                          aria-labelledby="dropdownMenuButton1">
-                                                                                                                                          <li><a class="dropdown-item"
-                                                                                                                                                      href="#">Delete</a>
-                                                                                                                                          </li>
-
-                                                                                                                                    </ul>
-                                                                                                                              </div>
-                                                                                                                        </td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                        <td>Landing
-                                                                                                                              page
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>5 HRS
-                                                                                                                        </td>
-                                                                                                                        <td>1
-                                                                                                                        </td>
-                                                                                                                        <td>
-                                                                                                                              <div
-                                                                                                                                    class="dropdown ct_table_action_drop">
-                                                                                                                                    <i class="fa-solid fa-ellipsis-vertical"
-                                                                                                                                          id="dropdownMenuButton1"
-                                                                                                                                          data-bs-toggle="dropdown"
-                                                                                                                                          aria-expanded="false"></i>
-
-                                                                                                                                    <ul class="dropdown-menu"
-                                                                                                                                          aria-labelledby="dropdownMenuButton1">
-                                                                                                                                          <li><a class="dropdown-item"
-                                                                                                                                                      href="#">Delete</a>
-                                                                                                                                          </li>
-
-                                                                                                                                    </ul>
-                                                                                                                              </div>
-                                                                                                                        </td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                        <td>Apple
-                                                                                                                              Login
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>5 HRS
-                                                                                                                        </td>
-                                                                                                                        <td>1
-                                                                                                                        </td>
-                                                                                                                        <td>
-                                                                                                                              <div
-                                                                                                                                    class="dropdown ct_table_action_drop">
-                                                                                                                                    <i class="fa-solid fa-ellipsis-vertical"
-                                                                                                                                          id="dropdownMenuButton1"
-                                                                                                                                          data-bs-toggle="dropdown"
-                                                                                                                                          aria-expanded="false"></i>
-
-                                                                                                                                    <ul class="dropdown-menu"
-                                                                                                                                          aria-labelledby="dropdownMenuButton1">
-                                                                                                                                          <li><a class="dropdown-item"
-                                                                                                                                                      href="#">Delete</a>
-                                                                                                                                          </li>
-
-                                                                                                                                    </ul>
-                                                                                                                              </div>
-                                                                                                                        </td>
-                                                                                                                  </tr>
+                                                                                                                  }
+                                                                                                                  }
                                                                                                             </tbody>
                                                                                                       </table>
                                                                                                 </div>
@@ -1029,8 +711,8 @@
                                                             <div class="ct_make_it_mine_section_main position-relative">
                                                                   <div class="d-flex justify-content-center">
                                                                         <div class="position-relative ct_w_fit_content">
-                                                                              <img src="assets/img/iPhone_14 Plus_.png"
-                                                                                    alt="">
+                                                                              <img [src]=" projectsData.projectLogo ? projectsData.projectLogo:'assets/img/iPhone_14 Plus_.png'"
+                                                                                    alt="" class="ct_mobile_w_screen">
                                                                               <div class="ct_mob_overlay_top_cnt_12">
                                                                                     <div class="ct_add_logo_by_ai">
                                                                                           <svg width="12" height="12"
@@ -1049,8 +731,9 @@
                                                                                                       stroke-linejoin="round" />
                                                                                           </svg>
                                                                                     </div>
-                                                                                    <h6 class="text-white ct_fs_14">My
-                                                                                          Creative Project</h6>
+                                                                                    <h6 class="text-white ct_fs_14">
+                                                                                          {{projectsData.projectName}}
+                                                                                    </h6>
                                                                               </div>
                                                                         </div>
                                                                         <div class="ct_connecting_shape_res">
@@ -1069,18 +752,18 @@
                                                                         </div>
                                                                         <div class="ct_project_detail_point_list_2">
                                                                               <ul>
-                                                                                    <li>Send notifications & engage
-                                                                                          users</li>
-                                                                                    <li>Get data, analytics & reports
-                                                                                    </li>
-                                                                                    <li>Offer extra security</li>
+                                                                                    @for (item of
+                                                                                    projectsFeaturs.slice(0,3); track
+                                                                                    $index) {
+                                                                                    <li>{{item.featuresName}}</li>
+                                                                                    }
                                                                               </ul>
                                                                               <ul>
-                                                                                    <li>Send notifications & engage
-                                                                                          users</li>
-                                                                                    <li>Get data, analytics & reports
-                                                                                    </li>
-                                                                                    <li>Offer extra security</li>
+                                                                                    @for (item of
+                                                                                    projectsFeaturs.slice(3,6); track
+                                                                                    $index) {
+                                                                                    <li>{{item.featuresName}}</li>
+                                                                                    }
                                                                               </ul>
                                                                         </div>
                                                                   </div>
@@ -1089,30 +772,45 @@
                                                                         <div class="ct_overlay_detail_icon_top">
                                                                               <i class="fa-solid fa-chevron-up"></i>
                                                                         </div>
-                                                                        <div class="d-flex align-items-center  gap-5">
-                                                                              <div>
-                                                                                    <span
-                                                                                          class="ct_text_clr_7F8188  ct_fs_14">MY
-                                                                                          APP</span>
-                                                                                    <p class="mb-0 mt-1 ct_fw_700">MY
-                                                                                          CREATIVE PROJECT</p>
+                                                                        <div
+                                                                              class="d-flex align-items-center justify-content-between">
+                                                                              <div
+                                                                                    class="d-flex align-items-center gap-5">
+                                                                                    <div>
+                                                                                          <span
+                                                                                                class="ct_text_clr_7F8188  ct_fs_14">MY
+                                                                                                APP</span>
+                                                                                          <p
+                                                                                                class="mb-0 mt-1 ct_fw_700">
+                                                                                                MY
+                                                                                                CREATIVE PROJECT</p>
 
+                                                                                    </div>
+                                                                                    <div>
+                                                                                          <span
+                                                                                                class="ct_text_clr_7F8188 ct_fs_14">ESTIMATED
+                                                                                                DURATION</span>
+                                                                                          <p
+                                                                                                class="mb-0 mt-1 ct_fw_700">
+                                                                                                17
+                                                                                                WEEKS</p>
+
+                                                                                    </div>
                                                                               </div>
                                                                               <div>
                                                                                     <span
-                                                                                          class="ct_text_clr_7F8188 ct_fs_14">ESTIMATED
-                                                                                          DURATION</span>
-                                                                                    <p class="mb-0 mt-1 ct_fw_700">17
-                                                                                          WEEKS</p>
-
+                                                                                          class="ct_text_clr_7F8188 ct_fs_14">TOTAL
+                                                                                    </span>
+                                                                                    <p class="mb-0 mt-1 ct_fw_700">
+                                                                                          {{totalPrice}}
+                                                                                    </p>
                                                                               </div>
                                                                         </div>
                                                                         <div
                                                                               class="d-flex align-items-center justify-content-between gap-3 mt-3">
                                                                               <button type="button"
                                                                                     class="ct_blue_outline_btn w-100 prev-step">Cancel</button>
-                                                                              <a routerLink="/plan-delivery"
-                                                                                    type="button"
+                                                                              <a (click)="Navigate()" type="button"
                                                                                     class="ct_blue_btn_fill next-step w-100">Save
                                                                                     &
                                                                                     Continue</a>
@@ -1188,15 +886,17 @@
                                                                                                                   </tr>
                                                                                                             </thead>
                                                                                                             <tbody>
+                                                                                                                  @for
+                                                                                                                  (item
+                                                                                                                  of
+                                                                                                                  projectsFeaturs;
+                                                                                                                  track
+                                                                                                                  $index)
+                                                                                                                  {
                                                                                                                   <tr>
                                                                                                                         <td>
                                                                                                                               <span
-                                                                                                                                    class="ct_fw_600">Help
-                                                                                                                                    users
-                                                                                                                                    sign
-                                                                                                                                    up
-                                                                                                                                    &
-                                                                                                                                    login</span>
+                                                                                                                                    class="ct_fw_600">{{item.featuresName}}</span>
                                                                                                                         </td>
                                                                                                                         <td><span
                                                                                                                                     class="ct_fw_600">₹1,26,844.69</span>
@@ -1232,391 +932,8 @@
                                                                                                                               </div>
                                                                                                                         </td>
                                                                                                                   </tr>
-                                                                                                                  <tr>
-                                                                                                                        <td>Splash
-                                                                                                                              Screen
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>5 HRS
-                                                                                                                        </td>
-                                                                                                                        <td>1
-                                                                                                                        </td>
-                                                                                                                        <td>
-                                                                                                                              <div
-                                                                                                                                    class="dropdown ct_table_action_drop">
-                                                                                                                                    <i class="fa-solid fa-ellipsis-vertical"
-                                                                                                                                          id="dropdownMenuButton1"
-                                                                                                                                          data-bs-toggle="dropdown"
-                                                                                                                                          aria-expanded="false"></i>
+                                                                                                                  }
 
-                                                                                                                                    <ul class="dropdown-menu"
-                                                                                                                                          aria-labelledby="dropdownMenuButton1">
-                                                                                                                                          <li><a class="dropdown-item"
-                                                                                                                                                      href="#">Delete</a>
-                                                                                                                                          </li>
-
-                                                                                                                                    </ul>
-                                                                                                                              </div>
-                                                                                                                        </td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                        <td>Landing
-                                                                                                                              Page
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>5 HRS
-                                                                                                                        </td>
-                                                                                                                        <td>1
-                                                                                                                        </td>
-                                                                                                                        <td>
-                                                                                                                              <div
-                                                                                                                                    class="dropdown ct_table_action_drop">
-                                                                                                                                    <i class="fa-solid fa-ellipsis-vertical"
-                                                                                                                                          id="dropdownMenuButton1"
-                                                                                                                                          data-bs-toggle="dropdown"
-                                                                                                                                          aria-expanded="false"></i>
-
-                                                                                                                                    <ul class="dropdown-menu"
-                                                                                                                                          aria-labelledby="dropdownMenuButton1">
-                                                                                                                                          <li><a class="dropdown-item"
-                                                                                                                                                      href="#">Delete</a>
-                                                                                                                                          </li>
-
-                                                                                                                                    </ul>
-                                                                                                                              </div>
-                                                                                                                        </td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                        <td>Signup/Login
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>5 HRS
-                                                                                                                        </td>
-                                                                                                                        <td>1
-                                                                                                                        </td>
-                                                                                                                        <td>
-                                                                                                                              <div
-                                                                                                                                    class="dropdown ct_table_action_drop">
-                                                                                                                                    <i class="fa-solid fa-ellipsis-vertical"
-                                                                                                                                          id="dropdownMenuButton1"
-                                                                                                                                          data-bs-toggle="dropdown"
-                                                                                                                                          aria-expanded="false"></i>
-
-                                                                                                                                    <ul class="dropdown-menu"
-                                                                                                                                          aria-labelledby="dropdownMenuButton1">
-                                                                                                                                          <li><a class="dropdown-item"
-                                                                                                                                                      href="#">Delete</a>
-                                                                                                                                          </li>
-
-                                                                                                                                    </ul>
-                                                                                                                              </div>
-                                                                                                                        </td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                        <td>Terms
-                                                                                                                              And
-                                                                                                                              Conditions
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>5 HRS
-                                                                                                                        </td>
-                                                                                                                        <td>1
-                                                                                                                        </td>
-                                                                                                                        <td>
-                                                                                                                              <div
-                                                                                                                                    class="dropdown ct_table_action_drop">
-                                                                                                                                    <i class="fa-solid fa-ellipsis-vertical"
-                                                                                                                                          id="dropdownMenuButton1"
-                                                                                                                                          data-bs-toggle="dropdown"
-                                                                                                                                          aria-expanded="false"></i>
-
-                                                                                                                                    <ul class="dropdown-menu"
-                                                                                                                                          aria-labelledby="dropdownMenuButton1">
-                                                                                                                                          <li><a class="dropdown-item"
-                                                                                                                                                      href="#">Delete</a>
-                                                                                                                                          </li>
-
-                                                                                                                                    </ul>
-                                                                                                                              </div>
-                                                                                                                        </td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                        <td>Phone
-                                                                                                                              Login
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>5 HRS
-                                                                                                                        </td>
-                                                                                                                        <td>1
-                                                                                                                        </td>
-                                                                                                                        <td>
-                                                                                                                              <div
-                                                                                                                                    class="dropdown ct_table_action_drop">
-                                                                                                                                    <i class="fa-solid fa-ellipsis-vertical"
-                                                                                                                                          id="dropdownMenuButton1"
-                                                                                                                                          data-bs-toggle="dropdown"
-                                                                                                                                          aria-expanded="false"></i>
-
-                                                                                                                                    <ul class="dropdown-menu"
-                                                                                                                                          aria-labelledby="dropdownMenuButton1">
-                                                                                                                                          <li><a class="dropdown-item"
-                                                                                                                                                      href="#">Delete</a>
-                                                                                                                                          </li>
-
-                                                                                                                                    </ul>
-                                                                                                                              </div>
-                                                                                                                        </td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                        <td>Phone
-                                                                                                                              Verification
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>5 HRS
-                                                                                                                        </td>
-                                                                                                                        <td>1
-                                                                                                                        </td>
-                                                                                                                        <td>
-                                                                                                                              <div
-                                                                                                                                    class="dropdown ct_table_action_drop">
-                                                                                                                                    <i class="fa-solid fa-ellipsis-vertical"
-                                                                                                                                          id="dropdownMenuButton1"
-                                                                                                                                          data-bs-toggle="dropdown"
-                                                                                                                                          aria-expanded="false"></i>
-
-                                                                                                                                    <ul class="dropdown-menu"
-                                                                                                                                          aria-labelledby="dropdownMenuButton1">
-                                                                                                                                          <li><a class="dropdown-item"
-                                                                                                                                                      href="#">Delete</a>
-                                                                                                                                          </li>
-
-                                                                                                                                    </ul>
-                                                                                                                              </div>
-                                                                                                                        </td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                        <td>Google
-                                                                                                                              Login
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>5 HRS
-                                                                                                                        </td>
-                                                                                                                        <td>1
-                                                                                                                        </td>
-                                                                                                                        <td>
-                                                                                                                              <div
-                                                                                                                                    class="dropdown ct_table_action_drop">
-                                                                                                                                    <i class="fa-solid fa-ellipsis-vertical"
-                                                                                                                                          id="dropdownMenuButton1"
-                                                                                                                                          data-bs-toggle="dropdown"
-                                                                                                                                          aria-expanded="false"></i>
-
-                                                                                                                                    <ul class="dropdown-menu"
-                                                                                                                                          aria-labelledby="dropdownMenuButton1">
-                                                                                                                                          <li><a class="dropdown-item"
-                                                                                                                                                      href="#">Delete</a>
-                                                                                                                                          </li>
-
-                                                                                                                                    </ul>
-                                                                                                                              </div>
-                                                                                                                        </td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                        <td>Google
-                                                                                                                              Login
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>5 HRS
-                                                                                                                        </td>
-                                                                                                                        <td>1
-                                                                                                                        </td>
-                                                                                                                        <td>
-                                                                                                                              <div
-                                                                                                                                    class="dropdown ct_table_action_drop">
-                                                                                                                                    <i class="fa-solid fa-ellipsis-vertical"
-                                                                                                                                          id="dropdownMenuButton1"
-                                                                                                                                          data-bs-toggle="dropdown"
-                                                                                                                                          aria-expanded="false"></i>
-
-                                                                                                                                    <ul class="dropdown-menu"
-                                                                                                                                          aria-labelledby="dropdownMenuButton1">
-                                                                                                                                          <li><a class="dropdown-item"
-                                                                                                                                                      href="#">Delete</a>
-                                                                                                                                          </li>
-
-                                                                                                                                    </ul>
-                                                                                                                              </div>
-                                                                                                                        </td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                        <td>Apple
-                                                                                                                              Login
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>5 HRS
-                                                                                                                        </td>
-                                                                                                                        <td>1
-                                                                                                                        </td>
-                                                                                                                        <td>
-                                                                                                                              <div
-                                                                                                                                    class="dropdown ct_table_action_drop">
-                                                                                                                                    <i class="fa-solid fa-ellipsis-vertical"
-                                                                                                                                          id="dropdownMenuButton1"
-                                                                                                                                          data-bs-toggle="dropdown"
-                                                                                                                                          aria-expanded="false"></i>
-
-                                                                                                                                    <ul class="dropdown-menu"
-                                                                                                                                          aria-labelledby="dropdownMenuButton1">
-                                                                                                                                          <li><a class="dropdown-item"
-                                                                                                                                                      href="#">Delete</a>
-                                                                                                                                          </li>
-
-                                                                                                                                    </ul>
-                                                                                                                              </div>
-                                                                                                                        </td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                        <td>Terms
-                                                                                                                              &
-                                                                                                                              Conditions
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>5 HRS
-                                                                                                                        </td>
-                                                                                                                        <td>1
-                                                                                                                        </td>
-                                                                                                                        <td>
-                                                                                                                              <div
-                                                                                                                                    class="dropdown ct_table_action_drop">
-                                                                                                                                    <i class="fa-solid fa-ellipsis-vertical"
-                                                                                                                                          id="dropdownMenuButton1"
-                                                                                                                                          data-bs-toggle="dropdown"
-                                                                                                                                          aria-expanded="false"></i>
-
-                                                                                                                                    <ul class="dropdown-menu"
-                                                                                                                                          aria-labelledby="dropdownMenuButton1">
-                                                                                                                                          <li><a class="dropdown-item"
-                                                                                                                                                      href="#">Delete</a>
-                                                                                                                                          </li>
-
-                                                                                                                                    </ul>
-                                                                                                                              </div>
-                                                                                                                        </td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                        <td>Landing
-                                                                                                                              page
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>5 HRS
-                                                                                                                        </td>
-                                                                                                                        <td>1
-                                                                                                                        </td>
-                                                                                                                        <td>
-                                                                                                                              <div
-                                                                                                                                    class="dropdown ct_table_action_drop">
-                                                                                                                                    <i class="fa-solid fa-ellipsis-vertical"
-                                                                                                                                          id="dropdownMenuButton1"
-                                                                                                                                          data-bs-toggle="dropdown"
-                                                                                                                                          aria-expanded="false"></i>
-
-                                                                                                                                    <ul class="dropdown-menu"
-                                                                                                                                          aria-labelledby="dropdownMenuButton1">
-                                                                                                                                          <li><a class="dropdown-item"
-                                                                                                                                                      href="#">Delete</a>
-                                                                                                                                          </li>
-
-                                                                                                                                    </ul>
-                                                                                                                              </div>
-                                                                                                                        </td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                        <td>Apple
-                                                                                                                              Login
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>₹1,26,844.69
-                                                                                                                        </td>
-                                                                                                                        <td>5 HRS
-                                                                                                                        </td>
-                                                                                                                        <td>1
-                                                                                                                        </td>
-                                                                                                                        <td>
-                                                                                                                              <div
-                                                                                                                                    class="dropdown ct_table_action_drop">
-                                                                                                                                    <i class="fa-solid fa-ellipsis-vertical"
-                                                                                                                                          id="dropdownMenuButton1"
-                                                                                                                                          data-bs-toggle="dropdown"
-                                                                                                                                          aria-expanded="false"></i>
-
-                                                                                                                                    <ul class="dropdown-menu"
-                                                                                                                                          aria-labelledby="dropdownMenuButton1">
-                                                                                                                                          <li><a class="dropdown-item"
-                                                                                                                                                      href="#">Delete</a>
-                                                                                                                                          </li>
-
-                                                                                                                                    </ul>
-                                                                                                                              </div>
-                                                                                                                        </td>
-                                                                                                                  </tr>
                                                                                                             </tbody>
                                                                                                       </table>
                                                                                                 </div>
