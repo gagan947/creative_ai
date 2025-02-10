@@ -151,14 +151,14 @@
                                                             <h4 class="mb-0 ct_fs_14 ct_fw_700">Android</h4>
                                                             <div class="form-check ct_transparent_checkbox">
                                                                   <input class="form-check-input " type="checkbox"
-                                                                        checked value="" id="flexCheckDefault">
+                                                                        checked value="Android" id="flexCheckDefault">
 
                                                             </div>
                                                       </label>
 
                                                 </div>
                                                 <div class="col-lg-6 mb-4 mb-lg-0">
-                                                      <label for="flexCheckDefault" class="ct_app_detail_card ">
+                                                      <label for="flexCheckDefault" class="ct_app_detail_card active" [ngClass]="{isActive : 'active'}" (click)="isActive = !isActive">
                                                             <svg width="17" height="21" viewBox="0 0 17 21" fill="none"
                                                                   xmlns="http://www.w3.org/2000/svg">
                                                                   <path d="M14.0375 11.3109C14.0083 9.70572 14.738 8.46531 16.2265 7.58971C15.3801 6.42226 14.1397 5.76558 12.5052 5.61966C12.009 5.59045 11.5129 5.6488 11.0168 5.79472C10.5206 5.94064 10.0828 6.0866 9.70337 6.2326C9.23639 6.40766 8.88616 6.50979 8.65267 6.53901C8.33162 6.50979 7.92302 6.39305 7.42685 6.18877C6.72639 5.89693 6.01133 5.72183 5.28168 5.66348C3.99749 5.69262 2.85923 6.18877 1.8669 7.15194C0.845385 8.11504 0.305443 9.57433 0.24707 11.5298C0.24707 12.6681 0.451373 13.8501 0.859979 15.0759C1.06428 15.6305 1.39992 16.3455 1.8669 17.2211C2.33387 18.0675 2.88841 18.8264 3.53051 19.4976C4.1726 20.1689 4.85847 20.5192 5.58812 20.5483C6.0551 20.5192 6.52208 20.4024 6.98906 20.1981C7.51441 19.9354 8.14191 19.7895 8.87156 19.7603C9.57203 19.7895 10.1703 19.9208 10.6665 20.1543C11.1335 20.3878 11.6588 20.5192 12.2425 20.5483C12.943 20.49 13.5997 20.1543 14.2126 19.5414C14.8255 18.8993 15.3508 18.1843 15.7887 17.3962C16.2265 16.579 16.5329 15.8932 16.708 15.3386C15.3947 14.609 14.6066 13.7918 14.3439 12.887C14.0813 12.0114 13.9792 11.4861 14.0375 11.3109ZM11.5421 4.1312C12.0966 3.40152 12.4323 2.74483 12.5491 2.16115C12.6366 1.6066 12.6512 1.19798 12.5928 0.935274C12.0674 0.964489 11.5275 1.12502 10.973 1.41686C10.4476 1.7087 9.99523 2.05893 9.61582 2.46756C8.82779 3.34316 8.46296 4.39386 8.52133 5.61966C9.65959 5.64887 10.6665 5.15272 11.5421 4.1312Z"
@@ -168,7 +168,7 @@
                                                             <h4 class="mb-0 ct_fs_14 ct_fw_700">ios</h4>
                                                             <div class="form-check ct_transparent_checkbox">
                                                                   <input class="form-check-input " type="checkbox"
-                                                                        value="" id="flexCheckDefault">
+                                                                        value="" id="flexCheckDefault2">
 
                                                             </div>
                                                       </label>
@@ -205,60 +205,9 @@
                                                       </label>
 
                                                 </div>
-                                                <div class="col-lg-6 mb-3 ">
-                                                      <label for="flexCheckDefault" class="ct_app_detail_card active">
-                                                            <svg width="17" height="21" viewBox="0 0 17 21" fill="none"
-                                                                  xmlns="http://www.w3.org/2000/svg">
-                                                                  <path d="M14.0375 11.3109C14.0083 9.70572 14.738 8.46531 16.2265 7.58971C15.3801 6.42226 14.1397 5.76558 12.5052 5.61966C12.009 5.59045 11.5129 5.6488 11.0168 5.79472C10.5206 5.94064 10.0828 6.0866 9.70337 6.2326C9.23639 6.40766 8.88616 6.50979 8.65267 6.53901C8.33162 6.50979 7.92302 6.39305 7.42685 6.18877C6.72639 5.89693 6.01133 5.72183 5.28168 5.66348C3.99749 5.69262 2.85923 6.18877 1.8669 7.15194C0.845385 8.11504 0.305443 9.57433 0.24707 11.5298C0.24707 12.6681 0.451373 13.8501 0.859979 15.0759C1.06428 15.6305 1.39992 16.3455 1.8669 17.2211C2.33387 18.0675 2.88841 18.8264 3.53051 19.4976C4.1726 20.1689 4.85847 20.5192 5.58812 20.5483C6.0551 20.5192 6.52208 20.4024 6.98906 20.1981C7.51441 19.9354 8.14191 19.7895 8.87156 19.7603C9.57203 19.7895 10.1703 19.9208 10.6665 20.1543C11.1335 20.3878 11.6588 20.5192 12.2425 20.5483C12.943 20.49 13.5997 20.1543 14.2126 19.5414C14.8255 18.8993 15.3508 18.1843 15.7887 17.3962C16.2265 16.579 16.5329 15.8932 16.708 15.3386C15.3947 14.609 14.6066 13.7918 14.3439 12.887C14.0813 12.0114 13.9792 11.4861 14.0375 11.3109ZM11.5421 4.1312C12.0966 3.40152 12.4323 2.74483 12.5491 2.16115C12.6366 1.6066 12.6512 1.19798 12.5928 0.935274C12.0674 0.964489 11.5275 1.12502 10.973 1.41686C10.4476 1.7087 9.99523 2.05893 9.61582 2.46756C8.82779 3.34316 8.46296 4.39386 8.52133 5.61966C9.65959 5.64887 10.6665 5.15272 11.5421 4.1312Z"
-                                                                        fill="black" />
-                                                            </svg>
-
-                                                            <h4 class="mb-0 ct_fs_14 ct_fw_700">macOS</h4>
-                                                            <div class="form-check ct_transparent_checkbox">
-                                                                  <input class="form-check-input " type="checkbox"
-                                                                        checked value="" id="flexCheckDefault">
-
-                                                            </div>
-                                                      </label>
-
-                                                </div>
-                                                <div class="col-lg-6 mb-3 ">
-                                                      <label for="flexCheckDefault" class="ct_app_detail_card ">
-                                                            <svg width="17" height="19" viewBox="0 0 17 19" fill="none"
-                                                                  xmlns="http://www.w3.org/2000/svg">
-                                                                  <g clip-path="url(#clip0_940_12351)">
-                                                                        <mask id="mask0_940_12351"
-                                                                              style="mask-type:luminance"
-                                                                              maskUnits="userSpaceOnUse" x="0" y="0"
-                                                                              width="17" height="19">
-                                                                              <path d="M16.7654 0.693359H0.761719V18.9833H16.7654V0.693359Z"
-                                                                                    fill="white" />
-                                                                        </mask>
-                                                                        <g mask="url(#mask0_940_12351)">
-                                                                              <path d="M0.762695 4.48015L7.33565 3.55129V9.90996H0.762695V4.48015ZM0.762695 16.0542L7.33565 16.983V10.6959H0.762695V16.0542ZM8.0501 17.0545L16.7664 18.269V10.6959H8.0501V17.0545ZM8.0501 3.47987V9.90996H16.7664V2.26533L8.0501 3.47987Z"
-                                                                                    fill="black" />
-                                                                        </g>
-                                                                  </g>
-                                                                  <defs>
-                                                                        <clipPath id="clip0_940_12351">
-                                                                              <rect width="16.0037" height="25.6059"
-                                                                                    fill="white"
-                                                                                    transform="translate(0.759766 -2.96484)" />
-                                                                        </clipPath>
-                                                                  </defs>
-                                                            </svg>
-
-
-                                                            <h4 class="mb-0 ct_fs_14 ct_fw_700">Windows</h4>
-                                                            <div class="form-check ct_transparent_checkbox">
-                                                                  <input class="form-check-input " type="checkbox"
-                                                                        value="" id="flexCheckDefault">
-
-                                                            </div>
-                                                      </label>
-
-                                                </div>
-                                                <div class="col-lg-6 mb-3 ">
+                                         
+                                                
+                                                <div class="col-lg-6 mb-3">
                                                       <label for="flexCheckDefault" class="ct_app_detail_card ">
                                                             <svg width="17" height="24" viewBox="0 0 17 24" fill="none"
                                                                   xmlns="http://www.w3.org/2000/svg">
@@ -566,11 +515,7 @@
                                                       <p class="mb-0 ct_fw_700 ct_fs_14">Customisation</p>
                                                       <p class="mb-0 ct_fw_700 ct_fs_14">€3,78,942.62</p>
                                                 </div>
-                                                <div
-                                                      class="d-flex align-items-center justify-content-between gap-3  mb-3">
-                                                      <p class="mb-0 ct_fw_700 ct_fs_14">Studio One (for 12 months)</p>
-                                                      <p class="mb-0 ct_fw_700 ct_fs_14">€6,31,571.04</p>
-                                                </div>
+                                             
 
                                                 <div
                                                       class="d-flex align-items-center justify-content-between gap-3  mb-3">

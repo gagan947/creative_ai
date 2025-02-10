@@ -192,9 +192,9 @@
                                                 <div class="ct_ecommerse_web_icon mb-0">
                                                       <img [src]="item.projectImage" alt="">
                                                 </div>
-                                                <div class="ct_bash_icon12" data-bs-toggle="modal"
+                                                <div class="ct_bash_icon12" (click)="updateProjectId(item.id)" data-bs-toggle="modal"
                                                       data-bs-target="#ct_base_modal_1">
-                                                      <i class="fa-solid fa-plus" (click)="updateProjectId(item.id)"></i>
+                                                      <i class="fa-solid fa-plus" ></i>
                                                 </div>
                                           </div>
                                           <div class="d-flex align-items-center gap-2 justify-content-between flex-wrap mb-1">
@@ -207,9 +207,7 @@
                                           <ul class="mb-5">
                                                 @for (menu of item.contain; track $index) {
                                                       <li>{{menu}}</li>
-
                                                 }
-                                            
                                           </ul>
       
                                           <!-- <button class="ct_schedule_call_btn w-100 justify-content-center"

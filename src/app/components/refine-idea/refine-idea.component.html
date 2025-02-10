@@ -223,14 +223,7 @@
 
                               <!-- make it mine Chat show S -->
                               <div class="">
-                                    <div class="ct_chat_item_left mt-2">
-                                          <p class="mb-0">Now let’s explore what your app can do.</p>
-                                    </div>
-                                    <div class="ct_chat_item_left mt-2 py-4">
-                                          <p class="mb-0">I’ve grouped your app features into journeys. Have a browse,
-                                                then let me
-                                                know if there’s anyrthing else it needs to do.</p>
-                                    </div>
+
                                     <div class="ct_chat_box_send_input ct_chat_send_position_btm">
                                           <input type="text" placeholder="What should I do now?" class="form-control">
                                           <div class="ct_chat_send_icons_overlay">
@@ -272,71 +265,23 @@
                                                 Features</span> <i class="fa-solid fa-angle-down"></i>
                                     </h4>
                                     <div class="collapse show ct_feature_card_scroll" id="collapseExample">
-                                          <div class="ct_feature_card_12  mt-3">
-                                                <svg width="20" height="30" viewBox="0 0 20 30" fill="none"
-                                                      xmlns="http://www.w3.org/2000/svg">
-                                                      <g clip-path="url(#clip0_940_16730)">
-                                                            <mask id="mask0_940_16730" style="mask-type:luminance"
-                                                                  maskUnits="userSpaceOnUse" x="0" y="0" width="20"
-                                                                  height="30">
-                                                                  <path d="M20 0.45459H0V29.5455H20V0.45459Z"
-                                                                        fill="white" />
-                                                            </mask>
-                                                            <g mask="url(#mask0_940_16730)">
-                                                                  <path d="M0 4.71586C0.0378787 3.69316 0.397727 2.8409 1.07955 2.15909C1.76136 1.47729 2.61364 1.11743 3.63636 1.0795H16.3636C17.3863 1.11743 18.2386 1.47729 18.9204 2.15909C19.6022 2.8409 19.9621 3.69316 20 4.71586V26.534C19.9621 27.5568 19.6022 28.409 18.9204 29.0909C18.2386 29.7727 17.3863 30.1325 16.3636 30.1704H3.63636C2.61364 30.1325 1.76136 29.7727 1.07955 29.0909C0.397727 28.409 0.0378787 27.5568 0 26.534V4.71586ZM7.27273 26.534C7.31061 27.1022 7.61364 27.4053 8.18182 27.4431H11.8182C12.3864 27.4053 12.6894 27.1022 12.7273 26.534C12.6894 25.9659 12.3864 25.6628 11.8182 25.625H8.18182C7.61364 25.6628 7.31061 25.9659 7.27273 26.534ZM16.3636 4.71586H3.63636V22.8977H16.3636V4.71586Z"
-                                                                        fill="black" />
-                                                            </g>
-                                                      </g>
-                                                      <defs>
-                                                            <clipPath id="clip0_940_16730">
-                                                                  <rect width="20" height="29.0909" fill="white"
-                                                                        transform="translate(0 0.45459)" />
-                                                            </clipPath>
-                                                      </defs>
-                                                </svg>
-                                                <div>
-                                                      <h4 class="ct_fs_16 ct_fw_600 mb-0">Splash Screen</h4>
-                                                      <p class="mb-0 ct_fs_14 ct_grey_text">App launch screen with
-                                                            branding</p>
+                                          @for (item of commongFeaturs; track $index) {
+                                            <div cdkDropList  #todoList="cdkDropList" [cdkDropListData]="item.subFeaturesList" [cdkDropListConnectedTo]="['doneList']">
+                                              @for (items of item.subFeaturesList; track $index) {
+                                                <div class="ct_feature_card_12 mt-3 position-relative" cdkDrag>
+                                                  <div class="d-flex justify-content-between gap-3 w-100">
+                                                    <h4 class="ct_fs_16 ct_fw_600 mb-0">{{ items.subFeaturesName }}</h4>
+                                                    <span class="mb-0">{{ items.subFeaturedPrice | currency : 'INR' }}</span>
+                                                  </div>
+                                                  <div class="ct_drag_icon12">
+                                                    <i class="fa-solid fa-up-down-left-right"></i>
+                                                  </div>
                                                 </div>
+                                              }
+                                            </div>
+                                          }
+                                        </div>
 
-                                          </div>
-                                          <div class="ct_feature_card_12 mt-3">
-                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                                      xmlns="http://www.w3.org/2000/svg">
-                                                      <mask id="mask0_940_16744" style="mask-type:luminance"
-                                                            maskUnits="userSpaceOnUse" x="0" y="0" width="20"
-                                                            height="20">
-                                                            <path d="M20 0H0V20H20V0Z" fill="white" />
-                                                      </mask>
-                                                      <g mask="url(#mask0_940_16744)">
-                                                            <path d="M15.5859 15.4297C15.1432 14.6745 14.5443 14.0755 13.7891 13.6328C13.0339 13.1641 12.1875 12.9297 11.25 12.9297H8.75C7.8125 12.9297 6.96615 13.1641 6.21093 13.6328C5.45573 14.0755 4.85677 14.6745 4.41407 15.4297C5.11719 16.2109 5.9375 16.8229 6.875 17.2656C7.83854 17.7083 8.88021 17.9297 10 17.9297C11.1198 17.9297 12.1614 17.7083 13.125 17.2656C14.0625 16.8229 14.8828 16.2109 15.5859 15.4297ZM0 10.4297C0.0260416 8.6068 0.468749 6.94013 1.32812 5.42969C2.21354 3.91924 3.4375 2.69528 5 1.7578C6.58854 0.872391 8.25521 0.429688 10 0.429688C11.7448 0.429688 13.4115 0.872391 15 1.7578C16.5625 2.69528 17.7865 3.91924 18.6719 5.42969C19.5312 6.94013 19.9739 8.6068 20 10.4297C19.9739 12.2526 19.5312 13.9193 18.6719 15.4297C17.7865 16.9401 16.5625 18.1641 15 19.1016C13.4115 19.987 11.7448 20.4297 10 20.4297C8.25521 20.4297 6.58854 19.987 5 19.1016C3.4375 18.1641 2.21354 16.9401 1.32812 15.4297C0.468749 13.9193 0.0260416 12.2526 0 10.4297ZM10 11.0547C11.0677 11.0286 11.875 10.5599 12.4219 9.64844C12.9427 8.7109 12.9427 7.77339 12.4219 6.83591C11.875 5.9245 11.0677 5.45576 10 5.42969C8.93229 5.45576 8.125 5.9245 7.57812 6.83591C7.05729 7.77339 7.05729 8.7109 7.57812 9.64844C8.125 10.5599 8.93229 11.0286 10 11.0547Z"
-                                                                  fill="black" />
-                                                      </g>
-                                                </svg>
-
-                                                <div>
-                                                      <h4 class="ct_fs_16 ct_fw_600 mb-0">User Authentication</h4>
-                                                      <p class="mb-0 ct_fs_14 ct_grey_text">Login and registration
-                                                            system</p>
-                                                </div>
-
-                                          </div>
-                                          <div class="ct_feature_card_12 mt-3">
-                                                <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
-                                                      xmlns="http://www.w3.org/2000/svg">
-                                                      <path d="M13.0006 0C14.4306 0 15.6006 1.17 15.6006 2.6C15.6006 4.03 14.4306 5.2 13.0006 5.2C11.5706 5.2 10.4006 4.03 10.4006 2.6C10.4006 1.17 11.5706 0 13.0006 0ZM18.0706 7.93C17.5506 7.41 16.6406 6.5 14.9506 6.5H11.7006C8.06059 6.5 5.20059 3.64 5.20059 0H2.60059C2.60059 4.16 5.33059 7.54 9.10059 8.71V26H11.7006V18.2H14.3006V26H16.9006V10.53L22.1006 15.6L23.9206 13.78L18.0706 7.93Z"
-                                                            fill="black" />
-                                                </svg>
-
-
-                                                <div>
-                                                      <h4 class="ct_fs_16 ct_fw_600 mb-0">Welcome</h4>
-                                                      <p class="mb-0 ct_fs_14 ct_grey_text">Get started</p>
-                                                </div>
-
-                                          </div>
-                                    </div>
                               </div>
                               <!-- code feature list E -->
 
@@ -493,8 +438,7 @@
                                                                                                 APP</span>
                                                                                           <p
                                                                                                 class="mb-0 mt-1 ct_fw_700">
-                                                                                                MY
-                                                                                                CREATIVE PROJECT</p>
+                                                                                               {{projectsData.projectName}}</p>
 
                                                                                     </div>
                                                                                     <div>
@@ -513,7 +457,8 @@
                                                                                           class="ct_text_clr_7F8188 ct_fs_14">TOTAL
                                                                                     </span>
                                                                                     <p class="mb-0 mt-1 ct_fw_700">
-                                                                                          {{totalPrice | currency :'INR'}}
+                                                                                          {{totalPrice | currency
+                                                                                          :'INR'}}
                                                                                     </p>
                                                                               </div>
                                                                         </div>
@@ -527,10 +472,10 @@
                                                                         </div>
                                                                   </div>
                                                                   <!-- overlay section S -->
-                                                                  <section class="ct_my_creative_project_overlay_main">
-                                                                        <div class="ct_overlay_detail_icon_down">
+                                                                  <section class="ct_my_creative_project_overlay_main ct_project_show_section">
+                                                                        <!-- <div class="ct_overlay_detail_icon_down">
                                                                               <i class="fa-solid fa-chevron-down"></i>
-                                                                        </div>
+                                                                        </div> -->
                                                                         <div class="container">
                                                                               <div class="row">
                                                                                     <div class="col-md-12">
@@ -595,7 +540,11 @@
 
                                                                                                                   </tr>
                                                                                                             </thead>
-                                                                                                            <tbody>
+                                                                                                            <tbody    #doneList="cdkDropList"
+                                                                                                            cdkDropList
+                                                                                                            [cdkDropListData]="projectsFeaturs[0].subFeaturesListWithPrice"
+                                                                                                            [cdkDropListConnectedTo]="['todoList']"
+                                                                                                            (cdkDrop)="drop($event, 0)">
                                                                                                                   @for
                                                                                                                   (item
                                                                                                                   of
@@ -609,13 +558,21 @@
                                                                                                                                     class="ct_fw_600">{{item.featuresName}}</span>
                                                                                                                         </td>
                                                                                                                         <td><span
-                                                                                                                                    class="ct_fw_600">₹1,26,844.69</span>
+                                                                                                                                    class="ct_fw_600">{{item.totalSubFeaturedPrice
+                                                                                                                                    |
+                                                                                                                                    currency
+                                                                                                                                    :
+                                                                                                                                    'INR'}}</span>
                                                                                                                         </td>
                                                                                                                         <td><span
-                                                                                                                                    class="ct_fw_600">₹1,26,844.69</span>
+                                                                                                                                    class="ct_fw_600">0</span>
                                                                                                                         </td>
                                                                                                                         <td><span
-                                                                                                                                    class="ct_fw_600">{{item.totalSubFeaturedPrice | currency : 'INR'}}</span>
+                                                                                                                                    class="ct_fw_600">{{item.totalSubFeaturedPrice
+                                                                                                                                    |
+                                                                                                                                    currency
+                                                                                                                                    :
+                                                                                                                                    'INR'}}</span>
                                                                                                                         </td>
                                                                                                                         <!-- <td><span
                                                                                                                                     class="ct_fw_600">₹1,26,844.69</span>
@@ -649,23 +606,30 @@
                                                                                                                   track
                                                                                                                   $index)
                                                                                                                   {
+
                                                                                                                   <tr>
                                                                                                                         <td>
                                                                                                                               <span
                                                                                                                                     class="">{{item2.subFeaturesName}}</span>
                                                                                                                         </td>
                                                                                                                         <td><span
-                                                                                                                                    class="">₹1,26,844.69</span>
+                                                                                                                                    class="">{{item2.subFeaturedPrice
+                                                                                                                                    |
+                                                                                                                                    currency
+                                                                                                                                    :
+                                                                                                                                    'INR'}}</span>
                                                                                                                         </td>
                                                                                                                         <td><span
-                                                                                                                                    class="">₹1,26,844.69</span>
+                                                                                                                                    class="">0</span>
                                                                                                                         </td>
                                                                                                                         <td><span
-                                                                                                                                    class="">{{item2.subFeaturedPrice | currency : 'INR'}}</span>
+                                                                                                                                    class="">{{item2.subFeaturedPrice
+                                                                                                                                    |
+                                                                                                                                    currency
+                                                                                                                                    :
+                                                                                                                                    'INR'}}</span>
                                                                                                                         </td>
-                                                                                                                        <!-- <td><span
-                                                                                                                                    class="">₹1,26,844.69</span>
-                                                                                                                        </td> -->
+
                                                                                                                         <td><span
                                                                                                                                     class="">5
                                                                                                                                     HRS</span>
@@ -782,8 +746,8 @@
                                                                                                 APP</span>
                                                                                           <p
                                                                                                 class="mb-0 mt-1 ct_fw_700">
-                                                                                                MY
-                                                                                                CREATIVE PROJECT</p>
+                                                                                                {{projectsData | json}}
+                                                                                                {{projectsData.projectName}}</p>
 
                                                                                     </div>
                                                                                     <div>

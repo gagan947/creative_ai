@@ -20,6 +20,7 @@ export interface Project {
 export interface SubFeature {
   subFeaturesName: string;
   subFeaturedPrice: number;
+  
 }
 
 export interface Feature {

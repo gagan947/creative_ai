@@ -4,11 +4,18 @@ import { Router, RouterLink } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { Feature, FeatureResponse } from '../../models/projects';
 import { CommonModule } from '@angular/common';
-
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+  CdkDrag,
+  CdkDropList,
+} from '@angular/cdk/drag-drop';
 @Component({
   selector: 'app-refine-idea',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule,DragDropModule,CdkDropList],
   templateUrl: './refine-idea.component.html',
   styleUrl: './refine-idea.component.css'
 })
@@ -16,16 +23,19 @@ export class RefineIdeaComponent {
   @Input() id!: string;
   projectsData: any
   projectsFeaturs: Feature[] = [];
+  commongFeaturs: any[] = [];
   totalPrice: any;
 
   constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router) {
     let projectData = sessionStorage.getItem('projectData');
     this.projectsData = JSON.parse(projectData!);
+   
   }
 
   ngOnInit(): void {
-    console.log(this.id);
-    this.getProjects()
+ 
+    this.getProjects();
+    this.getFeatures()
   };
 
 
@@ -46,6 +56,52 @@ export class RefineIdeaComponent {
         }
       });
   };
+  getFeatures() {
+
+    this.apiService.getApi<any>(`api/user/fetchFeaturesAndThereSubFeatures`)
+      .subscribe({
+        next: (res) => {
+          if (res.success == true) {
+            this.commongFeaturs = res.data;
+          
+          } else {
+            // this.loading = false
+          }
+        },
+        error: err => {
+          // this.loading = false
+        }
+      });
+  };
+
+  get connectedDropLists(): string[] {
+    return this.commongFeaturs.map((_, index) => `list-${index}`);
+  }
+
+  drop(event: any, projectIndex: number) {
+    if (event.previousContainer === event.container) {
+      // Reorder within the same list
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      // Capture the moved item before transfer
+      const movedItem = event.previousContainer.data[event.previousIndex];
+  
+      // Transfer the item between lists
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+  
+      // Update the project feature's totals
+      const projectFeature = this.projectsFeaturs[projectIndex];
+      projectFeature.countSubFeaturesName += 1;
+      projectFeature.totalSubFeaturedPrice += movedItem.subFeaturedPrice;
+    }
+  }
+
+
 
   removeFeture(item: any) {
     this.totalPrice = this.totalPrice - item.totalSubFeaturedPrice
@@ -64,6 +120,7 @@ export class RefineIdeaComponent {
 
   totalCost(featureData: any) {
     this.totalPrice = featureData.reduce((pre: any, next: { totalSubFeaturedPrice: any; }) => pre + next.totalSubFeaturedPrice, 0);
+    console.log(  this.totalPrice);
   }
 
   Navigate() {
