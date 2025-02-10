@@ -61,7 +61,8 @@ export class RefineIdeaComponent {
       .subscribe({
         next: (res) => {
           if (res.success == true) {
-            this.findDifferences(res.data, this.projectsFeaturs)
+            this.commongFeaturs = res.data
+            // this.findDifferences(res.data, this.projectsFeaturs)
 
           } else {
             // this.loading = false
@@ -78,6 +79,7 @@ export class RefineIdeaComponent {
   }
 
   drop(event: any) {
+    
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -123,10 +125,10 @@ export class RefineIdeaComponent {
     this.router.navigate([`/plan-delivery/${this.id}`])
   }
 
-  findDifferences(originalArray: any[], newArray: any[]) {
-    const originalFeaturesSet = new Set(originalArray.flatMap(feature => feature.subFeaturesList.map((subFeature: { subFeaturesName: any; }) => subFeature.subFeaturesName)));
-    const newFeaturesSet = new Set(newArray.flatMap(feature => feature.subFeaturesListWithPrice.map((subFeature: { subFeaturesName: any; }) => subFeature.subFeaturesName)));
-    const diff = new Set([...originalFeaturesSet].filter(x => !newFeaturesSet.has(x)));
-    this.commongFeaturs = [...this.commongFeaturs, ...originalArray.flatMap(f => f.subFeaturesList).filter(s => diff.has(s.subFeaturesName))];
-  }
+  // findDifferences(originalArray: any[], newArray: any[]) {
+  //   const originalFeaturesSet = new Set(originalArray.flatMap(feature => feature.subFeaturesList.map((subFeature: { subFeaturesName: any; }) => subFeature.subFeaturesName)));
+  //   const newFeaturesSet = new Set(newArray.flatMap(feature => feature.subFeaturesListWithPrice.map((subFeature: { subFeaturesName: any; }) => subFeature.subFeaturesName)));
+  //   const diff = new Set([...originalFeaturesSet].filter(x => !newFeaturesSet.has(x)));
+  //   this.commongFeaturs = [...this.commongFeaturs, ...originalArray.flatMap(f => f.subFeaturesList).filter(s => diff.has(s.subFeaturesName))];
+  // }
 }

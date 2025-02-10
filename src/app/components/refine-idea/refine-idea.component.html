@@ -257,26 +257,32 @@
                                                 Features</span> <i class="fa-solid fa-angle-down"></i>
                                     </h4>
                                     <div class="collapse show ct_feature_card_scroll" id="collapseExample">
+                                          @for (item of commongFeaturs; track $index) {
+                                          <div class="ct_dragable_card_main_bg mt-4"  [id]="'todoList'"
+                                               >
+                                                <h2 class="ct_fs_18 ct_fw_700 mb-0 d-flex align-items-center justify-content-between">
+                                                      {{ item.featuresName }}
+                                                      <span class="btn btn-primary btn-sm float-right ms-auto"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                                </h2>
 
-                                          <div cdkDropList #todoList="cdkDropList" [id]="'todoList'"
-                                                [cdkDropListData]="commongFeaturs"
-                                                [cdkDropListConnectedTo]="['doneList']"
-                                                (cdkDropListDropped)="drop($event)">
-                                                @for (items of commongFeaturs; track $index) {
-                                                <div class="ct_feature_card_12 mt-3 position-relative" cdkDrag>
+                                                @for (items of item.subFeaturesList; track $index) {
+                                                <div class="ct_feature_card_12 mt-2 position-relative" cdkDrag>
                                                       <div class="d-flex justify-content-between gap-3 w-100">
-                                                            <h4 class="ct_fs_16 ct_fw_600 mb-0">
+                                                            <h4 class="ct_fs_14 ct_fw_600 mb-0">
                                                                   {{ items.subFeaturesName }}
+                                                                  
                                                             </h4>
-                                                            <span
-                                                                  class="mb-0">{{ items.subFeaturedPrice | currency : 'INR' }}</span>
+                                                            <span class="mb-0 ct_fs_14">{{ items.subFeaturedPrice | currency :
+                                                                  'INR' }}</span>
                                                       </div>
                                                       <div class="ct_drag_icon12">
-                                                            <i class="fa-solid fa-up-down-left-right"></i>
+                                                          <i class="fa fa-plus" aria-hidden="true"></i>
                                                       </div>
                                                 </div>
                                                 }
                                           </div>
+
+                                          }
                                     </div>
 
                               </div>
@@ -539,12 +545,7 @@
 
                                                                                                                   </tr>
                                                                                                             </thead>
-                                                                                                            <tbody #doneList="cdkDropList"
-                                                                                                                  cdkDropList
-                                                                                                                  [id]="'doneList'"
-                                                                                                                  [cdkDropListData]="projectsFeaturs[0]?.subFeaturesListWithPrice"
-                                                                                                                  [cdkDropListConnectedTo]="['todoList']"
-                                                                                                                  (cdkDropListDropped)="drop($event)">
+                                                                                                            <tbody >
                                                                                                                   @for
                                                                                                                   (item
                                                                                                                   of
@@ -555,7 +556,7 @@
                                                                                                                   <tr>
                                                                                                                         <td>
                                                                                                                               <span
-                                                                                                                                    class="ct_fw_600">{{item.featuresName}}</span>
+                                                                                                                                    class="ct_fs_18 ct_fw_700 mb-0">{{item.featuresName}}</span>
                                                                                                                         </td>
                                                                                                                         <td><span
                                                                                                                                     class="ct_fw_600">{{item.totalSubFeaturedPrice
@@ -609,7 +610,7 @@
                                                                                                                   <tr>
                                                                                                                         <td>
                                                                                                                               <span
-                                                                                                                                    class="">{{item2.subFeaturesName}}</span>
+                                                                                                                                    class="ct_fs_14 ct_fw_600">{{item2.subFeaturesName}}</span>
                                                                                                                         </td>
                                                                                                                         <td><span
                                                                                                                                     class="">{{item2.subFeaturedPrice
