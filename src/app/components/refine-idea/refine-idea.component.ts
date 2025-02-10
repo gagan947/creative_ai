@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { ApiService } from '../../services/api.service';
@@ -15,7 +15,7 @@ import {
 @Component({
   selector: 'app-refine-idea',
   standalone: true,
-  imports: [RouterLink, CommonModule,DragDropModule,CdkDropList],
+  imports: [RouterLink, CommonModule, DragDropModule, CdkDropList, CdkDrag],
   templateUrl: './refine-idea.component.html',
   styleUrl: './refine-idea.component.css'
 })
@@ -25,15 +25,14 @@ export class RefineIdeaComponent {
   projectsFeaturs: Feature[] = [];
   commongFeaturs: any[] = [];
   totalPrice: any;
-
   constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router) {
     let projectData = sessionStorage.getItem('projectData');
     this.projectsData = JSON.parse(projectData!);
-   
+
   }
 
   ngOnInit(): void {
- 
+
     this.getProjects();
     this.getFeatures()
   };
@@ -62,8 +61,8 @@ export class RefineIdeaComponent {
       .subscribe({
         next: (res) => {
           if (res.success == true) {
-            this.commongFeaturs = res.data;
-          
+            this.findDifferences(res.data, this.projectsFeaturs)
+
           } else {
             // this.loading = false
           }
@@ -78,26 +77,18 @@ export class RefineIdeaComponent {
     return this.commongFeaturs.map((_, index) => `list-${index}`);
   }
 
-  drop(event: any, projectIndex: number) {
+  drop(event: any) {
     if (event.previousContainer === event.container) {
-      // Reorder within the same list
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      // Capture the moved item before transfer
       const movedItem = event.previousContainer.data[event.previousIndex];
-  
-      // Transfer the item between lists
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
-        event.currentIndex
+        event.currentIndex,
       );
-  
-      // Update the project feature's totals
-      const projectFeature = this.projectsFeaturs[projectIndex];
-      projectFeature.countSubFeaturesName += 1;
-      projectFeature.totalSubFeaturedPrice += movedItem.subFeaturedPrice;
+      this.totalPrice = this.totalPrice + movedItem.subFeaturedPrice
     }
   }
 
@@ -108,6 +99,7 @@ export class RefineIdeaComponent {
     this.projectsFeaturs = this.projectsFeaturs.filter(el => {
       return el !== item
     })
+    this.commongFeaturs = [...item.subFeaturesListWithPrice, ...this.commongFeaturs]
   }
 
   removeSubFeture(item2: any) {
@@ -116,11 +108,11 @@ export class RefineIdeaComponent {
       ...f,
       subFeaturesListWithPrice: f.subFeaturesListWithPrice.filter(el => el !== item2)
     }));
+    this.commongFeaturs = [item2, ...this.commongFeaturs]
   }
 
   totalCost(featureData: any) {
     this.totalPrice = featureData.reduce((pre: any, next: { totalSubFeaturedPrice: any; }) => pre + next.totalSubFeaturedPrice, 0);
-    console.log(  this.totalPrice);
   }
 
   Navigate() {
@@ -129,5 +121,12 @@ export class RefineIdeaComponent {
     }
     sessionStorage.setItem('projectData', JSON.stringify({ ...this.projectsData, ...totalCost }))
     this.router.navigate([`/plan-delivery/${this.id}`])
+  }
+
+  findDifferences(originalArray: any[], newArray: any[]) {
+    const originalFeaturesSet = new Set(originalArray.flatMap(feature => feature.subFeaturesList.map((subFeature: { subFeaturesName: any; }) => subFeature.subFeaturesName)));
+    const newFeaturesSet = new Set(newArray.flatMap(feature => feature.subFeaturesListWithPrice.map((subFeature: { subFeaturesName: any; }) => subFeature.subFeaturesName)));
+    const diff = new Set([...originalFeaturesSet].filter(x => !newFeaturesSet.has(x)));
+    this.commongFeaturs = [...this.commongFeaturs, ...originalArray.flatMap(f => f.subFeaturesList).filter(s => diff.has(s.subFeaturesName))];
   }
 }

@@ -207,14 +207,10 @@
                                                                                           stroke-linecap="round"
                                                                                           stroke-linejoin="round" />
                                                                               </svg>
-
                                                                         </button>
                                                                   </li>
                                                             </ul>
-
-
                                                       </div>
-
                                                 </div>
                                           </div>
                                     </div>
@@ -245,14 +241,10 @@
                                                                               stroke-linecap="round"
                                                                               stroke-linejoin="round" />
                                                                   </svg>
-
                                                             </button>
                                                       </li>
                                                 </ul>
-
-
                                           </div>
-
                                     </div>
                               </div>
                               <!-- make it mine Chat show E -->
@@ -265,22 +257,27 @@
                                                 Features</span> <i class="fa-solid fa-angle-down"></i>
                                     </h4>
                                     <div class="collapse show ct_feature_card_scroll" id="collapseExample">
-                                          @for (item of commongFeaturs; track $index) {
-                                            <div cdkDropList  #todoList="cdkDropList" [cdkDropListData]="item.subFeaturesList" [cdkDropListConnectedTo]="['doneList']">
-                                              @for (items of item.subFeaturesList; track $index) {
+
+                                          <div cdkDropList #todoList="cdkDropList" [id]="'todoList'"
+                                                [cdkDropListData]="commongFeaturs"
+                                                [cdkDropListConnectedTo]="['doneList']"
+                                                (cdkDropListDropped)="drop($event)">
+                                                @for (items of commongFeaturs; track $index) {
                                                 <div class="ct_feature_card_12 mt-3 position-relative" cdkDrag>
-                                                  <div class="d-flex justify-content-between gap-3 w-100">
-                                                    <h4 class="ct_fs_16 ct_fw_600 mb-0">{{ items.subFeaturesName }}</h4>
-                                                    <span class="mb-0">{{ items.subFeaturedPrice | currency : 'INR' }}</span>
-                                                  </div>
-                                                  <div class="ct_drag_icon12">
-                                                    <i class="fa-solid fa-up-down-left-right"></i>
-                                                  </div>
+                                                      <div class="d-flex justify-content-between gap-3 w-100">
+                                                            <h4 class="ct_fs_16 ct_fw_600 mb-0">
+                                                                  {{ items.subFeaturesName }}
+                                                            </h4>
+                                                            <span
+                                                                  class="mb-0">{{ items.subFeaturedPrice | currency : 'INR' }}</span>
+                                                      </div>
+                                                      <div class="ct_drag_icon12">
+                                                            <i class="fa-solid fa-up-down-left-right"></i>
+                                                      </div>
                                                 </div>
-                                              }
-                                            </div>
-                                          }
-                                        </div>
+                                                }
+                                          </div>
+                                    </div>
 
                               </div>
                               <!-- code feature list E -->
@@ -438,7 +435,8 @@
                                                                                                 APP</span>
                                                                                           <p
                                                                                                 class="mb-0 mt-1 ct_fw_700">
-                                                                                               {{projectsData.projectName}}</p>
+                                                                                                {{projectsData.projectName}}
+                                                                                          </p>
 
                                                                                     </div>
                                                                                     <div>
@@ -472,7 +470,8 @@
                                                                         </div>
                                                                   </div>
                                                                   <!-- overlay section S -->
-                                                                  <section class="ct_my_creative_project_overlay_main ct_project_show_section">
+                                                                  <section
+                                                                        class="ct_my_creative_project_overlay_main ct_project_show_section">
                                                                         <!-- <div class="ct_overlay_detail_icon_down">
                                                                               <i class="fa-solid fa-chevron-down"></i>
                                                                         </div> -->
@@ -540,11 +539,12 @@
 
                                                                                                                   </tr>
                                                                                                             </thead>
-                                                                                                            <tbody    #doneList="cdkDropList"
-                                                                                                            cdkDropList
-                                                                                                            [cdkDropListData]="projectsFeaturs[0].subFeaturesListWithPrice"
-                                                                                                            [cdkDropListConnectedTo]="['todoList']"
-                                                                                                            (cdkDrop)="drop($event, 0)">
+                                                                                                            <tbody #doneList="cdkDropList"
+                                                                                                                  cdkDropList
+                                                                                                                  [id]="'doneList'"
+                                                                                                                  [cdkDropListData]="projectsFeaturs[0]?.subFeaturesListWithPrice"
+                                                                                                                  [cdkDropListConnectedTo]="['todoList']"
+                                                                                                                  (cdkDropListDropped)="drop($event)">
                                                                                                                   @for
                                                                                                                   (item
                                                                                                                   of
@@ -606,7 +606,6 @@
                                                                                                                   track
                                                                                                                   $index)
                                                                                                                   {
-
                                                                                                                   <tr>
                                                                                                                         <td>
                                                                                                                               <span
@@ -747,7 +746,8 @@
                                                                                           <p
                                                                                                 class="mb-0 mt-1 ct_fw_700">
                                                                                                 {{projectsData | json}}
-                                                                                                {{projectsData.projectName}}</p>
+                                                                                                {{projectsData.projectName}}
+                                                                                          </p>
 
                                                                                     </div>
                                                                                     <div>
