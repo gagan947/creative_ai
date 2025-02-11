@@ -28,7 +28,7 @@ export class PlanDeliveryComponent {
   rangeValue: number = 0;
   projectSecondCost!:number;
   projectThirdCost!:number;
-  devices: any[] = ['Android', 'IOS', 'Web', 'Mobile Site'];
+  devices: any[] = ['Android', 'iOS', 'Web', 'Mobile Site'];
   constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router) {
     let projectData = sessionStorage.getItem('projectData');
     this.projectsData = JSON.parse(projectData!);
@@ -119,5 +119,13 @@ export class PlanDeliveryComponent {
     event.stopPropagation()
     this.isActiveMobileSite = !this.isActiveMobileSite
 
+  };
+
+
+  
+  Navigate() {
+ 
+    sessionStorage.setItem('projectData', JSON.stringify({ ...this.projectsData,...{finalCost:this.totalPrice},...{projectId:this.id}, ...{platform:this.selectedDevices},...{speed:this.rangeValue} }))
+    this.router.navigate([`/review-buildcard`])
   }
 }

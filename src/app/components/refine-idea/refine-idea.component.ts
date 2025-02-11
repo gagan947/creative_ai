@@ -137,10 +137,13 @@ export class RefineIdeaComponent {
   }
 
   selectSubFeature(features: any, items: any) {
+    debugger
     const featureIndex = this.projectsFeaturs.findIndex(f => f.featuresName === features.featuresName);
     if (featureIndex > -1) {
       this.projectsFeaturs[featureIndex].subFeaturesListWithPrice.push(items);
+      this.projectsFeaturs[featureIndex].totalSubFeaturedPrice =    this.projectsFeaturs[featureIndex].totalSubFeaturedPrice + items.subFeaturedPrice
       this.projectsFeaturs = [...this.projectsFeaturs];
+
     } else {
       this.projectsFeaturs.unshift({
         featuresName: features.featuresName,
