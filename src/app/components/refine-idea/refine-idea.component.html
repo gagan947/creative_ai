@@ -258,33 +258,48 @@
                                     </h4>
                                     <div class="collapse show ct_feature_card_scroll" id="collapseExample">
                                           @for (item of commongFeaturs; track $index) {
-                                          <div class="ct_dragable_card_main_bg mt-4"  [id]="'todoList'"
-                                               >
-                                                <h2 class="ct_fs_18 ct_fw_700 mb-0 d-flex align-items-center justify-content-between">
+                                          <div class="ct_dragable_card_main_bg mt-4" [id]="'todoList'">
+                                                <h2
+                                                      class="ct_fs_18 ct_fw_700 mb-0 d-flex align-items-center justify-content-between">
                                                       {{ item.featuresName }}
-                                                      <span class="btn btn-primary btn-sm float-right ms-auto"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                                      @if (item.selected) {
+                                                      <span
+                                                            class="btn btn-primary btn-sm float-right ms-auto  opacity-50">
+                                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                                      </span>
+                                                      } @else {
+                                                      <span class="btn btn-primary btn-sm float-right ms-auto"
+                                                            (click)="selectFeature(item)">
+                                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                                      </span>
+                                                      }
                                                 </h2>
 
                                                 @for (items of item.subFeaturesList; track $index) {
-                                                <div class="ct_feature_card_12 mt-2 position-relative" cdkDrag>
+                                                <div class="ct_feature_card_12 mt-2 position-relative"
+                                                      [ngClass]="{'opacity-50' : items.selected}">
                                                       <div class="d-flex justify-content-between gap-3 w-100">
                                                             <h4 class="ct_fs_14 ct_fw_600 mb-0">
                                                                   {{ items.subFeaturesName }}
-                                                                  
+
                                                             </h4>
                                                             <span class="mb-0 ct_fs_14">{{ items.subFeaturedPrice | currency :
                                                                   'INR' }}</span>
                                                       </div>
                                                       <div class="ct_drag_icon12">
-                                                          <i class="fa fa-plus" aria-hidden="true"></i>
+                                                            @if (items.selected) {
+                                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                                            }@else{
+                                                            <i class="fa fa-plus" aria-hidden="true"
+                                                                  style="cursor: pointer;"
+                                                                  (click)="selectSubFeature(item,items)"></i>
+                                                            }
                                                       </div>
                                                 </div>
                                                 }
                                           </div>
-
                                           }
                                     </div>
-
                               </div>
                               <!-- code feature list E -->
 
@@ -545,7 +560,7 @@
 
                                                                                                                   </tr>
                                                                                                             </thead>
-                                                                                                            <tbody >
+                                                                                                            <tbody>
                                                                                                                   @for
                                                                                                                   (item
                                                                                                                   of
@@ -645,7 +660,7 @@
                                                                                                                                     <ul class="dropdown-menu"
                                                                                                                                           aria-labelledby="dropdownMenuButton1">
                                                                                                                                           <li><a class="dropdown-item"
-                                                                                                                                                      (click)="removeSubFeture(item2)">Delete</a>
+                                                                                                                                                      (click)="removeSubFeture(item,item2)">Delete</a>
                                                                                                                                           </li>
 
                                                                                                                                     </ul>
