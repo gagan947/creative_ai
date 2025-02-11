@@ -130,14 +130,19 @@
                                     <div class="col-md-12">
                                           <div class="ct_add_the_power_content">
                                                 <div class="ct_max_w_65">
-                                                      <h4 class="ct_fw_700 ct_fs_24 text-white ct_w_fit_content">My
-                                                            Creative
-                                                            Project</h4>
+                                                      <h4 class="ct_fw_700 ct_fs_24 text-white ct_w_fit_content">{{projectsData.projectName}}</h4>
                                                       <ul class="mt-4 ct_project_list_56">
                                                             <li>
                                                                   <h6 class="ct_fs_14 mb-0 text-white">PLATFORMS</h6>
                                                                   <h5 class="ct_fs_18 ct_fw_700 text-white  mb-0">
-                                                                        Android</h5>
+                                                                        {{ projectsData.platform }}</h5>
+                                                            </li>
+                                                            <li>
+                                                                  <h6 class="ct_fs_14 mb-0 text-white">TOTAL PROJECT COST</h6>
+                                                                  <h5 class="ct_fs_18 ct_fw_700 text-white mb-0">{{projectsData.finalCost |
+                                                                        currency
+                                                                        :
+                                                                        'INR'}}</h5>
                                                             </li>
                                                             <li>
                                                                   <h6 class="ct_fs_14 mb-0 text-white">FEATURES</h6>
@@ -219,132 +224,82 @@
                                                                   </tr>
                                                             </thead>
                                                             <tbody>
+                                                                  @for
+                                                                  (item
+                                                                  of
+                                                                  projectsFeatures;
+                                                                  track
+                                                                  $index)
+                                                                  {
                                                                   <tr>
                                                                         <td>
-                                                                              <span class="ct_fw_600">Help
-                                                                                    users
-                                                                                    sign
-                                                                                    up & login</span>
+                                                                              <span
+                                                                                    class="ct_fs_18 ct_fw_700 mb-0">{{item.featuresName}}</span>
                                                                         </td>
-                                                                        <td><span class="ct_fw_600">₹1,26,844.69</span>
+                                                                        <td><span
+                                                                                    class="ct_fw_600">{{item.totalSubFeaturedPrice
+                                                                                    |
+                                                                                    currency
+                                                                                    :
+                                                                                    'INR'}}</span>
                                                                         </td>
-                                                                        <td><span class="ct_fw_600">₹1,26,844.69</span>
+                                                                        <td><span
+                                                                                    class="ct_fw_600">0</span>
                                                                         </td>
-                                                                        <td><span class="ct_fw_600">5 HRS</span>
+                                                                        <td><span
+                                                                                    class="ct_fw_600">{{item.totalSubFeaturedPrice
+                                                                                    |
+                                                                                    currency
+                                                                                    :
+                                                                                    'INR'}}</span>
                                                                         </td>
-                                                                        <td><span class="ct_fw_600">₹1,26,844.69</span>
+                                                                        <!-- <td><span
+                                                                                    class="ct_fw_600">₹1,26,844.69</span>
+                                                                        </td> -->
+                                                                        <td><span
+                                                                                    class="ct_fw_600">5
+                                                                                    HRS</span>
                                                                         </td>
-                                                                        <td>1</td>
-
+                                                                       
                                                                   </tr>
+                                                                  @for
+                                                                  (item2
+                                                                  of
+                                                                  item.subFeaturesListWithPrice;
+                                                                  track
+                                                                  $index)
+                                                                  {
                                                                   <tr>
-                                                                        <td>Splash Screen</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>5 HRS</td>
-                                                                        <td>1</td>
+                                                                        <td>
+                                                                              <span
+                                                                                    class="ct_fs_14 ct_fw_600">{{item2.subFeaturesName}}</span>
+                                                                        </td>
+                                                                        <td><span
+                                                                                    class="">{{item2.subFeaturedPrice
+                                                                                    |
+                                                                                    currency
+                                                                                    :
+                                                                                    'INR'}}</span>
+                                                                        </td>
+                                                                        <td><span
+                                                                                    class="">0</span>
+                                                                        </td>
+                                                                        <td><span
+                                                                                    class="">{{item2.subFeaturedPrice
+                                                                                    |
+                                                                                    currency
+                                                                                    :
+                                                                                    'INR'}}</span>
+                                                                        </td>
 
+                                                                        <td><span
+                                                                                    class="">5
+                                                                                    HRS</span>
+                                                                        </td>
+                                                                      
                                                                   </tr>
-                                                                  <tr>
-                                                                        <td>Landing Page</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>5 HRS</td>
-                                                                        <td>1</td>
-
-                                                                  </tr>
-                                                                  <tr>
-                                                                        <td>Signup/Login</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>5 HRS</td>
-                                                                        <td>1</td>
-
-                                                                  </tr>
-                                                                  <tr>
-                                                                        <td>Terms And Conditions</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>5 HRS</td>
-                                                                        <td>1</td>
-
-                                                                  </tr>
-                                                                  <tr>
-                                                                        <td>Phone Login</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>5 HRS</td>
-                                                                        <td>1</td>
-
-                                                                  </tr>
-                                                                  <tr>
-                                                                        <td>Phone Verification</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>5 HRS</td>
-                                                                        <td>1</td>
-
-                                                                  </tr>
-                                                                  <tr>
-                                                                        <td>Google Login</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>5 HRS</td>
-                                                                        <td>1</td>
-
-                                                                  </tr>
-                                                                  <tr>
-                                                                        <td>Google Login</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>5 HRS</td>
-                                                                        <td>1</td>
-
-                                                                  </tr>
-                                                                  <tr>
-                                                                        <td>Apple Login</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>5 HRS</td>
-                                                                        <td>1</td>
-
-                                                                  </tr>
-                                                                  <tr>
-                                                                        <td>Terms & Conditions</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>5 HRS</td>
-                                                                        <td>1</td>
-
-                                                                  </tr>
-                                                                  <tr>
-                                                                        <td>Landing page</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>5 HRS</td>
-                                                                        <td>1</td>
-
-                                                                  </tr>
-                                                                  <tr>
-                                                                        <td>Apple Login</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>5 HRS</td>
-                                                                        <td>1</td>
-
-                                                                  </tr>
+                                                                  }
+                                                                  }
 
                                                             </tbody>
                                                       </table>
@@ -386,133 +341,82 @@
                                                                   </tr>
                                                             </thead>
                                                             <tbody>
+                                                                  @for
+                                                                  (item
+                                                                  of
+                                                                  projectsFeatures;
+                                                                  track
+                                                                  $index)
+                                                                  {
                                                                   <tr>
                                                                         <td>
-                                                                              <span class="ct_fw_600">Help
-                                                                                    users
-                                                                                    sign
-                                                                                    up & login</span>
+                                                                              <span
+                                                                                    class="ct_fs_18 ct_fw_700 mb-0">{{item.featuresName}}</span>
                                                                         </td>
-                                                                        <td><span class="ct_fw_600">₹1,26,844.69</span>
+                                                                        <td><span
+                                                                                    class="ct_fw_600">{{item.totalSubFeaturedPrice
+                                                                                    |
+                                                                                    currency
+                                                                                    :
+                                                                                    'INR'}}</span>
                                                                         </td>
-                                                                        <td><span class="ct_fw_600">₹1,26,844.69</span>
+                                                                        <td><span
+                                                                                    class="ct_fw_600">0</span>
                                                                         </td>
-                                                                        <td><span class="ct_fw_600">5 HRS</span>
+                                                                        <td><span
+                                                                                    class="ct_fw_600">{{item.totalSubFeaturedPrice
+                                                                                    |
+                                                                                    currency
+                                                                                    :
+                                                                                    'INR'}}</span>
                                                                         </td>
-                                                                        <td><span class="ct_fw_600">₹1,26,844.69</span>
+                                                                        <!-- <td><span
+                                                                                    class="ct_fw_600">₹1,26,844.69</span>
+                                                                        </td> -->
+                                                                        <td><span
+                                                                                    class="ct_fw_600">5
+                                                                                    HRS</span>
                                                                         </td>
-                                                                        <td>1</td>
-
+                                                                       
                                                                   </tr>
+                                                                  @for
+                                                                  (item2
+                                                                  of
+                                                                  item.subFeaturesListWithPrice;
+                                                                  track
+                                                                  $index)
+                                                                  {
                                                                   <tr>
-                                                                        <td>Splash Screen</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>5 HRS</td>
-                                                                        <td>1</td>
+                                                                        <td>
+                                                                              <span
+                                                                                    class="ct_fs_14 ct_fw_600">{{item2.subFeaturesName}}</span>
+                                                                        </td>
+                                                                        <td><span
+                                                                                    class="">{{item2.subFeaturedPrice
+                                                                                    |
+                                                                                    currency
+                                                                                    :
+                                                                                    'INR'}}</span>
+                                                                        </td>
+                                                                        <td><span
+                                                                                    class="">0</span>
+                                                                        </td>
+                                                                        <td><span
+                                                                                    class="">{{item2.subFeaturedPrice
+                                                                                    |
+                                                                                    currency
+                                                                                    :
+                                                                                    'INR'}}</span>
+                                                                        </td>
 
+                                                                        <td><span
+                                                                                    class="">5
+                                                                                    HRS</span>
+                                                                        </td>
+                                                                      
                                                                   </tr>
-                                                                  <tr>
-                                                                        <td>Landing Page</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>5 HRS</td>
-                                                                        <td>1</td>
-
-                                                                  </tr>
-                                                                  <tr>
-                                                                        <td>Signup/Login</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>5 HRS</td>
-                                                                        <td>1</td>
-
-                                                                  </tr>
-                                                                  <tr>
-                                                                        <td>Terms And Conditions</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>5 HRS</td>
-                                                                        <td>1</td>
-
-                                                                  </tr>
-                                                                  <tr>
-                                                                        <td>Phone Login</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>5 HRS</td>
-                                                                        <td>1</td>
-
-                                                                  </tr>
-                                                                  <tr>
-                                                                        <td>Phone Verification</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>5 HRS</td>
-                                                                        <td>1</td>
-
-                                                                  </tr>
-                                                                  <tr>
-                                                                        <td>Google Login</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>5 HRS</td>
-                                                                        <td>1</td>
-
-                                                                  </tr>
-                                                                  <tr>
-                                                                        <td>Google Login</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>5 HRS</td>
-                                                                        <td>1</td>
-
-                                                                  </tr>
-                                                                  <tr>
-                                                                        <td>Apple Login</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>5 HRS</td>
-                                                                        <td>1</td>
-
-                                                                  </tr>
-                                                                  <tr>
-                                                                        <td>Terms & Conditions</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>5 HRS</td>
-                                                                        <td>1</td>
-
-                                                                  </tr>
-                                                                  <tr>
-                                                                        <td>Landing page</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>5 HRS</td>
-                                                                        <td>1</td>
-
-                                                                  </tr>
-                                                                  <tr>
-                                                                        <td>Apple Login</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>₹1,26,844.69</td>
-                                                                        <td>5 HRS</td>
-                                                                        <td>1</td>
-
-                                                                  </tr>
-
+                                                                  }
+                                                                  }
                                                             </tbody>
                                                       </table>
                                                 </div>
