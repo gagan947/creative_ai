@@ -275,13 +275,11 @@
                                     <div class="ct_step">
                                           <div class="ct_base_section_main">
                                                 <div class="position-relative ct_w_fit_content mx-auto">
-                                                      @if(!imagePreview){
                                                       <img src="assets/img/iPhone_14 Plus_.png" alt="">
-                                                      }@else {
-                                                      <img [src]="imagePreview" alt="" class="ct_mobile_w_screen">
-                                                      }
                                                       <div class="ct_mob_overlay_top_cnt_12">
                                                             <div class="ct_add_logo_by_ai">
+
+                                                                  @if(!imagePreview){
                                                                   <svg width="12" height="12" viewBox="0 0 12 12"
                                                                         fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                         <circle cx="5.6658" cy="5.82644" r="5.13414"
@@ -291,6 +289,12 @@
                                                                               stroke-linecap="round"
                                                                               stroke-linejoin="round" />
                                                                   </svg>
+                                                                  } @else {
+                                                                  <img [src]="imagePreview" alt=""
+                                                                        class="ct_img_logo_123">
+                                                                  }
+
+
                                                             </div>
                                                             <h6 class="text-white ct_fs_14">{{projectName}}</h6>
                                                       </div>
