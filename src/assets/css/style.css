@@ -4074,7 +4074,7 @@ ul.floatingBoxes li:nth-child(10) {
 
 .ct_range_grid_5 {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   justify-content: space-between;
   gap: 3px;
 }
