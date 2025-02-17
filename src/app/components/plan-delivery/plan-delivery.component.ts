@@ -25,7 +25,7 @@ export class PlanDeliveryComponent {
   thirtyPercent!: number;
   twelvePercent!: number;
   projectCost!: number;
-  rangeValue: string = 'Standard';
+  rangeValue: string = '0';
   projectSecondCost!: number;
   projectThirdCost!: number;
   devices: any[] = ['Android', 'iOS', 'Web', 'Mobile Site'];
@@ -93,11 +93,13 @@ export class PlanDeliveryComponent {
     this.estimatedDate = new Date(today);
 
     this.rangeValue = event.target.value;
-    if (this.rangeValue == 'Fast') {
+    console.log( this.rangeValue );
+    if (this.rangeValue == '2') {
       this.totalPrice = this.projectSecondCost;
       this.estimatedWeeks = this.estimatedWeeks - 2
       this.estimatedDate.setDate(today.getDate() + (this.estimatedWeeks) * 7);
-    } else if (this.rangeValue == 'Speedy') {
+    } else if (this.rangeValue == '4') {
+      console.log("f");
       this.estimatedWeeks = this.estimatedWeeks - 2
       this.estimatedDate.setDate(today.getDate() + (this.estimatedWeeks) * 7);
       this.totalPrice = this.projectThirdCost
