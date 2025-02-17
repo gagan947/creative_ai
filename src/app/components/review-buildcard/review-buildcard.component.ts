@@ -16,11 +16,14 @@ export class ReviewBuildcardComponent {
 
   projectsFeatures: Feature[] = [];
   projectsData: any;
+  totalSubFeatures: any;
   constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router) {
     let projectData = sessionStorage.getItem('projectData');
     this.projectsData = JSON.parse(projectData!);
     this.projectsFeatures = this.projectsData.selectdFeature;
-    console.log(this.projectsFeatures);
-
+    this.totalSubFeatures = this.projectsData.selectdFeature.reduce(
+      (total: any, feature: { subFeaturesListWithPrice: string | any[]; }) => total + (feature.subFeaturesListWithPrice?.length || 0),
+      0
+    );
   };
 }

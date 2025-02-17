@@ -3449,7 +3449,7 @@ table.table.ct_compare_table {
 
 .ct_dash_right_content {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
   width: calc(100% - 142px);
   margin-left: 142px;
   padding: 100px 80px;
@@ -3881,8 +3881,6 @@ table.table.ct_compare_table {
   justify-content: center;
   margin-inline: auto;
   margin-bottom: 6px;
-  resize: both;
-  overflow: auto;
 }
 
 .ct_mob_overlay_top_cnt_12 {

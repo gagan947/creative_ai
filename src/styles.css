@@ -1,4 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
 .iti.iti--allow-dropdown {
       width: 100%;
 }
@@ -56,21 +55,48 @@ ul.iti__country-list {
       overflow-x: hidden;
 }
 
-.color-picker{
+.color-picker {
       top: 360.746px !important;
       left: 123.128px !important;
-  }
+}
 
-  .color-picker .arrow.arrow-top-right, .color-picker .arrow.arrow-right-top {
+.color-picker .arrow.arrow-top-right,
+.color-picker .arrow.arrow-right-top {
       bottom: -5px !important;
       left: 59px !important;
       transform: rotate(150deg) !important;
-  }
+}
 
-  .ct_dragable_card_main_bg{
+.ct_dragable_card_main_bg {
       background-color: #fff;
-      box-shadow: 0px 0px 25px rgba(0,0,0,0.0.15);
+      box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.0.15);
       padding: 20px 10px;
       border-radius: 10px;
 
-  }
+}
+
+.ct_img_logo_123 {
+      width: 100%;
+      height: 100%;
+      border-radius: 5px;
+      object-fit: cover;
+}
+
+.iti input#country-search-box {
+      height: 30px;
+}
+
+::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+}
+
+::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 2px grey;
+      border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+      background: #0b82be;
+      border-radius: 10px;
+}

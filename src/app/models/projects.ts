@@ -17,15 +17,15 @@ export interface Project {
 }
 
 
-export interface SubFeature {
+export interface SubFeature { 
   subFeaturesName: string;
   subFeaturedPrice: number;
-  
 }
 
 export interface Feature {
   featuresName: string;
   totalSubFeaturedPrice: number;
+  estimated_time: number;
   countSubFeaturesName: number;
   subFeaturesListWithPrice: SubFeature[];
 }

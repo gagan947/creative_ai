@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { FormBuilder, FormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { CommonModule } from '@angular/common';
+import { Location } from '@angular/common';
 
 import { ColorPickerModule } from 'ngx-color-picker';
 @Component({
@@ -19,8 +20,9 @@ export class MakeItMineComponent {
   imagePreview: string | ArrayBuffer | null = null;
   public color: string = '#2889e9';
   selectedColor: any
+  @ViewChild('logoBox') logoBox!: ElementRef;
 
-  constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router) { }
+  constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router, public location:Location) { }
 
   updateName(name: any) {
     this.projectName = name
@@ -47,8 +49,10 @@ export class MakeItMineComponent {
     let projectData = {
       selectedColor: this.selectedColor,
       projectName: this.projectName,
-      projectLogo: this.imagePreview
+      projectLogo: this.imagePreview,
+      logoStyle: this.logoBox.nativeElement.getAttribute('style')
     }
+
     sessionStorage.setItem('projectData', JSON.stringify(projectData))
     this.router.navigate([`/refine-idea/${id}`])
   }
