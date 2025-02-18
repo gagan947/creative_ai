@@ -32,7 +32,7 @@ export class PlanDeliveryComponent {
   estimatedDate: Date | undefined;
   estimatedWeeks: any;
   totalSubFeatures: any;
-  PhasesDeliverables: any[] = [{ design: 'We do your designs'}];
+  PhasesDeliverables: any[] = [{ design: 'We do your designs' }];
   constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router) {
     let projectData = sessionStorage.getItem('projectData');
     this.projectsData = JSON.parse(projectData!);
@@ -93,7 +93,7 @@ export class PlanDeliveryComponent {
     this.estimatedDate = new Date(today);
 
     this.rangeValue = event.target.value;
-    console.log( this.rangeValue );
+    console.log(this.rangeValue);
     if (this.rangeValue == '2') {
       this.totalPrice = this.projectSecondCost;
       this.estimatedWeeks = this.estimatedWeeks - 2
@@ -154,10 +154,15 @@ export class PlanDeliveryComponent {
 
   selectDesignPhase(event: any, item: string) {
     if (event.target.checked) {
-      const design = {
-        design: item
+      const existingDesign = this.PhasesDeliverables.find((phase) => phase.design);
+      if (existingDesign) {
+        existingDesign.design = item
+      } else {
+        const design = {
+          design: item
+        }
+        this.PhasesDeliverables.push(design)
       }
-      this.PhasesDeliverables.push(design)
     }
   }
 }
