@@ -1,6 +1,4 @@
 export interface ProjectData {
-  customisationCost: string | number;
-  featuresCost: string | number;
   PhasesDeliverables: [];
   estimatedDate: string; // ISO string format for date
   estimated_time: number;
@@ -13,6 +11,9 @@ export interface ProjectData {
   selectdFeature: SelectedFeature[];
   speed: string;
   totalCost: number;
+    featuresCost:number;
+    customisationCost:number;
+
 }
 
 export interface SelectedFeature {

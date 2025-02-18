@@ -15,6 +15,7 @@ declare var Calendly: any;
 export class MainComponent {
 projectsData:Project[]=[]
 projectId :any;
+featureCount :any;
 
   ngOnInit(): void {
    
@@ -61,8 +62,10 @@ projectId :any;
     }
   };
 
-  updateProjectId(id:any){
+  updateProjectId(id:any , featureCount :number){
     console.log(id);
-    this.projectId = id
+    this.projectId = id;
+    this.featureCount = featureCount
+
   }
 }

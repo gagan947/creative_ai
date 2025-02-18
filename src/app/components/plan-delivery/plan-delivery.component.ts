@@ -4,6 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { Feature } from '../../models/projects';
 import { ApiService } from '../../services/api.service';
 import { CommonModule } from '@angular/common';
+import { ProjectData } from '../../models/sessionData';
 
 @Component({
   selector: 'app-plan-delivery',
@@ -14,7 +15,7 @@ import { CommonModule } from '@angular/common';
 })
 export class PlanDeliveryComponent {
   @Input() id!: string;
-  projectsData: any
+  projectsData: ProjectData;
   projectsFeaturs: Feature[] = [];
   commongFeaturs: any[] = [];
   totalPrice: any;
@@ -33,6 +34,14 @@ export class PlanDeliveryComponent {
   estimatedWeeks: any;
   customWeeks: any;
   totalSubFeatures: any;
+  totalFeatureCost!:number;
+  featureCost!:number;
+  featureSecondCost!:number;
+  featureThirdCost!:number;
+  customizationCost!:number;
+  customizationSecondCost!:number;
+  customizationThirdCost!:number;
+  totalCustomizeCost!:number;
   PhasesDeliverables: any[] = [{ design: 'We do your designs' }];
   constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router) {
     let projectData = sessionStorage.getItem('projectData');
@@ -43,10 +52,18 @@ export class PlanDeliveryComponent {
     this.projectSecondCost = this.projectCost + this.twelvePercent;
     this.projectThirdCost = this.projectCost + (this.projectsData.totalCost * 36) / 100;
     this.totalPrice = this.projectCost;
-    this.totalSubFeatures = this.projectsData.selectdFeature.reduce(
-      (total: any, feature: { subFeaturesListWithPrice: string | any[]; }) => total + (feature.subFeaturesListWithPrice?.length || 0),
-      0
-    );
+    this.featureCost = this.projectsData.featuresCost;
+    this.featureSecondCost = this.projectsData.featuresCost  + (this.featureCost * 12) / 100;
+    this.featureThirdCost = this.projectsData.featuresCost + (this.featureCost * 36) / 100;
+    this.totalFeatureCost = this.featureCost;
+    this.customizationCost = this.projectsData.customisationCost;
+    this.customizationSecondCost = this.projectsData.customisationCost + (this.customizationCost * 12) / 100;;
+    this.customizationThirdCost = this.projectsData.customisationCost + (this.customizationCost * 36) / 100;;
+    this.totalCustomizeCost = this.customizationCost;
+    // this.totalSubFeatures = this.projectsData.selectdFeature.reduce(
+    //   (total: any, feature: { feature: string | any[]; }) => total + (feature.subFeaturesListWithPrice?.length || 0),
+    //   0
+    // );
     const today = new Date();
     this.customWeeks = this.estimatedWeeks = this.projectsData.estimated_time;
     this.estimatedDate = new Date(today);
@@ -60,6 +77,12 @@ export class PlanDeliveryComponent {
     if (index === -1) {
       this.selectedDevices.push(device);
       this.projectCost = this.projectCost + this.thirtyPercent;
+      this.featureCost = this.featureCost + (this.projectsData.featuresCost * 30) / 100;
+      this.featureSecondCost = this.featureCost + (this.featureCost * 12) / 100;
+      this.featureThirdCost = this.featureCost + (this.featureCost * 36) / 100;
+      this.customizationCost = this.customizationCost + (this.projectsData.customisationCost * 30) / 100;
+      this.customizationSecondCost = this.customizationCost + (this.customizationCost * 12) / 100;
+      this.customizationThirdCost = this.customizationCost + (this.customizationCost * 36) / 100;
       this.projectSecondCost = this.projectCost + (this.projectCost * 12) / 100;
       this.projectThirdCost = this.projectCost + (this.projectCost * 36) / 100;
 
@@ -69,6 +92,12 @@ export class PlanDeliveryComponent {
       } else {
         this.selectedDevices.splice(index, 1);
         this.projectCost = this.projectCost - this.thirtyPercent;
+        this.featureCost = this.featureCost - (this.projectsData.featuresCost * 30) / 100;
+        this.featureSecondCost = this.featureCost + ((this.featureCost * 12) / 100);
+        this.featureThirdCost = this.featureCost + ((this.featureCost * 36) / 100);
+        this.customizationCost = this.customizationCost - (this.projectsData.customisationCost * 30) / 100;
+        this.customizationSecondCost = this.customizationCost + (this.customizationCost * 12) / 100;
+        this.customizationThirdCost = this.customizationCost + (this.customizationCost * 30) / 100;
         this.projectSecondCost = this.projectCost + ((this.projectCost * 12) / 100);
         this.projectThirdCost = this.projectCost + ((this.projectCost * 36) / 100);
       }
@@ -79,13 +108,20 @@ export class PlanDeliveryComponent {
       this.projectCost = this.projectsData.totalCost;
       this.projectSecondCost = this.projectCost + this.twelvePercent;
       this.projectThirdCost = this.projectCost + (this.projectsData.totalCost * 36) / 100;
+      this.featureCost = this.projectsData.featuresCost;
+      this.featureSecondCost = this.featureCost + (this.featureCost * 12) / 100;
+      this.featureThirdCost = this.featureCost + (this.featureCost * 36) / 100;
+
     }
     if (this.rangeValue == 'Fast') {
       this.totalPrice = this.projectSecondCost;
     } else if (this.rangeValue == 'Speedy') {
       this.totalPrice = this.projectThirdCost
     } else {
-      this.totalPrice = this.projectCost
+      
+      this.totalFeatureCost = this.featureCost;
+      this.totalCustomizeCost = this.customizationCost;
+      this.totalPrice = this.projectCost;
     }
   };
 
@@ -94,16 +130,25 @@ export class PlanDeliveryComponent {
     this.estimatedDate = new Date(today);
 
     this.rangeValue = event.target.value;
+ 
     if (this.rangeValue == '2') {
       this.totalPrice = this.projectSecondCost;
+      this.totalFeatureCost = this.featureSecondCost;
+      console.log(  this.totalFeatureCost );
+      this.totalCustomizeCost = this.customizationSecondCost;
       this.estimatedWeeks = this.customWeeks - 2
       this.estimatedDate.setDate(today.getDate() + (this.estimatedWeeks) * 7);
     } else if (this.rangeValue == '4') {
+      this.totalFeatureCost = this.featureThirdCost;
+      this.totalCustomizeCost = this.customizationThirdCost;
+      this.estimatedWeeks = this.estimatedWeeks - 2
       this.estimatedWeeks = this.customWeeks - 4
       this.estimatedDate.setDate(today.getDate() + (this.estimatedWeeks) * 7);
-      this.totalPrice = this.projectThirdCost
+      this.totalPrice = this.projectThirdCost;
     } else {
-      this.totalPrice = this.projectCost
+      this.totalPrice = this.projectCost;
+      this.totalFeatureCost = this.featureCost;
+      this.totalCustomizeCost = this.customizationCost;
       this.estimatedWeeks = this.projectsData.estimated_time
       this.estimatedDate.setDate(today.getDate() + this.estimatedWeeks * 7);
     }
