@@ -21,7 +21,7 @@ export class MakeItMineComponent {
   public color: string = '#2889e9';
   selectedColor: any
   @ViewChild('logoBox') logoBox!: ElementRef;
-
+  mobile_base = true;
   constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router, public location:Location) { }
 
   updateName(name: any) {
