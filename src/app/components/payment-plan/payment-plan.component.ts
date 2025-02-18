@@ -22,6 +22,9 @@ export class PaymentPlanComponent {
   paymentPlan = '1';
   noOfInstallments!: number;
   installmentType!: string;
+  actualCost: number | null | undefined
+  securityDeposit!: number
+  installmentDates: any[] = []
   constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router) {
 
     let projectData = sessionStorage.getItem('projectData');
@@ -32,36 +35,60 @@ export class PaymentPlanComponent {
   };
 
   onPaymentChange(id: any) {
-
     if (id == 1) {
-      this.totalCost = this.totalCost - ((this.totalCost * 10) / 100)
-
+      this.totalCost = this.projectsData.finalCost
+      this.actualCost = null
     } else {
       this.paymentPlan = '2'
+      this.actualCost = this.projectsData.finalCost + (this.projectsData.finalCost * 18) / 100
+      this.securityDeposit = (this.actualCost * 20) / 100
       this.generateInstallemnts(this.projectsData.estimated_time)
     }
   };
 
 
   onInstallmentChange(type: any) {
-
+    const today = new Date()
     if (type == 'weekly') {
       this.noOfInstallments = this.projectsData.estimated_time;
       this.installmentType = 'weekly'
+      const dates = []
+      for (let i = 0; i < this.projectsData.estimated_time; i++) {
+        today.setDate(today.getDate() + 7)
+        dates.push(new Date(today).toISOString())
+      }
+      this.installmentDates = dates
     } else {
       this.noOfInstallments = Math.trunc(this.projectsData.estimated_time / 4);
       this.installmentType = 'monthly'
+      const dates = []
+      for (let i = 0; i < this.noOfInstallments; i++) {
+        today.setMonth(today.getMonth() + 1)
+        dates.push(new Date(today).toISOString())
+      }
+      this.installmentDates = dates
     }
   };
 
   generateInstallemnts(weeks: number) {
-    if (weeks < 8) {
+    const today = new Date()
+    if (this.installmentType == 'weekly') {
       this.noOfInstallments = weeks;
-      this.installmentType = 'weekly'
+      const dates = []
+      for (let i = 0; i < weeks; i++) {
+        today.setDate(today.getDate() + 7)
+        dates.push(new Date(today).toISOString())
+      }
+      this.installmentDates = dates
     } else {
       this.noOfInstallments = Math.trunc(weeks / 4);
+      const dates = []
+      for (let i = 0; i < this.noOfInstallments; i++) {
+        today.setMonth(today.getMonth() + 1)
+        dates.push(new Date(today).toISOString())
+      }
+      this.installmentDates = dates
       this.installmentType = 'monthly'
-      console.log(this.noOfInstallments);
     }
   }
 }

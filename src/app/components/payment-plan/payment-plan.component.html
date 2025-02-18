@@ -193,17 +193,21 @@
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between gap-3">
                                           <div class="form-check ct_custom_radio_check">
-                                                <input class="form-check-input" type="radio" 
-                                                      [(ngModel)]="paymentPlan" value="1" (change)="onPaymentChange('1')">
-                                                <label class="form-check-label" >
+                                                <input id="Upfront" class="form-check-input" type="radio"
+                                                      [(ngModel)]="paymentPlan" value="1"
+                                                      (change)="onPaymentChange('1')">
+                                                <label for="Upfront" class="form-check-label">
                                                       <h5 class="ct_fs_14 ct_fw_700 mb-0">Upfront payment</h5>
                                                 </label>
                                           </div>
                                           <div>
-                                                <p class="mb-0"><del class="ct_text_op_7">{{projectsData.finalCost |
-                                                            currency:'INR' }} </del></p>
-                                                <h4 class="mb-0 ct_fw_700">{{projectsData.finalCost -
-                                                      ((projectsData.finalCost * 10) / 100) | currency:'INR' }}</h4>
+                                                <p class="mb-0"><del
+                                                            class="ct_text_op_7">{{ totalCost + (totalCost * 18)/100 | currency:'INR' }}
+                                                      </del></p>
+                                                <h4 class="mb-0 ct_fw_700">
+                                                      {{(totalCost + (totalCost * 18)/100) -
+                                                      (((totalCost + (totalCost * 18)/100) * 10) / 100) | currency:'INR' }}
+                                                </h4>
                                           </div>
 
                                     </div>
@@ -214,10 +218,11 @@
                                     <div class="ct_app_detail_card d-block">
 
                                           <div class="form-check ct_custom_radio_check ">
-                                                <input class="form-check-input position-relative" style="top: 4px;"
-                                                      type="radio"  value = '2'   [(ngModel)]="paymentPlan"
+                                                <input id="flexRadioDefault232"
+                                                      class="form-check-input position-relative" style="top: 4px;"
+                                                      type="radio" value='2' [(ngModel)]="paymentPlan"
                                                       (change)="onPaymentChange('2')">
-                                                <label class="form-check-label" >
+                                                <label class="form-check-label" for="flexRadioDefault232">
                                                       <h5 class="mb-0 ct_fw_700 ct_fs_18"> You don't need to pay it all
                                                             now</h5>
                                                 </label>
@@ -233,11 +238,13 @@
 
                                     <div class="row mt-4">
                                           <div class="col-md-6">
-                                                <div class="ct_app_detail_card" [ngClass]="{'active': installmentType == 'weekly'}">
+                                                <div class="ct_app_detail_card"
+                                                      [ngClass]="{'active': installmentType == 'weekly'}">
 
                                                       <div class="form-check ct_custom_radio_check ">
                                                             <input class="form-check-input" type="radio"
-                                                                  name="flexRadioDefault" [(ngModel)]="installmentType" value="weekly"
+                                                                  name="flexRadioDefault" [(ngModel)]="installmentType"
+                                                                  value="weekly"
                                                                   (change)="onInstallmentChange('weekly')">
                                                             <label class="form-check-label" for="flexRadioDefault1">
                                                                   Weekly
@@ -247,12 +254,15 @@
 
                                           </div>
                                           <div class="col-md-6">
-                                                <div class="ct_app_detail_card " [ngClass]="{'active': installmentType == 'monthly'}">
+                                                <div class="ct_app_detail_card "
+                                                      [ngClass]="{'active': installmentType == 'monthly'}">
 
 
                                                       <div class="form-check ct_custom_radio_check">
                                                             <input class="form-check-input" type="radio"
-                                                                  name="flexRadioDefault" [(ngModel)]="installmentType" value="monthly"     (change)="onInstallmentChange('monthly')">
+                                                                  name="flexRadioDefault" [(ngModel)]="installmentType"
+                                                                  value="monthly"
+                                                                  (change)="onInstallmentChange('monthly')">
                                                             <label class="form-check-label" for="flexRadioDefault2">
                                                                   Monthly
                                                             </label>
@@ -281,8 +291,11 @@
 
                                                 </label>
                                           </div>
-                                          <h5 class="ct_fw_400 ct_fs_16 mb-0">{{noOfInstallments}} INSTALLMENTS</h5>
-                                          <span class="ct_fw_400 ct_fs_16 mb-0" data-bs-toggle="modal" data-bs-target="#installmentModal">See plan</span>
+                                          <div>
+                                                <p class="ct_fw_400 ct_fs_12 mb-0">{{noOfInstallments}} INSTALLMENTS</p>
+                                                <span class="ct_fw_400 ct_fs_16 mb-0 pointer" data-bs-toggle="modal"
+                                                      data-bs-target="#installmentModal">See plan</span>
+                                          </div>
                                     </div>
                               </div>
                               }
@@ -340,18 +353,19 @@
                                           </div>
 
                                           <div class="mt-4 pt-4 ct_border_top_1">
+                                                <h5 class="ct_fw_700">Payment Summary</h5>
                                                 <div
                                                       class="d-flex align-items-center justify-content-between gap-3  mb-3">
                                                       <p class="mb-0 ct_fw_700 ct_fs_14">Features</p>
                                                       <p class="mb-0 ct_fw_700 ct_fs_14">
-                                                            {{ this.totalCost | currency:'INR'}}
+                                                            {{ projectsData.featuresCost | currency:'INR'}}
                                                       </p>
                                                 </div>
                                                 <div
                                                       class="d-flex align-items-center justify-content-between gap-3  mb-3">
                                                       <p class="mb-0 ct_fw_700 ct_fs_14">Customisation</p>
                                                       <p class="mb-0 ct_fw_700 ct_fs_14">
-                                                            {{0 | currency:'INR'}}
+                                                            {{projectsData.customisationCost | currency:'INR'}}
                                                       </p>
                                                 </div>
                                                 <!-- <div
@@ -371,10 +385,48 @@
                                                       class="d-flex align-items-center justify-content-between gap-3  mb-3">
                                                       <p class="mb-0 ct_fw_700 ct_fs_18">Total Cost</p>
                                                       <p class="mb-0 ct_fw_700 ct_fs_18">
-                                                            {{ totalCost + (totalCost * 18)/100 | currency:'INR' }}
+                                                            {{ actualCost  ?  (actualCost | currency:'INR') : (totalCost + (totalCost * 18)/100) -
+                                                      (((totalCost + (totalCost * 18)/100) * 10) / 100) | currency:'INR' }}
                                                       </p>
                                                 </div>
                                           </div>
+
+                                          <div class="mt-4 pt-4 ct_border_top_1">
+                                                <h5 class="ct_fw_700">Due Now
+                                                </h5>
+                                                @if(paymentPlan =="2"){
+                                                <div
+                                                      class="d-flex align-items-center justify-content-between gap-3  mb-3">
+                                                      <p class="mb-0 ct_fw_700 ct_fs_14">Security Deposit
+                                                      </p>
+                                                      <p class="mb-0 ct_fw_700 ct_fs_14">
+                                                            {{ securityDeposit | currency:'INR'}}
+                                                      </p>
+                                                </div>
+                                                <div
+                                                      class="d-flex align-items-center justify-content-between gap-3  mb-3">
+                                                      <p class="mb-0 ct_fw_700 ct_fs_14">Taxe (18% GST)</p>
+                                                      <p class="mb-0 ct_fw_700 ct_fs_14">
+                                                            {{( securityDeposit * 18)/100 | currency:'INR' }}
+                                                      </p>
+                                                </div>
+                                                }
+                                                <div
+                                                      class="d-flex align-items-center justify-content-between gap-3  mb-3">
+                                                      <p class="mb-0 ct_fw_700 ct_fs_18">Total</p>
+                                                      @if(paymentPlan =="2"){
+                                                      <p class="mb-0 ct_fw_700 ct_fs_18">
+                                                            {{ securityDeposit + (securityDeposit * 18)/100 | currency : 'INR' }}
+                                                      </p>
+                                                      }@else {
+                                                      <p class="mb-0 ct_fw_700 ct_fs_18">
+                                                            {{ actualCost  ?  (actualCost | currency:'INR') : (totalCost + (totalCost * 18)/100) -
+                                                            (((totalCost + (totalCost * 18)/100) * 10) / 100) | currency:'INR' }}
+                                                      </p>
+                                                      }
+                                                </div>
+                                          </div>
+
                                           <div class="mt-5">
                                                 <a routerLink="/payment-detail"
                                                       class="ct_schedule_call_btn w-100 d-flex justify-content-center align-items-center">Continue
@@ -479,38 +531,27 @@
                         <div class="ct_schedule_call_main12">
 
                               <h4 class="ct_fs_24 ct_fw_700  mb-2">Monthly installment plan</h4>
-                            
-
                               <table class="table">
                                     <thead>
-                                      <tr>
-                                        <th scope="col">Installment</th>
-                                        <th scope="col">Due Date</th>
-                                        <th scope="col">Project Stage</th>
-                                        <th scope="col">Amount</th>
-                                      </tr>
+                                          <tr>
+                                                <th scope="col">Installment</th>
+                                                <th scope="col">Due Date</th>
+                                                <th scope="col">Project Stage</th>
+                                                <th scope="col">Amount</th>
+                                          </tr>
                                     </thead>
                                     <tbody>
-                                      <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>mdo</td>
-                                      </tr>
-                                      <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>fat</td>
-                                      </tr>
-                                      <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>twitter</td>
-                                      </tr>
+                                          @for (item of installmentDates; track $index) {
+                                          <tr>
+                                                <th scope="row">{{ $index + 1 }}</th>
+                                                <td>{{item | date}}</td>
+                                                <td>Development</td>
+                                                <td>{{ actualCost ? ((actualCost - (securityDeposit + (securityDeposit * 18)/100))/noOfInstallments | currency:'INR') : '' }}
+                                                </td>
+                                          </tr>
+                                          }
                                     </tbody>
-                                  </table>
+                              </table>
 
 
 

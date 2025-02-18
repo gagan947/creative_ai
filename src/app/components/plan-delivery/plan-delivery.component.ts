@@ -31,6 +31,7 @@ export class PlanDeliveryComponent {
   devices: any[] = ['Android', 'iOS', 'Web', 'Mobile Site'];
   estimatedDate: Date | undefined;
   estimatedWeeks: any;
+  customWeeks: any;
   totalSubFeatures: any;
   PhasesDeliverables: any[] = [{ design: 'We do your designs' }];
   constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router) {
@@ -47,7 +48,7 @@ export class PlanDeliveryComponent {
       0
     );
     const today = new Date();
-    this.estimatedWeeks = this.projectsData.estimated_time;
+    this.customWeeks = this.estimatedWeeks = this.projectsData.estimated_time;
     this.estimatedDate = new Date(today);
     this.estimatedDate.setDate(today.getDate() + this.estimatedWeeks * 7);
   };
@@ -93,14 +94,12 @@ export class PlanDeliveryComponent {
     this.estimatedDate = new Date(today);
 
     this.rangeValue = event.target.value;
-    console.log(this.rangeValue);
     if (this.rangeValue == '2') {
       this.totalPrice = this.projectSecondCost;
-      this.estimatedWeeks = this.estimatedWeeks - 2
+      this.estimatedWeeks = this.customWeeks - 2
       this.estimatedDate.setDate(today.getDate() + (this.estimatedWeeks) * 7);
     } else if (this.rangeValue == '4') {
-      console.log("f");
-      this.estimatedWeeks = this.estimatedWeeks - 2
+      this.estimatedWeeks = this.customWeeks - 4
       this.estimatedDate.setDate(today.getDate() + (this.estimatedWeeks) * 7);
       this.totalPrice = this.projectThirdCost
     } else {
