@@ -17,7 +17,8 @@ export interface Project {
 }
 
 
-export interface SubFeature { 
+export interface SubFeature {
+  customisationPrice: number;
   subFeaturesName: string;
   subFeaturedPrice: number;
 }
@@ -27,6 +28,7 @@ export interface Feature {
   totalSubFeaturedPrice: number;
   estimated_time: number;
   countSubFeaturesName: number;
+  totalCustomisationPrice: number
   subFeaturesListWithPrice: SubFeature[];
 }
 
