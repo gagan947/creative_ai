@@ -11,6 +11,9 @@ export interface ProjectData {
     selectdFeature: SelectedFeature[];
     speed: string;
     totalCost: number;
+    featuresCost:number;
+    customisationCost:number;
+
   }
   
   export interface SelectedFeature {
