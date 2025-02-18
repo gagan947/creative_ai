@@ -178,7 +178,7 @@
                                                                               Upfront offer
                                                                         </h5>
                                                                         <p class="mb-0 text-white mt-3">Pay upfront and
-                                                                              get 12% discount on
+                                                                              get 10% discount on
                                                                               yourtotal creativecard</p>
                                                                   </div>
 
@@ -193,16 +193,17 @@
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between gap-3">
                                           <div class="form-check ct_custom_radio_check">
-                                                <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                      id="flexRadioDefault2" checked>
-                                                <label class="form-check-label" for="flexRadioDefault2">
+                                                <input class="form-check-input" type="radio" 
+                                                      [(ngModel)]="paymentPlan" value="1" (change)="onPaymentChange('1')">
+                                                <label class="form-check-label" >
                                                       <h5 class="ct_fs_14 ct_fw_700 mb-0">Upfront payment</h5>
-
                                                 </label>
                                           </div>
                                           <div>
-                                                <p class="mb-0"><del class="ct_text_op_7">₹44,24,870.65</del></p>
-                                                <h4 class="mb-0 ct_fw_700">₹26,24,870.65</h4>
+                                                <p class="mb-0"><del class="ct_text_op_7">{{projectsData.finalCost |
+                                                            currency:'INR' }} </del></p>
+                                                <h4 class="mb-0 ct_fw_700">{{projectsData.finalCost -
+                                                      ((projectsData.finalCost * 10) / 100) | currency:'INR' }}</h4>
                                           </div>
 
                                     </div>
@@ -214,8 +215,9 @@
 
                                           <div class="form-check ct_custom_radio_check ">
                                                 <input class="form-check-input position-relative" style="top: 4px;"
-                                                      type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                      type="radio"  value = '2'   [(ngModel)]="paymentPlan"
+                                                      (change)="onPaymentChange('2')">
+                                                <label class="form-check-label" >
                                                       <h5 class="mb-0 ct_fw_700 ct_fs_18"> You don't need to pay it all
                                                             now</h5>
                                                 </label>
@@ -225,17 +227,18 @@
                                                 payment plan</p>
                                     </div>
                               </div>
-
+                              @if(paymentPlan =="2"){
                               <div class="mt-5">
                                     <h5 class="mb-2 ct_fs_18 ct_fw_700">How often do you want to be billed?</h5>
 
                                     <div class="row mt-4">
                                           <div class="col-md-6">
-                                                <div class="ct_app_detail_card active">
+                                                <div class="ct_app_detail_card" [ngClass]="{'active': installmentType == 'weekly'}">
 
                                                       <div class="form-check ct_custom_radio_check ">
                                                             <input class="form-check-input" type="radio"
-                                                                  name="flexRadioDefault" id="flexRadioDefault1">
+                                                                  name="flexRadioDefault" [(ngModel)]="installmentType" value="weekly"
+                                                                  (change)="onInstallmentChange('weekly')">
                                                             <label class="form-check-label" for="flexRadioDefault1">
                                                                   Weekly
                                                             </label>
@@ -244,13 +247,12 @@
 
                                           </div>
                                           <div class="col-md-6">
-                                                <div class="ct_app_detail_card ">
+                                                <div class="ct_app_detail_card " [ngClass]="{'active': installmentType == 'monthly'}">
 
 
                                                       <div class="form-check ct_custom_radio_check">
                                                             <input class="form-check-input" type="radio"
-                                                                  name="flexRadioDefault" id="flexRadioDefault2"
-                                                                  checked>
+                                                                  name="flexRadioDefault" [(ngModel)]="installmentType" value="monthly"     (change)="onInstallmentChange('monthly')">
                                                             <label class="form-check-label" for="flexRadioDefault2">
                                                                   Monthly
                                                             </label>
@@ -269,16 +271,22 @@
                                     <div
                                           class="ct_outline_border_box py-3 mt-4 d-flex align-items-center justify-content-between gap-3">
                                           <div class="form-check ct_custom_radio_check ">
-                                                <input class="form-check-input position-relative" style="top: 4px;"
-                                                      type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                <!-- <input class="form-check-input position-relative" style="top: 4px;"
+                              type="radio" name="flexRadioDefault" id="flexRadioDefault1"> -->
                                                 <label class="form-check-label" for="flexRadioDefault1">
                                                       <h5 class="mb-0 ct_fw_700 ct_fs_18">Development</h5>
-                                                      <p class="mb-0 ct_text_op_7">17 Jan 2025 - 17 Dec 2025</p>
+                                                      <!-- <p class="mb-0 ct_text_op_7">  {{new Date() | date}} -   {{projectsData.estimatedDate | date}}</p> -->
+                                                      <p class="mb-0 ct_text_op_7"> {{ today | date }} - {{
+                                                            projectsData.estimatedDate | date }}</p>
+
                                                 </label>
                                           </div>
-                                          <h5 class="ct_fw_400 ct_fs_16 mb-0">24 INSTALLMENTS</h5>
+                                          <h5 class="ct_fw_400 ct_fs_16 mb-0">{{noOfInstallments}} INSTALLMENTS</h5>
+                                          <span class="ct_fw_400 ct_fs_16 mb-0" data-bs-toggle="modal" data-bs-target="#installmentModal">See plan</span>
                                     </div>
                               </div>
+                              }
+
 
 
 
@@ -336,26 +344,26 @@
                                                       class="d-flex align-items-center justify-content-between gap-3  mb-3">
                                                       <p class="mb-0 ct_fw_700 ct_fs_14">Features</p>
                                                       <p class="mb-0 ct_fw_700 ct_fs_14">
-                                                            {{projectsData.totalCost | currency:'INR'}}
+                                                            {{ this.totalCost | currency:'INR'}}
                                                       </p>
                                                 </div>
                                                 <div
                                                       class="d-flex align-items-center justify-content-between gap-3  mb-3">
                                                       <p class="mb-0 ct_fw_700 ct_fs_14">Customisation</p>
                                                       <p class="mb-0 ct_fw_700 ct_fs_14">
-                                                            {{projectsData.finalCost - projectsData.totalCost | currency:'INR'}}
+                                                            {{0 | currency:'INR'}}
                                                       </p>
                                                 </div>
-                                                <div
+                                                <!-- <div
                                                       class="d-flex align-items-center justify-content-between gap-3  mb-3">
                                                       <p class="mb-0 ct_fw_700 ct_fs_14">Studio One (for 12 months)</p>
                                                       <p class="mb-0 ct_fw_700 ct_fs_14">{{0 | currency:'INR'}}</p>
-                                                </div>
+                                                </div> -->
                                                 <div
                                                       class="d-flex align-items-center justify-content-between gap-3  mb-3">
                                                       <p class="mb-0 ct_fw_700 ct_fs_14">Taxes (18% GST)</p>
                                                       <p class="mb-0 ct_fw_700 ct_fs_14">
-                                                            {{(projectsData.finalCost * 18)/100 | currency:'INR' }}
+                                                            {{( totalCost * 18)/100 | currency:'INR' }}
                                                       </p>
                                                 </div>
 
@@ -363,7 +371,7 @@
                                                       class="d-flex align-items-center justify-content-between gap-3  mb-3">
                                                       <p class="mb-0 ct_fw_700 ct_fs_18">Total Cost</p>
                                                       <p class="mb-0 ct_fw_700 ct_fs_18">
-                                                            {{(projectsData.finalCost * 18)/100 + projectsData.finalCost | currency:'INR' }}
+                                                            {{ totalCost + (totalCost * 18)/100 | currency:'INR' }}
                                                       </p>
                                                 </div>
                                           </div>
@@ -449,8 +457,60 @@
                                     class="mt-4 text-center d-flex align-items-center flex-wrap gap-3 justify-content-center">
                                     <button class="ct_blue_outline_btn  justify-content-center"
                                           data-bs-dismiss="modal">Cancel</button>
-                                    <button class="ct_blue_btn_fill  justify-content-center" data-bs-dismiss="modal" routerLink="/main">Proceed</button>
+                                    <button class="ct_blue_btn_fill  justify-content-center" data-bs-dismiss="modal"
+                                          routerLink="/main">Proceed</button>
                               </div>
+
+
+
+                        </div>
+                  </div>
+
+            </div>
+      </div>
+</div>
+<div class="modal fade modal-lg" id="installmentModal" tabindex="-1" aria-labelledby="ct_refresh_pageLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content  p-4">
+
+                  <div class="modal-body  p-0">
+                        <!-- You Need To Import Schedule Form here -->
+                        <div class="ct_schedule_call_main12">
+
+                              <h4 class="ct_fs_24 ct_fw_700  mb-2">Monthly installment plan</h4>
+                            
+
+                              <table class="table">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">Installment</th>
+                                        <th scope="col">Due Date</th>
+                                        <th scope="col">Project Stage</th>
+                                        <th scope="col">Amount</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <th scope="row">1</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>mdo</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">2</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>fat</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">3</th>
+                                        <td>Larry</td>
+                                        <td>the Bird</td>
+                                        <td>twitter</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
 
 
 
