@@ -92,14 +92,15 @@ export class PlanDeliveryComponent {
       } else {
         this.selectedDevices.splice(index, 1);
         this.projectCost = this.projectCost - this.thirtyPercent;
+        this.projectSecondCost = this.projectCost + ((this.projectCost * 12) / 100);
+        this.projectThirdCost = this.projectCost + ((this.projectCost * 36) / 100);
         this.featureCost = this.featureCost - (this.projectsData.featuresCost * 30) / 100;
         this.featureSecondCost = this.featureCost + ((this.featureCost * 12) / 100);
         this.featureThirdCost = this.featureCost + ((this.featureCost * 36) / 100);
         this.customizationCost = this.customizationCost - (this.projectsData.customisationCost * 30) / 100;
         this.customizationSecondCost = this.customizationCost + (this.customizationCost * 12) / 100;
         this.customizationThirdCost = this.customizationCost + (this.customizationCost * 30) / 100;
-        this.projectSecondCost = this.projectCost + ((this.projectCost * 12) / 100);
-        this.projectThirdCost = this.projectCost + ((this.projectCost * 36) / 100);
+     
       }
     }
     if (this.selectedDevices.length == 0) {
@@ -113,10 +114,14 @@ export class PlanDeliveryComponent {
       this.featureThirdCost = this.featureCost + (this.featureCost * 36) / 100;
 
     }
-    if (this.rangeValue == 'Fast') {
+    if (this.rangeValue == '2') {
       this.totalPrice = this.projectSecondCost;
-    } else if (this.rangeValue == 'Speedy') {
-      this.totalPrice = this.projectThirdCost
+      this.totalFeatureCost = this.featureSecondCost;
+      this.totalCustomizeCost = this.customizationSecondCost;
+    } else if (this.rangeValue == '4') {
+      this.totalPrice = this.projectThirdCost;
+      this.totalFeatureCost = this.featureThirdCost
+      this.totalCustomizeCost = this.customizationThirdCost;
     } else {
       
       this.totalFeatureCost = this.featureCost;
