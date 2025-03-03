@@ -1,4 +1,5 @@
 export interface ProjectData {
+  clientEnquryId: number;
   PhasesDeliverables: [];
   estimatedDate: string; // ISO string format for date
   estimated_time: number;

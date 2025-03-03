@@ -50,12 +50,6 @@ export class BillingDetailsComponent {
       city: ['', Validators.required],
       state: ['', Validators.required],
       postal_code: ['', [Validators.required, Validators.pattern(/^\d{5,6}$/)]],
-      estimated_duration: [''],
-      expected_completion: [''],
-      features: [''],
-      customization: [''],
-      studio_one_12_months: [''],
-      total_cost: ['']
     });
   };
 
@@ -73,18 +67,24 @@ export class BillingDetailsComponent {
     if (this.billingForm.invalid) {
       return;
     }
-    let formData = this.billingForm.value;
-    formData.phone = formData.phone.number
-    formData.features = this.projectsData.totalCost
-    formData.total_cost = this.projectsData.finalCost;
-    formData.customization = this.projectsData.finalCost - this.projectsData.totalCost;
-    formData.studio_one_12_months = 0;
-    formData.estimated_duration = this.projectsData.estimated_time.toString();
-    formData.expected_completion = this.projectsData.estimatedDate;
-    this.apiService.postAPI(`api/user/addBillingInformation`, formData).subscribe({
+
+
+
+    let data = this.billingForm.value;
+    data.phone = data.phone.number
+
+    let formData = {
+      formNumber: 6,
+      currentRoutes: this.router.url,
+      bankInfo: [
+        data
+      ]
+    }
+
+    this.apiService.postAPI(`api/user/addClientInquries?inquiryId=${this.projectsData.clientEnquryId}`, formData).subscribe({
       next: (res: any) => {
         if (res.success == true) {
-          this.message.success(res.message);
+          // this.message.success(res.message);
           this.router.navigate(['/payment-plan']);
         }
       },
