@@ -59,7 +59,8 @@ export class PlanDeliveryComponent {
     this.totalFeatureCost = this.featureCost;
     this.customizationCost = this.projectsData.customisationCost;
     this.customizationSecondCost = this.projectsData.customisationCost + (this.customizationCost * 12) / 100;;
-    this.customizationThirdCost = this.projectsData.customisationCost + (this.customizationCost * 36) / 100;;
+    this.customizationThirdCost = this.projectsData.customisationCost + (this.customizationCost * 36) / 100;
+    console.log(this.customizationThirdCost);
     this.totalCustomizeCost = this.customizationCost;
     // this.totalSubFeatures = this.projectsData.selectdFeature.reduce(
     //   (total: any, feature: { feature: string | any[]; }) => total + (feature.subFeaturesListWithPrice?.length || 0),
@@ -100,7 +101,7 @@ export class PlanDeliveryComponent {
         this.featureThirdCost = this.featureCost + ((this.featureCost * 36) / 100);
         this.customizationCost = this.customizationCost - (this.projectsData.customisationCost * 30) / 100;
         this.customizationSecondCost = this.customizationCost + (this.customizationCost * 12) / 100;
-        this.customizationThirdCost = this.customizationCost + (this.customizationCost * 30) / 100;
+        this.customizationThirdCost = this.customizationCost + (this.customizationCost * 36) / 100;
 
       }
     }
@@ -113,6 +114,9 @@ export class PlanDeliveryComponent {
       this.featureCost = this.projectsData.featuresCost;
       this.featureSecondCost = this.featureCost + (this.featureCost * 12) / 100;
       this.featureThirdCost = this.featureCost + (this.featureCost * 36) / 100;
+      this.customizationCost = this.projectsData.customisationCost;
+      this.customizationSecondCost = this.customizationCost + (this.projectsData.customisationCost * 12) / 100;
+      this.customizationThirdCost = this.customizationCost + (this.projectsData.customisationCost * 36) / 100;
 
     }
     if (this.rangeValue == '2') {
@@ -160,31 +164,6 @@ export class PlanDeliveryComponent {
     }
   }
 
-  onclickAND(event: any) {
-    event.stopPropagation()
-    this.isActiveAND = !this.isActiveAND;
-
-    if (this.isActiveAND) {
-      this.totalPrice = this.projectsData.totalCost
-    }
-
-  }
-  onclickIOS(event: any) {
-    event.stopPropagation()
-    this.isActiveIOS = !this.isActiveIOS;
-    if (this.isActiveIOS) {
-      const thirtyPercent = (this.projectsData.totalCost * 30) / 100
-    }
-  }
-  onclickWEB(event: any) {
-    event.stopPropagation()
-    this.isActiveWeb = !this.isActiveWeb
-  }
-  onclickMOb(event: any) {
-    event.stopPropagation()
-    this.isActiveMobileSite = !this.isActiveMobileSite
-  };
-
   Navigate() {
 
     let formData = {
@@ -196,7 +175,7 @@ export class PlanDeliveryComponent {
       customisationPrice: this.totalCustomizeCost,
       durations: this.estimatedWeeks,
       totalCost: this.totalPrice,
-      currentRoutes:this.router.url
+      currentRoutes: this.router.url
     }
 
     this.apiService.postAPI(`api/user/addClientInquries?inquiryId=${this.projectsData.clientEnquryId}`, formData)
