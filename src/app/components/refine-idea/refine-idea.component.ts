@@ -6,6 +6,7 @@ import { Feature, FeatureResponse } from '../../models/projects';
 import { CommonModule } from '@angular/common';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { Location } from '@angular/common';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-refine-idea',
@@ -22,7 +23,7 @@ export class RefineIdeaComponent {
   commongFeaturs: any[] = [];
   totalPrice: any;
   estimatedWeeks: number | undefined;
-  constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router, public location: Location) {
+  constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router, public location: Location, private message: NzMessageService) {
     let projectData = sessionStorage.getItem('projectData');
     this.projectsData = JSON.parse(projectData!);
   }
@@ -119,20 +120,38 @@ export class RefineIdeaComponent {
   }
 
   Navigate() {
-    let totalCost = {
-      totalCost: this.totalPrice
+
+    let formData = {
+      formNumber: 2,
+      projectFeatures: this.projectsFeaturs,
+      durations: this.estimatedWeeks,
+      totalCost: this.totalPrice,
+      currentRoutes:this.router.url
     }
 
-    let selectdFeature = {
-      selectdFeature: this.projectsFeaturs
-    }
+    this.apiService.postAPI(`api/user/addClientInquries?inquiryId=${this.projectsData.clientEnquryId}`, formData)
+      .subscribe({
+        next: (res: any) => {
+          if (res.success) {
+            let totalCost = {
+              totalCost: this.totalPrice
+            }
 
-    let featuresCost = this.projectsFeaturs.reduce((pre: any, next: { totalSubFeaturedPrice: any; }) => pre + next.totalSubFeaturedPrice, 0)
+            let selectdFeature = {
+              selectdFeature: this.projectsFeaturs
+            }
 
-    let customisationCost = this.projectsFeaturs.reduce((pre: any, next: { totalCustomisationPrice: any; }) => pre + next.totalCustomisationPrice, 0)
+            let featuresCost = this.projectsFeaturs.reduce((pre: any, next: { totalSubFeaturedPrice: any; }) => pre + next.totalSubFeaturedPrice, 0)
 
-    sessionStorage.setItem('projectData', JSON.stringify({ ...this.projectsData, ...totalCost, ...selectdFeature, ...{ 'featuresCost': featuresCost }, ...{ 'customisationCost': customisationCost }, ...{ 'estimated_time': this.estimatedWeeks } }))
-    this.router.navigate([`/plan-delivery/${this.id}`])
+            let customisationCost = this.projectsFeaturs.reduce((pre: any, next: { totalCustomisationPrice: any; }) => pre + next.totalCustomisationPrice, 0)
+
+            sessionStorage.setItem('projectData', JSON.stringify({ ...this.projectsData, ...totalCost, ...selectdFeature, ...{ 'featuresCost': featuresCost }, ...{ 'customisationCost': customisationCost }, ...{ 'estimated_time': this.estimatedWeeks } }))
+            this.router.navigate([`/plan-delivery/${this.id}`])
+          } else {
+            this.message.error(res.message);
+          }
+        }, error: err => { this.message.error(err.error.message); }
+      });
   }
 
   findDifferences(originalArray: any[], newArray: any[]) {
