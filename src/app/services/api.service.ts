@@ -7,10 +7,13 @@ import { Subject, Observable, BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  apiUrl = 'http://192.168.29.100:4004/';
-  // apiUrl = 'http://localhost:3000/';
-  imageUrl = 'https://98.80.36.64:5000/images/';
+  // apiUrl = 'http://192.168.29.100:4004/';
+  apiUrl = 'http://89.116.21.92:4000/';
+  // imageUrl = 'https://98.80.36.64:5000/images/';
+  imageUrl = 'http://89.116.21.92:4000/images/';
+
   private clearInputSubject = new Subject<void>();
+
   constructor(private http: HttpClient, private route: Router) { }
 
   getApi<T>(url: string): Observable<T> {

@@ -6,6 +6,7 @@ import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormsModule } 
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
 declare var bootstrap: any;
 declare var Calendly: any;
 @Component({
@@ -21,7 +22,7 @@ export class FreeDemoComponent {
   countries: any;
   myForm!: FormGroup;
   demoId: any;
-  constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router) { }
+  constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router, private message: NzMessageService) { }
 
   ngOnInit(): void {
     this.myForm = this.fb.group({
@@ -63,26 +64,25 @@ export class FreeDemoComponent {
       },
       error: (error) => {
         console.error('Error:', error);
-        alert('Something went wrong. Please try again.');
-
+        this.message.error('Something went wrong. Please try again.');
+        // alert('Something went wrong. Please try again.');
       }
     });
   };
 
 
   onTellUsSubmit(form: any) {
-    this.apiService.postAPI(`api/user/tellUsAbout?demoId=1?demoId=${this.demoId}`, form.value).subscribe({
+    this.apiService.postAPI(`api/user/tellUsAbout?demoId=${this.demoId}`, form.value).subscribe({
       next: (response: any) => {
         if (response.success)
-
           form.reset(); // Reset form after submission
         const modal = new bootstrap.Modal(document.getElementById('tellUs') as HTMLElement);
         modal.close();
       },
       error: (error) => {
         console.error('Error:', error);
-        alert('Something went wrong. Please try again.');
-
+        // alert('Something went wrong. Please try again.');
+        this.message.error('Something went wrong. Please try again.');
       }
     })
   };
