@@ -1,3 +1,5 @@
+import { SubFeature } from "./projects";
+
 export interface ProjectData {
   clientEnquryId: number;
   PhasesDeliverables: [];
@@ -12,13 +14,14 @@ export interface ProjectData {
   selectdFeature: SelectedFeature[];
   speed: string;
   totalCost: number;
-    featuresCost:number;
-    customisationCost:number;
+  featuresCost: number;
+  customisationCost: number;
 
 }
 
 export interface SelectedFeature {
   featuresName: string;
   estimated_time: number;
+  subFeaturesListWithPrice: SubFeature[];
   totalSubFeaturedPrice: number;
 }

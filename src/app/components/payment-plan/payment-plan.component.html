@@ -88,7 +88,7 @@
                         <div class="col-md-12">
                               <div class="d-grid">
                                     <div class="ct_step-container d-flex justify-content-between">
-                                          <div class=" ct_step-circle">
+                                          <div class=" ct_step-circle cursor-pointer" routerLink="/main">
                                                 <!-- <p class=" mb-0">1</p> -->
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35"
                                                       viewBox="0 0 24 24">
@@ -98,7 +98,8 @@
                                                 </svg>
                                                 <p class="mb-0 ct_fs_14 ct_fw_600">Choose Base</p>
                                           </div>
-                                          <div class=" ct_step-circle">
+                                          <div class=" ct_step-circle cursor-pointer"
+                                                [routerLink]="['/make-it-mine/'+ projectsData.projectId]">
                                                 <!-- <p class=" mb-0">2</p> -->
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35"
                                                       viewBox="0 0 24 24">
@@ -108,7 +109,8 @@
                                                 </svg>
                                                 <p class="mb-0 ct_fs_14 ct_fw_600">Make it Mine</p>
                                           </div>
-                                          <div class=" ct_step-circle">
+                                          <div class=" ct_step-circle cursor-pointer"
+                                                [routerLink]="['/refine-idea/'+ projectsData.projectId]">
                                                 <!-- <p class=" mb-0">3</p> -->
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35"
                                                       viewBox="0 0 24 24">
@@ -118,7 +120,8 @@
                                                 </svg>
                                                 <p class="mb-0 ct_fs_14 ct_fw_600">Refine Idea</p>
                                           </div>
-                                          <div class=" ct_step-circle">
+                                          <div class=" ct_step-circle cursor-pointer"
+                                                [routerLink]="['/plan-delivery/'+ projectsData.projectId]">
                                                 <!-- <p class=" mb-0">4</p> -->
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35"
                                                       viewBox="0 0 24 24">
@@ -128,7 +131,8 @@
                                                 </svg>
                                                 <p class="mb-0 ct_fs_14 ct_fw_600">Plan Delivery</p>
                                           </div>
-                                          <div class=" ct_step-circle">
+                                          <div class="ct_step-circle cursor-pointer"
+                                                [routerLink]="['/review-buildcard']">
                                                 <!-- <p class=" mb-0">5</p> -->
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35"
                                                       viewBox="0 0 24 24">
@@ -138,7 +142,8 @@
                                                 </svg>
                                                 <p class="mb-0 ct_fs_14 ct_fw_600">Review Buildcard</p>
                                           </div>
-                                          <div class=" ct_step-circle">
+                                          <div class=" ct_step-circle cursor-pointer"
+                                                [routerLink]="['/billing-details']">
                                                 <!-- <p class=" mb-0">6</p> -->
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35"
                                                       viewBox="0 0 24 24">
@@ -450,7 +455,6 @@
       <div class="container">
             <div class="row">
                   <div class="col-md-12">
-
                         <div class="mt-4">
                               <h3 class="ct_fs_24 text-center ct_fw_700">Why it's worth heading to a desktop now</h3>
                               <p class="text-center">Our mobile site isn't the best place to order your app…yet.</p>

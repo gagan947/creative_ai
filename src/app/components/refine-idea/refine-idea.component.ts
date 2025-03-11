@@ -26,15 +26,21 @@ export class RefineIdeaComponent {
   constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router, public location: Location, private message: NzMessageService) {
     let projectData = sessionStorage.getItem('projectData');
     this.projectsData = JSON.parse(projectData!);
+    this.projectsFeaturs = this.projectsData.selectdFeature
+    if (this.projectsFeaturs && this.projectsFeaturs.length > 0) {
+      this.estimatedWeeks = this.projectsFeaturs[0].estimated_time ? this.projectsFeaturs[0].estimated_time : this.projectsFeaturs[1].estimated_time ? this.projectsFeaturs[1].estimated_time : this.projectsFeaturs[2].estimated_time
+      this.totalCost(this.projectsFeaturs)
+    }
   }
 
   ngOnInit(): void {
-    this.getProjects();
+    if (!this.projectsData.selectdFeature) {
+      this.getProjects();
+    }
     this.getFeatures()
   };
 
   getProjects() {
-
     this.apiService.getApi<FeatureResponse>(`api/user/fetchProjectDetailedById?projectId=${this.id}`)
       .subscribe({
         next: (res) => {
@@ -52,7 +58,6 @@ export class RefineIdeaComponent {
       });
   };
   getFeatures() {
-
     this.apiService.getApi<any>(`api/user/fetchFeaturesAndThereSubFeatures`)
       .subscribe({
         next: (res) => {
@@ -120,13 +125,12 @@ export class RefineIdeaComponent {
   }
 
   Navigate() {
-
     let formData = {
       formNumber: 2,
       projectFeatures: this.projectsFeaturs,
       durations: this.estimatedWeeks,
       totalCost: this.totalPrice,
-      currentRoutes:this.router.url
+      currentRoutes: this.router.url
     }
 
     this.apiService.postAPI(`api/user/addClientInquries?inquiryId=${this.projectsData.clientEnquryId}`, formData)
@@ -155,8 +159,8 @@ export class RefineIdeaComponent {
   }
 
   findDifferences(originalArray: any[], newArray: any[]) {
-    const newFeaturesSet = new Set(newArray.map(feature => feature.featuresName));
-    const newSubFeaturesSet = new Set(newArray.flatMap(feature => feature.subFeaturesListWithPrice.map((subFeature: any) => subFeature.subFeaturesName)));
+    const newFeaturesSet = new Set(newArray?.map(feature => feature.featuresName));
+    const newSubFeaturesSet = new Set(newArray?.flatMap(feature => feature.subFeaturesListWithPrice.map((subFeature: any) => subFeature.subFeaturesName)));
 
     this.commongFeaturs = originalArray.map(f => ({
       ...f,
@@ -191,7 +195,6 @@ export class RefineIdeaComponent {
       this.commongFeaturs[commonFeatureIndex].subFeaturesList.map((item: any) => {
         item == items ? item.selected = true : ''
       })
-
       this.commongFeaturs[commonFeatureIndex].selected = true
     }
     this.totalPrice = this.totalPrice + items.subFeaturedPrice + items.customisationPrice

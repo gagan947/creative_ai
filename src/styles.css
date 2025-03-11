@@ -100,3 +100,7 @@ ul.iti__country-list {
       background: #0b82be;
       border-radius: 10px;
 }
+
+.cursor-pointer {
+      cursor: pointer;
+}

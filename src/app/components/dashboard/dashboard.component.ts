@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 })
 export class DashboardComponent {
   allProjectsList: any[] = []
+  estimatedDate: Date | undefined;
   constructor(private apiService: ApiService, private message: NzMessageService, private router: Router) {
   }
   ngOnInit(): void {
@@ -22,6 +23,9 @@ export class DashboardComponent {
   }
 
   Navigate(url: string, id: number) {
+
+    const today = new Date();
+    this.estimatedDate = new Date(today);
     this.apiService.getApi(`api/user/fetchClientInquries?inquiryId=${id}`).subscribe(
       {
         next: (res: any) => {
@@ -30,8 +34,9 @@ export class DashboardComponent {
             let projectData = {
               clientEnquryId: id,
               PhasesDeliverables: data.PhasesAndDeliverables,
+              bellingDetails: data.bellingDetails,
               estimated_time: data.durations,
-              finalCost: data.gstTotalCost,
+              finalCost: data.gstTotalCost ? data.gstTotalCost : data.totalCost,
               logoStyle: data.logoSize,
               platform: data.platforms,
               projectLogo: data.clientProjectLogo,
@@ -40,6 +45,8 @@ export class DashboardComponent {
               speed: data.developmentSpeed,
               totalCost: data.totalCost,
               featuresCost: data.featuresPrice,
+              customisationCost: data.totalCost - data.featuresPrice,
+              estimatedDate: this.estimatedDate?.setDate(today.getDate() + data.durations * 7)
             };
             sessionStorage.setItem('projectData', JSON.stringify(projectData));
             this.router.navigate([url]);

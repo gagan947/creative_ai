@@ -268,7 +268,12 @@ $(document).ready(function () {
 
   var counted = 0;
   $(window).scroll(function () {
-    var oTop = $("#counter").offset().top - window.innerHeight;
+    var oTop;
+    if ($("#counter").length) {
+      oTop = $("#counter").offset().top - window.innerHeight;
+    } else {
+      oTop = 0;
+    }
     if (counted == 0 && $(window).scrollTop() > oTop) {
       $(".count").each(function () {
         var $this = $(this),

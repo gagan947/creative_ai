@@ -11,7 +11,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 @Component({
   selector: 'app-billing-details',
   standalone: true,
-  imports: [NgxIntlTelInputModule, CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [NgxIntlTelInputModule, CommonModule, FormsModule, ReactiveFormsModule, RouterLink],
   templateUrl: './billing-details.component.html',
   styleUrl: './billing-details.component.css'
 })
@@ -26,10 +26,13 @@ export class BillingDetailsComponent {
   countryCode: string = '';
   SearchCountryField = SearchCountryField
   CountryISO = CountryISO
+  billingDetails: any;
+
   constructor(private fb: FormBuilder, private apiService: ApiService, private message: NzMessageService, private router: Router) {
     let projectData = sessionStorage.getItem('projectData');
     this.projectsData = JSON.parse(projectData!);
     this.projectsFeatures = this.projectsData.selectdFeature;
+    this.billingDetails = this.projectsData.bellingDetails ? this.projectsData.bellingDetails[0] : {};
     this.totalSubFeatures = this.projectsData.selectdFeature.reduce(
       (total: any, feature: { subFeaturesListWithPrice: string | any[]; }) => total + (feature.subFeaturesListWithPrice?.length || 0),
       0
@@ -38,18 +41,22 @@ export class BillingDetailsComponent {
 
   ngOnInit(): void {
     this.countries = Country.getAllCountries()
+    if (this.billingDetails.company_location) {
+      this.getStateByCountry({ target: { value: this.billingDetails.company_location } });
+      this.getCityByState({ target: { value: this.billingDetails.state } });
+    }
 
     this.billingForm = this.fb.group({
-      customer_type: ['individual', Validators.required],
-      company_name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', Validators.required],
-      company_location: ['', Validators.required],
-      address_line_1: ['', Validators.required],
-      address_line_2: [''],
-      city: ['', Validators.required],
-      state: ['', Validators.required],
-      postal_code: ['', [Validators.required, Validators.pattern(/^\d{5,6}$/)]],
+      customer_type: [this.billingDetails.customer_type || 'individual', Validators.required],
+      company_name: [this.billingDetails.company_name || '', Validators.required],
+      email: [this.billingDetails.email || '', [Validators.required, Validators.email]],
+      phone: [this.billingDetails.phone || '', Validators.required],
+      company_location: [this.billingDetails.company_location || '', Validators.required],
+      address_line_1: [this.billingDetails.address_line_1 || '', Validators.required],
+      address_line_2: [this.billingDetails.address_line_2 || ''],
+      city: [this.billingDetails.city || '', Validators.required],
+      state: [this.billingDetails.state || '', Validators.required],
+      postal_code: [this.billingDetails.postal_code || '', [Validators.required, Validators.pattern(/^\d{5,6}$/)]],
     });
   };
 
@@ -67,8 +74,6 @@ export class BillingDetailsComponent {
     if (this.billingForm.invalid) {
       return;
     }
-
-
 
     let data = this.billingForm.value;
     data.phone = data.phone.number

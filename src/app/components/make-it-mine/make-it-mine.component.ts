@@ -16,7 +16,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 })
 export class MakeItMineComponent {
   @Input() id!: string;
-  projectsData: any[] = [];
+  projectsData: any;
   projectName: string = 'My Creative Project';
   imagePreview: string | ArrayBuffer | null = null;
   public color: string = '#2889e9';
@@ -24,7 +24,14 @@ export class MakeItMineComponent {
   logoImg: File | undefined
   @ViewChild('logoBox') logoBox!: ElementRef;
   mobile_base = true;
-  constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router, public location: Location, private message: NzMessageService,) { }
+  constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router, public location: Location, private message: NzMessageService,) {
+    let projectData = sessionStorage.getItem('projectData');
+    this.projectsData = JSON.parse(projectData!);
+    if (this.projectsData) {
+      this.imagePreview = this.projectsData.projectLogo
+      this.projectName = this.projectsData.projectName
+    }
+  }
 
   updateName(name: any) {
     this.projectName = name
@@ -63,11 +70,12 @@ export class MakeItMineComponent {
       next: (res: any) => {
         if (res.success == true) {
           let projectData = {
+            ...this.projectsData,
             clientEnquryId: res.data,
             selectedColor: this.selectedColor,
             projectName: this.projectName,
             projectLogo: this.imagePreview,
-            logoStyle: this.logoBox.nativeElement.getAttribute('style')
+            logoStyle: this.logoBox.nativeElement.getAttribute('style'),
           }
 
           sessionStorage.setItem('projectData', JSON.stringify(projectData))

@@ -13,20 +13,18 @@ declare var Calendly: any;
   styleUrl: './main.component.css'
 })
 export class MainComponent {
-projectsData:Project[]=[]
-projectId :any;
-featureCount :any;
+  projectsData: Project[] = []
+  projectId: any;
+  featureCount: any;
 
   ngOnInit(): void {
-   
+    sessionStorage.removeItem('projectData');
     this.getProjects()
   };
 
 
-
-
   constructor(private fb: FormBuilder, private apiservice: ApiService) {
-   
+
   };
 
 
@@ -62,7 +60,7 @@ featureCount :any;
     }
   };
 
-  updateProjectId(id:any , featureCount :number){
+  updateProjectId(id: any, featureCount: number) {
     console.log(id);
     this.projectId = id;
     this.featureCount = featureCount
