@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormsModule } 
 import { Router, RouterLink } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { CommonModule } from '@angular/common';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent {
   loginForm: FormGroup;
   showPassword: boolean = false; // Controls password visibility
 
-  constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router) {
+  constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router, private message: NzMessageService,) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: [
@@ -45,21 +46,21 @@ export class LoginComponent {
           next: (res: any) => {
             if (res.success == true) {
               this.apiService.setToken(res.data);
+              this.message.success(res.message)
               this.router.navigate(['/main'])
               // this.projectInfo = res.projectInfo
               // this, this.getProjectMedia()
               // this.loading = false
             } else {
               // this.loading = false
+              this.message.error(res.message)
             }
           },
           error: err => {
             // this.loading = false
+            this.message.error(err.error.message)
           }
         });
-
-      console.log('Login Payload:', payload);
-      // Call API service here
     }
   }
 

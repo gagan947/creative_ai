@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { CommonModule } from '@angular/common';
 import { Project, ProjectResponse } from '../../models/projects';
@@ -23,7 +23,7 @@ export class MainComponent {
   };
 
 
-  constructor(private fb: FormBuilder, private apiservice: ApiService) {
+  constructor(private fb: FormBuilder, private apiservice: ApiService, private router: Router) {
 
   };
 
@@ -65,5 +65,10 @@ export class MainComponent {
     this.projectId = id;
     this.featureCount = featureCount
 
+  }
+
+  LogOut() {
+    localStorage.clear()
+    this.router.navigate(['/'])
   }
 }
