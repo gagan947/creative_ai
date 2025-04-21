@@ -16,6 +16,7 @@ export interface ProjectData {
   totalCost: number;
   featuresCost: number;
   customisationCost: number;
+  no_of_features: number;
 
 }
 

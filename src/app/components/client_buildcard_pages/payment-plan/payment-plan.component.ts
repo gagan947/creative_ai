@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { Feature } from '../../models/projects';
+import { Feature } from '../../../models/projects';
 import { FormBuilder, FormsModule } from '@angular/forms';
-import { ApiService } from '../../services/api.service';
+import { ApiService } from '../../../services/api.service';
 import { CommonModule } from '@angular/common';
-import { ProjectData, SelectedFeature } from '../../models/sessionData';
+import { ProjectData, SelectedFeature } from '../../../models/sessionData';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({

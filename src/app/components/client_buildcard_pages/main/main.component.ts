@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { ApiService } from '../../services/api.service';
+import { ApiService } from '../../../services/api.service';
 import { CommonModule } from '@angular/common';
-import { Project, ProjectResponse } from '../../models/projects';
+import { Project, ProjectResponse } from '../../../models/projects';
 declare var Calendly: any;
 @Component({
   selector: 'app-main',

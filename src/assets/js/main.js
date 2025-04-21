@@ -6,6 +6,10 @@ $(document).ready(function () {
     $(".ct_middle_navbar ul:not(.ct_dropdown_items ol) ").removeClass("show");
   });
 
+  $(".et_toggle_bar").click(function () {
+    $(".et_dashbaord_main").toggleClass("et_dash_show");
+  });
+
   // ct_recent_work_slider Brand Slider S
   $(".ct_recent_work_slider").owlCarousel({
     loop: true,
@@ -268,12 +272,7 @@ $(document).ready(function () {
 
   var counted = 0;
   $(window).scroll(function () {
-    var oTop;
-    if ($("#counter").length) {
-      oTop = $("#counter").offset().top - window.innerHeight;
-    } else {
-      oTop = 0;
-    }
+    var oTop = $("#counter").offset().top - window.innerHeight;
     if (counted == 0 && $(window).scrollTop() > oTop) {
       $(".count").each(function () {
         var $this = $(this),
@@ -353,18 +352,173 @@ window.onload = function () {
   }, 2500); // Match this with the count-up animation duration
 };
 
-// const rangeInput = document.getElementById("customRange3");
+var options = {
+  chart: {
+    type: "area",
+    height: 140,
+    toolbar: { show: false },
+  },
+  series: [
+    {
+      name: "GHG Emissions",
+      data: [10, 25, 18, 30, 22, 35],
+    },
+  ],
+  xaxis: {
+    categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+    axisBorder: { show: false },
+    axisTicks: { show: false },
+    labels: { show: false },
+  },
+  yaxis: {
+    show: false,
+  },
+  stroke: {
+    curve: "smooth",
+    width: 2,
+  },
+  fill: {
+    type: "gradient",
+    gradient: {
+      shade: "light",
+      type: "vertical",
+      gradientToColors: ["#007bff"],
+      stops: [0, 100],
+    },
+  },
+  colors: ["#007bff"],
+  grid: { show: false },
+  tooltip: { enabled: false },
+};
 
-// function updateRangeBackground() {
-//   const min = rangeInput.min;
-//   const max = rangeInput.max;
-//   const val = rangeInput.value;
-//   const percentage = ((val - min) / (max - min)) * 100;
+var chart = new ApexCharts(document.querySelector("#et_linear_chart"), options);
+chart.render();
 
-//   rangeInput.style.background = `linear-gradient(to right, #1b83c1 ${percentage}%, #ddd ${percentage}%)`;
-// }
+var options = {
+  series: [
+    {
+      data: [44, 55, 41],
+    },
+  ],
+  chart: {
+    type: "bar",
+    height: 180,
+    colors: ["#7CCBFA"],
+  },
+  plotOptions: {
+    bar: {
+      horizontal: true,
+      borderRadius: 10, // Rounded bar corners
+      dataLabels: {
+        position: "top",
+      },
+    },
+  },
+  dataLabels: {
+    enabled: false, // Hide data labels
+  },
+  stroke: {
+    show: false,
+    width: 0,
+    colors: ["#fff"],
+  },
+  tooltip: {
+    shared: true,
+    intersect: false,
+  },
+  xaxis: {
+    labels: {
+      show: true, // Hides vertical (y-axis) labels
+    },
+  },
+  yaxis: {
+    categories: ["Nov 2021", "Dec 2021", "Jan 2022"], // Horizontal labels // Hides vertical axis labels
+    labels: {
+      show: true, // Hide horizontal (x-axis) labels
+    },
+  },
+};
 
-// rangeInput.addEventListener("input", updateRangeBackground);
+var chart = new ApexCharts(
+  document.querySelector("#ghg-emission-bar"),
+  options
+);
+chart.render();
 
+$(document).ready(function () {
+  $(".et_buildcard_collapse_icon").click(function () {
+    $("#ct_collapse_build_first").addClass("d-none");
+    $("#ct_collapse_build").removeClass("d-none");
+  });
+  $(".et_buildcard_collapse_close_icon").click(function () {
+    $("#ct_collapse_build").addClass("d-none");
+    $("#ct_collapse_build_first").removeClass("d-none");
+  });
+});
 
-// updateRangeBackground();
+// Range Slider js S
+var inputLeft = document.getElementById("et-input-left");
+var inputRight = document.getElementById("et-input-right");
+
+var thumbLeft = document.querySelector(".et-slider > .et-thumb.et-left");
+var thumbRight = document.querySelector(".et-slider > .et-thumb.et-right");
+var range = document.querySelector(".et-slider > .et-range");
+
+function setLeftValue() {
+  var _this = inputLeft,
+    min = parseInt(_this.min),
+    max = parseInt(_this.max);
+
+  _this.value = Math.min(parseInt(_this.value), parseInt(inputRight.value) - 1);
+
+  var percent = ((_this.value - min) / (max - min)) * 100;
+
+  thumbLeft.style.left = percent + "%";
+  range.style.left = percent + "%";
+}
+setLeftValue();
+
+function setRightValue() {
+  var _this = inputRight,
+    min = parseInt(_this.min),
+    max = parseInt(_this.max);
+
+  _this.value = Math.max(parseInt(_this.value), parseInt(inputLeft.value) + 1);
+
+  var percent = ((_this.value - min) / (max - min)) * 100;
+
+  thumbRight.style.right = 100 - percent + "%";
+  range.style.right = 100 - percent + "%";
+}
+setRightValue();
+
+inputLeft.addEventListener("input", setLeftValue);
+inputRight.addEventListener("input", setRightValue);
+
+inputLeft.addEventListener("mouseover", function () {
+  thumbLeft.classList.add("et-hover");
+});
+inputLeft.addEventListener("mouseout", function () {
+  thumbLeft.classList.remove("et-hover");
+});
+inputLeft.addEventListener("mousedown", function () {
+  thumbLeft.classList.add("et-active");
+});
+inputLeft.addEventListener("mouseup", function () {
+  thumbLeft.classList.remove("et-active");
+});
+
+inputRight.addEventListener("mouseover", function () {
+  thumbRight.classList.add("et-hover");
+});
+inputRight.addEventListener("mouseout", function () {
+  thumbRight.classList.remove("et-hover");
+});
+inputRight.addEventListener("mousedown", function () {
+  thumbRight.classList.add("et-active");
+});
+inputRight.addEventListener("mouseup", function () {
+  thumbRight.classList.remove("et-active");
+});
+
+// Range Slider js E

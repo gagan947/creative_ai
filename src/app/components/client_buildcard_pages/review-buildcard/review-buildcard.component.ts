@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { ApiService } from '../../services/api.service';
-import { Feature } from '../../models/projects';
+import { ApiService } from '../../../services/api.service';
+import { Feature } from '../../../models/projects';
 import { CommonModule } from '@angular/common';
 
 @Component({

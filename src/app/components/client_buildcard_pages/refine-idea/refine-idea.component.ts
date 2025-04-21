@@ -1,17 +1,16 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { ApiService } from '../../services/api.service';
-import { Feature, FeatureResponse } from '../../models/projects';
+import { ApiService } from '../../../services/api.service';
+import { Feature, FeatureResponse } from '../../../models/projects';
 import { CommonModule } from '@angular/common';
-import { DragDropModule } from '@angular/cdk/drag-drop';
 import { Location } from '@angular/common';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-refine-idea',
   standalone: true,
-  imports: [RouterLink, CommonModule, DragDropModule],
+  imports: [RouterLink, CommonModule],
   templateUrl: './refine-idea.component.html',
   styleUrl: './refine-idea.component.css'
 })
@@ -125,12 +124,18 @@ export class RefineIdeaComponent {
   }
 
   Navigate() {
+    let no_of_features = 0;
+    this.projectsFeaturs.forEach((element: any) => {
+      no_of_features = no_of_features + element.countSubFeaturesName
+    })
+
     let formData = {
       formNumber: 2,
       projectFeatures: this.projectsFeaturs,
       durations: this.estimatedWeeks,
       totalCost: this.totalPrice,
-      currentRoutes: this.router.url
+      currentRoutes: this.router.url,
+      no_of_features: no_of_features
     }
 
     this.apiService.postAPI(`api/user/addClientInquries?inquiryId=${this.projectsData.clientEnquryId}`, formData)
@@ -149,7 +154,7 @@ export class RefineIdeaComponent {
 
             let customisationCost = this.projectsFeaturs.reduce((pre: any, next: { totalCustomisationPrice: any; }) => pre + next.totalCustomisationPrice, 0)
 
-            sessionStorage.setItem('projectData', JSON.stringify({ ...this.projectsData, ...totalCost, ...selectdFeature, ...{ 'featuresCost': featuresCost }, ...{ 'customisationCost': customisationCost }, ...{ 'estimated_time': this.estimatedWeeks } }))
+            sessionStorage.setItem('projectData', JSON.stringify({ ...this.projectsData, ...totalCost, ...selectdFeature, ...{ 'featuresCost': featuresCost },...{ 'no_of_features': no_of_features }, ...{ 'customisationCost': customisationCost }, ...{ 'estimated_time': this.estimatedWeeks } }))
             this.router.navigate([`/plan-delivery/${this.id}`])
           } else {
             this.message.error(res.message);
