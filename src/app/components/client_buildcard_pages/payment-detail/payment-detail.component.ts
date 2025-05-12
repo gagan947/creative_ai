@@ -32,4 +32,43 @@ export class PaymentDetailComponent {
 
     this.projectsFeatures = this.projectsData.selectdFeature;
   };
+
+  Navigate() {
+
+    let formData = undefined
+    if (this.paymentPlan == '2') {
+      formData = {
+        paymentPlan: this.paymentPlan == '2' ? 'Installment' : 'Upfront',
+        installmentType: this.installmentType,
+        taxes: (this.totalCost * 18) / 100,
+        gstTotalCost: this.actualCost,
+        securityDeposit: this.securityDeposit,
+        currentRoutes: this.router.url,
+        installmentPlan: this.installmentDates.map((ele) => {
+          return {
+            dueDate: ele,
+            projectStage: "Development",
+            amount: (this.actualCost! - this.securityDeposit - (this.securityDeposit * 18) / 100) / this.noOfInstallments
+          }
+        })
+      }
+    } else {
+      formData = {
+        paymentPlan: this.paymentPlan == '1' ? 'Upfront' : 'Installment',
+        taxes: (this.totalCost * 18) / 100,
+        currentRoutes: this.router.url,
+        gstTotalCost: this.totalCost + (this.totalCost * 18) / 100 - ((this.totalCost + (this.totalCost * 18) / 100) * 10) / 100
+      }
+    }
+
+    this.apiService.postAPI(`api/user/addClientPaymentPlan?inquiryId=${this.projectsData.clientEnquryId}`, formData).subscribe({
+      next: (res: any) => {
+        if (res.success) {
+          this.router.navigate(['/payment-detail'])
+        }
+      }, error(err) {
+        // this.message.error(err.error.message)
+      },
+    })
+  }
 }
