@@ -38,7 +38,7 @@
 }
 
 .et_dash_sidebar ul {
-  padding-inline: 15px;
+  padding-inline: 25px;
 }
 
 .et_dash_sidebar li + li {
@@ -490,7 +490,7 @@ p {
 }
 
 .et_search_input input {
-  padding-left: 40px;
+  text-indent: 30px;
 }
 
 .et_search_input i {
@@ -885,16 +885,6 @@ ul.et_todo_tab_list li a {
   position: absolute;
   left: 0px;
   bottom: -10px;
-  background-color: var(--dark_blue);
-  height: 2px;
-  width: 100%;
-}
-.et_todo_tab_list li.active2:after {
-  bottom: 0px;
-  position: absolute;
-  content: "";
-  position: absolute;
-  left: 0px;
   background-color: var(--dark_blue);
   height: 2px;
   width: 100%;
