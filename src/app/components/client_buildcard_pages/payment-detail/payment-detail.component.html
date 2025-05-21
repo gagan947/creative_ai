@@ -163,8 +163,8 @@
                                                 </svg>
                                                 <p class="mb-0 ct_fs_14 ct_fw_600">Payment Plan</p>
                                           </div>
-                                          <div class=" ct_step-circle opacity-50">
-                                                <p class=" mb-0">6</p>
+                                          <div class=" ct_step-circle">
+                                                <p class=" mb-0">8</p>
                                                 <p class="mb-0 ct_fs_14 ct_fw_600">Payment Options</p>
                                           </div>
                                     </div>
@@ -263,45 +263,51 @@
                                                                   <div
                                                                         class="et_outline_payment_tab d-flex align-items-center gap-3">
                                                                         <input type="radio" name="online_payment"
-                                                                              id="online_payment">
+                                                                              id="online_payment"
+                                                                              [checked]="paymentMethods.card"
+                                                                              (change)="paymentMethods.card = true; paymentMethods.upi = false; paymentMethods.netbanking = false; paymentMethods.wallet = false;">
                                                                         <label class="ct_fs_18 ct_fw_700 payment_option_label"
                                                                               for="online_payment">Credit/Debit
                                                                               card
                                                                         </label>
-                                                                        <!-- <img src="../assets/img/phon-pay.svg"
-                                                                              class="et_payment_icon_img" alt=""> -->
-                                                                  </div>
-                                                                  <div
-                                                                        class="et_outline_payment_tab d-flex align-items-center gap-2">
-                                                                        <input type="radio" name="online_payment"
-                                                                              id="online_payment_2">
-                                                                        <label for="online_payment_2"> <img
-                                                                                    src="../assets/img/phon-pay.svg"
-                                                                                    class="et_payment_icon_img" alt="">
-                                                                        </label>
                                                                   </div>
                                                                   <div
                                                                         class="et_outline_payment_tab d-flex align-items-center gap-3">
                                                                         <input type="radio" name="online_payment"
-                                                                              id="online_payment_3">
-                                                                        <label for="online_payment_3"> <img
-                                                                                    src="../assets/img/g-pay.svg"
-                                                                                    class="et_payment_icon_img" alt="">
-                                                                        </label>
-                                                                  </div>
-                                                                  <div
-                                                                        class="et_outline_payment_tab d-flex align-items-center gap-3">
-                                                                        <input type="radio" name="online_payment"
-                                                                              id="online_payment_4">
+                                                                              id="online_payment_4"
+                                                                              [checked]="paymentMethods.upi"
+                                                                              (change)="paymentMethods.card = false; paymentMethods.upi = true; paymentMethods.netbanking = false; paymentMethods.wallet = false;">
                                                                         <label class="ct_fs_18 ct_fw_700 payment_option_label"
                                                                               for="online_payment_4">UPI
                                                                         </label>
-                                                                        <!-- <img src="../assets/img/phon-pay.svg"
-                                                                              class="et_payment_icon_img" alt=""> -->
                                                                   </div>
+                                                                  <div
+                                                                        class="et_outline_payment_tab d-flex align-items-center gap-3">
+                                                                        <input type="radio" name="online_payment"
+                                                                              id="online_payment_2"
+                                                                              [checked]="paymentMethods.netbanking"
+                                                                              (change)="paymentMethods.card = false; paymentMethods.upi = false; paymentMethods.netbanking = true; paymentMethods.wallet = false;">
+                                                                        <label for="online_payment_2"
+                                                                              class="ct_fs_18 ct_fw_700 payment_option_label">
+                                                                              Netbanking
+                                                                        </label>
+                                                                  </div>
+                                                                  <div
+                                                                        class="et_outline_payment_tab d-flex align-items-center gap-3">
+                                                                        <input type="radio" name="online_payment"
+                                                                              id="online_payment_3"
+                                                                              [checked]="paymentMethods.wallet"
+                                                                              (change)="paymentMethods.card = false; paymentMethods.upi = false; paymentMethods.netbanking = false; paymentMethods.wallet = true;">
+                                                                        <label for="online_payment_3"
+                                                                              class="ct_fs_18 ct_fw_700 payment_option_label">
+                                                                              Wallet
+                                                                        </label>
+                                                                  </div>
+
                                                             </div>
                                                             <div class="text-center mt-5">
-                                                                  <button class="ct_blue_btn_fill">Pay
+                                                                  <button (click)="payNow()"
+                                                                        class="ct_blue_btn_fill">Pay
                                                                         & Schedule kick-off
                                                                         call</button>
                                                             </div>
@@ -435,11 +441,11 @@
                                                 </div>
                                           </div>
 
-                                          <div class="mt-5">
+                                          <!-- <div class="mt-5">
                                                 <a (click)="Navigate()"
                                                       class="ct_schedule_call_btn w-100 d-flex justify-content-center align-items-center">Continue
-                                                      to payment plan</a>
-                                          </div>
+                                                      to pay</a>
+                                          </div> -->
                                     </div>
                               </div>
                         </div>

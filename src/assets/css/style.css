@@ -3700,6 +3700,7 @@ table.table.ct_compare_table {
   font-weight: 600;
   color: #6b7280;
   font-size: 18px;
+  border-bottom: 1px solid transparent;
 }
 
 .ct_dash_board_tab.nav-pills .nav-link.active,
@@ -4121,7 +4122,7 @@ section.ct_my_creative_project_overlay_main.ct_project_show_section {
   margin-inline: 0;
   width: 100%;
   justify-content: flex-start;
-  color: #000;
+  color: #000 !important;
   transition: 0.4s ease all;
   height: 40px;
 }

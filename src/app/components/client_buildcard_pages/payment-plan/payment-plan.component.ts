@@ -30,8 +30,13 @@ export class PaymentPlanComponent {
     let projectData = sessionStorage.getItem('projectData');
     this.projectsData = JSON.parse(projectData!);
     this.totalCost = this.projectsData.finalCost;
-
     this.projectsFeatures = this.projectsData.selectdFeature;
+    if (this.projectsData.paymentPlan) {
+      this.onPaymentChange(this.projectsData.paymentPlan)
+    }
+    if (this.projectsData.installmentType) {
+      this.onInstallmentChange(this.projectsData.installmentType)
+    }
   };
 
   onPaymentChange(id: any) {
@@ -123,6 +128,7 @@ export class PaymentPlanComponent {
     this.apiService.postAPI(`api/user/addClientPaymentPlan?inquiryId=${this.projectsData.clientEnquryId}`, formData).subscribe({
       next: (res: any) => {
         if (res.success) {
+          sessionStorage.setItem('projectData', JSON.stringify({ ...this.projectsData, ...{ paymentPlan: this.paymentPlan }, ...{ installmentType: this.installmentType } }))
           this.router.navigate(['/payment-detail'])
         }
       }, error(err) {

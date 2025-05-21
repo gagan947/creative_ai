@@ -44,6 +44,8 @@ export class DashboardComponent {
               selectdFeature: data.projectFeatures,
               speed: data.developmentSpeed,
               totalCost: data.totalCost,
+              paymentPlan: data.paymentPlan == 'Installment' ? '2' : '1',
+              installmentType: data.installmentType,
               featuresCost: data.featuresPrice,
               customisationCost: data.totalCost - data.featuresPrice,
               estimatedDate: this.estimatedDate?.setDate(today.getDate() + data.durations * 7)
