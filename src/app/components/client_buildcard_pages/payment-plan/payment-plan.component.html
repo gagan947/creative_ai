@@ -337,7 +337,7 @@
                                           <div class="mt-3">
                                                 <h5 class="ct_fs_16 ct_fw_700 text-center">{{projectsData.projectName}}
                                                 </h5>
-                                                <p class="ct_text_op_7 mb-0 text-center">FEATURES: {{totalSubFeatures}}
+                                                <p class="ct_text_op_7 mb-0 text-center">FEATURES: {{ projectsData.no_of_features }}
                                                 </p>
                                           </div>
 
@@ -397,7 +397,7 @@
                                           </div>
 
                                           <div class="mt-4 pt-4 ct_border_top_1">
-                                                <h5 class="ct_fw_700">Due Now
+                                                <h5 class="ct_fw_700">Due Now <span class="ct_text_op_7" *ngIf="paymentPlan == '2'">(20% of total amount)</span>
                                                 </h5>
                                                 @if(paymentPlan =="2"){
                                                 <div

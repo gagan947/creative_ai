@@ -22,9 +22,7 @@ export class LoginComponent {
       password: [
         '',
         [
-          Validators.required,
-          Validators.minLength(8),
-          Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/)
+          Validators.required
         ]
       ]
     });
@@ -61,6 +59,8 @@ export class LoginComponent {
             this.message.error(err.error.message)
           }
         });
+    }else{
+      this.loginForm.markAllAsTouched()
     }
   }
 
