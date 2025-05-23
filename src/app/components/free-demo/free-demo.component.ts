@@ -23,13 +23,15 @@ export class FreeDemoComponent {
   myForm!: FormGroup;
   demoId: any;
   constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router, private message: NzMessageService) { }
-
+  selectedFiles: File[] = [];
   ngOnInit(): void {
     this.myForm = this.fb.group({
       fullName: ['', [Validators.required, Validators.minLength(3)]],
       phoneNumber: ['', [Validators.required]],
       businessEmail: ['', [Validators.required, Validators.email]],
       companyName: ['', [Validators.required]],
+      projectName: ['', [Validators.required]],
+      projectDescription: ['', ],
       companySize: ['', [Validators.required]],
       jobTitle: ['', [Validators.required]]
     });
@@ -48,18 +50,30 @@ export class FreeDemoComponent {
 
 
     const formData = { ...this.myForm.value };
-
-    // Concatenate dial code with number
-    if (formData.phoneNumber && formData.phoneNumber.dialCode && formData.phoneNumber.number) {
-      formData.phoneNumber = `${formData.phoneNumber.dialCode}${formData.phoneNumber.number}`;
+    const updloadData = new FormData();
+    if (this.selectedFiles.length > 0) {
+      this.selectedFiles.forEach(file => {
+        updloadData.append('multiple_files', file);
+      });
     }
 
-    this.apiService.postAPI('api/user/getFreeDemo', formData).subscribe({
+    updloadData.append('fullName', formData.fullName);
+
+    updloadData.append('businessEmail', formData.businessEmail);
+    updloadData.append('companyName', formData.companyName);
+    updloadData.append('project_name', formData.projectName);
+    updloadData.append('project_description', formData.projectDescription);
+    updloadData.append('companySize', formData.companySize);
+    updloadData.append('jobTitle', formData.jobTitle);
+    updloadData.append('phoneNumber', formData.phoneNumber.internationalNumber);
+
+    this.apiService.postAPI('api/user/getFreeDemo', updloadData).subscribe({
       next: (response: any) => {
         if (response.success)
           this.demoId = response.data.insertId
-        this.myForm.reset(); // Reset form after submission
-        const modal = new bootstrap.Modal(document.getElementById('tellUs') as HTMLElement);
+        this.myForm.reset();
+        this.selectedFiles = []; // Reset form after submission
+        const modal = new bootstrap.Modal(document.getElementById('ct_schedule_call_modal') as HTMLElement);
         modal.show();
       },
       error: (error) => {
@@ -70,6 +84,13 @@ export class FreeDemoComponent {
     });
   };
 
+  onFileChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files) {
+      this.selectedFiles = Array.from(input.files);
+    }
+  }
 
   onTellUsSubmit(form: any) {
     this.apiService.postAPI(`api/user/tellUsAbout?demoId=${this.demoId}`, form.value).subscribe({
@@ -88,14 +109,14 @@ export class FreeDemoComponent {
   };
 
   openCalendly() {
-    Calendly.initPopupWidget({ url: 'https://calendly.com/mohdfaraz-ctinfotech/30min' });
+    Calendly.initPopupWidget({ url: 'https://calendly.com/amitholkar/30min' });
   };
 
   ngAfterViewInit() {
     const calendlyContainer = document.getElementById('calendly-inline-widget');
     if (calendlyContainer) {
       Calendly.initInlineWidget({
-        url: 'https://calendly.com/mohdfaraz-ctinfotech/30min',
+        url: 'https://calendly.com/amitholkar/30min',
         parentElement: calendlyContainer
       });
     }

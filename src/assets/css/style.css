@@ -1266,7 +1266,7 @@ footer {
   justify-content: center;
   border-radius: 100px;
   border: 1px solid #fff;
-  color: #fff;
+  color: #fff !important;
   transition: 0.4s ease all;
   z-index: 1;
   position: relative;
@@ -1298,7 +1298,7 @@ footer {
 }
 
 .ct_footer_links ul li a {
-  color: #fff;
+  color: #fff !important;
   transition: 0.4s ease all;
   position: relative;
   z-index: 1;

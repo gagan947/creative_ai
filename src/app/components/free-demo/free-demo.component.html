@@ -7,50 +7,49 @@
       <section class="ct_py_70">
             <div class="container">
                   <div class="row     ">
-                        <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right" data-aos-duration="1000">
+                        <div class="col-lg-7 mb-4 mb-lg-0" data-aos="fade-right" data-aos-duration="1000">
                               <div class="ct_hero_banner_left_cnt ">
-                                    <div class="ct_cti_logo_small">
-                                          <img src="assets/img/cti_black_logo.svg" alt="">
+                                    <div class="et_creative_banner_img_w">
+                                          <img src="assets/img/creativeai_banner.png" alt="">
                                     </div>
-                                    <p class="ct_fs_16  ct_fw_600 mb-4 ct_line_h_25">"Empowering businesses to build
-                                          apps and
-                                          websites with
-                                          precision, speed, and innovation.
-                                          Discover the future of digital solutions with our AI-driven approach."</p>
+                                    <p class="ct_fs_16  ct_fw_600 mb-4 ct_line_h_25">"The Fall of Builder.ai: What Went Wrong — and What’s Next for You"</p>
                                     <ul>
                                           <li class="align-items-start mb-4">
                                                 <i class="bi bi-check2-circle" style="margin-top: -4px;"></i>
                                                 <div>
-                                                      <p class="ct_fw_700 ct_fs_16 mb-1"> AI-Driven Development</p>
-                                                      <p class="ct_fs_16"> Our advanced AI ensures faster,
-                                                            cost-effective app and
-                                                            website development tailored to your needs.</p>
+                                                      <p class="ct_fw_700 ct_fs_16 mb-1"> Builder.ai’s sudden collapse has left many in the tech world stunned</p>
+                                                      <p class="ct_fs_16">Not just because of its failure, but because of why it failed. Behind the polished pitch decks and billion-dollar valuations was a troubling lack of strategic direction, financial discipline, and transparent leadership.</p>
                                                 </div>
                                           </li>
                                           <li class="align-items-start mb-4"><i class="bi bi-check2-circle"
                                                       style="margin-top: -4px;"></i>
                                                 <div>
-                                                      <p class="ct_fw_700 ct_fs_16 mb-1">Scalable Solutions</p>
-                                                      <p class="ct_fs_16">From startups to enterprises, we create apps
-                                                            that scale as
-                                                            your business grows.</p>
+                                                      <p class="ct_fw_700 ct_fs_16 mb-1">This wasn’t just a missed opportunity</p>
+                                                      <p class="ct_fs_16">It was a breakdown that’s now impacting real businesses, founders, and clients who put their trust (and budgets) into the platform.</p>
                                                 </div>
                                           </li>
                                           <li class="align-items-start"><i class="bi bi-check2-circle"
                                                       style="margin-top: -4px;"></i>
                                                 <div>
-                                                      <p class="ct_fw_700 ct_fs_16 mb-1">End-to-End Support</p>
-                                                      <p class="ct_fs_16">Get continuous support from concept to launch
-                                                            and beyond,
-                                                            ensuring a seamless experience.</p>
+                                                      <p class="ct_fw_700 ct_fs_16 mb-1">At Creative.ai</p>
+                                                      <p class="ct_fs_16">We’re stepping up to help those left behind. Whether your project is half-built, your investment feels wasted, or you're simply unsure of your next move, we're here to provide clarity, recovery plans, and honest guidance — no sales pitch, just solutions.</p>
+                                                </div>
+                                          </li>
+                                          <li class="align-items-start"><i class="bi bi-check2-circle"
+                                                      style="margin-top: -4px;"></i>
+                                                <div>
+                                                      <p class="ct_fw_700 ct_fs_16 mb-1">Reach out via DM</p>
+                                                      <p class="ct_fs_16">Let’s talk, review where things stand, and figure out how to move forward — with confidence and smarter tech choices.</p>
                                                 </div>
                                           </li>
                                     </ul>
+                                    <h5>This isn’t the end — it’s a chance to rebuild better.</h5>
+                                    <p>#AIFailure #StartupLessons #CreativeAI #LeadershipMatters #PostBuilderAI</p>
 
 
                               </div>
                         </div>
-                        <div class="col-lg-5 offset-lg-1 mb-4 mb-lg-0" data-aos="fade-left" data-aos-duration="1000">
+                        <div class="col-lg-5 mb-4 mb-lg-0" data-aos="fade-left" data-aos-duration="1000">
                               <div class="ct_free_demo_ui_form">
                                     <h5 class="ct_fs_16 ct_fw_700 text-dark mb-2">Schedule a call from our expert</h5>
                                     <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
@@ -168,11 +167,43 @@
                                                       </div>
                                                 </div>
                                           </div>
+                                          <div class="row mt-2">
+                                                <h5 class="ct_fs_16 ct_fw_700 ct_dark_blue_text mb-3">Project Details</h5>
+                                                <div class="col-md-12">
+                                                      <div class="form-group mb-3">
+                                                            <label for="companySize" class="ct_fw_600 mb-1">Project name</label>
+                                                            <input type="text" class="form-control ct_input_grey"
+                                                                  formControlName="projectName"
+                                                                  placeholder="Enter Project name">
+                                                            <small *ngIf="f['projectName'].touched && f['projectName'].invalid"
+                                                                  class="text-danger">
+                                                                  Project name is required.
+                                                            </small>
+                                                      </div>
+                                                </div>
+                                               
+                                                <div class="col-md-12">
+                                                      <div class="form-group mb-3">
+                                                            <label for="companySize" class="ct_fw_600 mb-1">Project description</label>
+                                                          
+                                                                  <textarea name="" id="" cols="30" rows="7" id="" maxlength="1000" class="form-control ct_input_grey h-auto" formControlName="projectDescription" placeholder="Enter Project description"></textarea>
+                                                          
+                                                      </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                      <div class="form-group mb-3">
+                                                            <label for="companySize" class="ct_fw_600 mb-1">File upload (Max 5 files)</label>
+                                                          
+                                                                  <input type="file" name="" id="" multiple class="form-control ct_input_grey" (change)="onFileChange($event)">
+                                                          
+                                                      </div>
+                                                </div>
+                                          </div>
 
                                           <!-- Submit Button -->
                                           <div>
                                                 <button class="ct_blue_btn_fill w-100 mt-4" type="submit">
-                                                      Get a free demo
+                                                     Submit 
                                                 </button>
                                           </div>
                                     </form>
