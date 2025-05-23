@@ -23,6 +23,21 @@ export const LandingRoutes: Routes = [
         {
             path: 'financial-services', loadComponent: () => import('./financial-services/financial-services.component').then(c => c.FinancialServicesComponent)
       },
+        {
+            path: 'health-care', loadComponent: () => import('./financial-services/financial-services.component').then(c => c.FinancialServicesComponent)
+      },
+        {
+            path: 'manufacturing', loadComponent: () => import('./financial-services/financial-services.component').then(c => c.FinancialServicesComponent)
+      },
+        {
+            path: 'education', loadComponent: () => import('./financial-services/financial-services.component').then(c => c.FinancialServicesComponent)
+      },
+        {
+            path: 'telecom', loadComponent: () => import('./financial-services/financial-services.component').then(c => c.FinancialServicesComponent)
+      },
+        {
+            path: 'energy', loadComponent: () => import('./financial-services/financial-services.component').then(c => c.FinancialServicesComponent)
+      },
       {
             path: 'retail-ecommerce', loadComponent: () => import('./retail-ecommerce/retail-ecommerce.component').then(c => c.RetailEcommerceComponent)
       },
