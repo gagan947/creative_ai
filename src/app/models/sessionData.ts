@@ -17,7 +17,8 @@ export interface ProjectData {
   featuresCost: number;
   customisationCost: number;
   no_of_features: number;
-
+  paymentPlan: string;
+  installmentType: string;
 }
 
 export interface SelectedFeature {

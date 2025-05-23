@@ -48,5 +48,8 @@ export const routes: Routes = [
       },
       {
             path: '', loadChildren: () => import('./components/landing-pages/landing.routes').then(r => r.LandingRoutes)
+      },
+      {
+            path: 'user', loadChildren: () => import('./components/user-section/user.routes').then(r => r.UserRoutes)
       }
 ];

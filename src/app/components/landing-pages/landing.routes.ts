@@ -16,8 +16,18 @@ export const LandingRoutes: Routes = [
       {
             path: 'enterprenuers', loadComponent: () => import('./enterprenuers/enterprenuers.component').then(c => c.EnterprenuersComponent)
       },
+
+      {
+            path: 'enterprise', loadComponent: () => import('./enterprise/enterprise.component').then(c => c.EnterpriseComponent)
+      },
+        {
+            path: 'financial-services', loadComponent: () => import('./financial-services/financial-services.component').then(c => c.FinancialServicesComponent)
+      },
       {
             path: 'retail-ecommerce', loadComponent: () => import('./retail-ecommerce/retail-ecommerce.component').then(c => c.RetailEcommerceComponent)
+      },
+       {
+            path: 'smbs', loadComponent: () => import('./smbs/smbs.component').then(c => c.SmbsComponent)
       },
       {
             path: 'why-we-use-ai', loadComponent: () => import('./why-we-use-ai/why-we-use-ai.component').then(c => c.WhyWeUseAiComponent)

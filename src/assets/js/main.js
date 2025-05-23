@@ -272,7 +272,7 @@ $(document).ready(function () {
 
   var counted = 0;
   $(window).scroll(function () {
-    var oTop = $("#counter").offset().top - window.innerHeight;
+    var oTop = $("#counter").offset()?.top - window.innerHeight;
     if (counted == 0 && $(window).scrollTop() > oTop) {
       $(".count").each(function () {
         var $this = $(this),

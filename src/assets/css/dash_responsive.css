@@ -13,12 +13,6 @@
     width: calc(100% - 180px);
     margin-left: 180px;
   }
-  .et_todos_card_main {
-    flex: 0 0 auto;
-    width: 30%;
-    white-space: nowrap;
-    min-width: 30%;
-  }
 }
 @media screen and (max-width: 991px) {
   .et_dash_sidebar {

@@ -43,7 +43,8 @@ export class LoginComponent {
         .subscribe({
           next: (res: any) => {
             if (res.success == true) {
-              this.apiService.setToken(res.data);
+              this.apiService.setToken(res.data.token);
+              localStorage.setItem('userDetailCTI', JSON.stringify(res.data.users));
               this.message.success(res.message)
               this.router.navigate(['/main'])
               // this.projectInfo = res.projectInfo
