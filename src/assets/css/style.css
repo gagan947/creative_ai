@@ -374,6 +374,7 @@ input[type="number"] {
 
 .ct_blue_btn_fill:hover {
   border: 1px solid var(--orange);
+  color: #fff !important;
 }
 
 .ct_blue_outline_btn:hover {
@@ -2796,6 +2797,8 @@ table.table.ct_compare_table {
 
 .ct_say_hello_blue_bg img {
   width: 100%;
+  height: 203px;
+  object-fit: contain;
 }
 
 .ct_say_hello_card {
@@ -2816,7 +2819,7 @@ table.table.ct_compare_table {
 }
 
 .ct_say_hello_blue_bg {
-  height: 208px;
+  height: 147px;
   background-color: #afe2f5;
   border-radius: 30px;
   position: relative;

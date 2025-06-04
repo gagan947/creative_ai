@@ -8,8 +8,8 @@ import { Subject, Observable, BehaviorSubject } from 'rxjs';
 })
 export class ApiService {
   // apiUrl = 'http://192.168.29.100:4004/';
-  // apiUrl = 'http://89.116.21.92:4000/';
-  apiUrl = 'http://localhost:4004/';
+  // apiUrl = 'https://creativethoughts.ai:4000/';
+  apiUrl = 'http://localhost:4000/';
   // imageUrl = 'https://98.80.36.64:5000/images/';
   imageUrl = 'http://192.168.29.241:4004/images/';
 

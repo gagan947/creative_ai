@@ -194,7 +194,7 @@
                                                       <div class="form-group mb-3">
                                                             <label for="companySize" class="ct_fw_600 mb-1">File upload (Max 5 files)</label>
                                                           
-                                                                  <input type="file" name="" id="" multiple class="form-control ct_input_grey" (change)="onFileChange($event)">
+                                                                  <input type="file" name="" id="" accept=".jpg,.jpeg,.png,.pdf,.csv,.doc,.xls" multiple class="form-control ct_input_grey"  #fileInput (change)="onFileChange($event)" >
                                                           
                                                       </div>
                                                 </div>
@@ -202,10 +202,12 @@
 
                                           <!-- Submit Button -->
                                           <div>
-                                                <button class="ct_blue_btn_fill w-100 mt-4" type="submit">
-                                                     Submit 
+                                                <button class="ct_blue_btn_fill w-100 mt-4" type="submit" [disabled]="isSubmitting">
+                                                  <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                                  <span *ngIf="!isSubmitting">Submit</span>
+                                                  <span *ngIf="isSubmitting">Submitting...</span>
                                                 </button>
-                                          </div>
+                                              </div>
                                     </form>
 
                               </div>

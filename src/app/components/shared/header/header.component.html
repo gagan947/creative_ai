@@ -379,8 +379,11 @@
                               <a routerLink="/pricing">Pricing</a>
                         </li>
                         <li>
-                              <a routerLink="/login">Sign In</a>
+                              <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModal2">Sign In</a>
                         </li>
+                        <!-- <li>
+                              <a routerLink="/login">Sign In</a>
+                        </li> -->
                         <li>
                               <a routerLink="/free-demo" class="ct_blue_outline_btn">Contact Us</a>
                         </li>
@@ -397,3 +400,57 @@
       </header>
 </div>
 <!-- Header Section E -->
+
+<!-- <div class="modal fade modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border: 3px solid #1b83c1;background-color: #f5f5f5;">
+                  <div class="modal-header modal-header pb-0 border-0">
+                       
+                        <button type="button" class="btn-close ct_close_modal" data-bs-dismiss="modal"
+                              aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body px-5 mt-2">
+                       <h2 class="mb-3 ct_fs_28 ct_fw_700 text-center" style="line-height: 30px;">
+                        Thank you for your interest.
+                       </h2>
+                       <h4 class="mb-2 ct_fs_20  text-center" style="line-height: 30px;">
+                        Due to an overwhelming number of inquiries, we have temporarily paused new client onboarding. To schedule a call or express your interest,
+                       </h4>
+                      
+                       <h4 class="mb-0 ct_fs_20  text-center"  style="line-height: 30px;">  Please complete the Contact Us form — our creative team will get back to you at the earliest opportunity.</h4>
+
+                  </div>
+                  <div class="modal-footer border-0 justify-content-center pb-5">
+                        <button type="button" class="ct_blue_btn_fill" >Connect Now</button>
+                  </div>
+            </div>
+      </div>
+</div> -->
+
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border: 3px solid #1b83c1;background-color: #f5f5f5;">
+                  <div class="modal-header modal-header pb-0 border-0">
+                        <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+                        <button type="button" class="btn-close ct_close_modal" data-bs-dismiss="modal"
+                              aria-label="Close" #closeModal2></button>
+                  </div>
+                  <div class="modal-body px-5 mt-2">
+                       <h2 class="mb-3 ct_fs_28 ct_fw_700 text-center" style="line-height: 30px;">
+                        Thank you for your interest.
+                       </h2>
+                       <h4 class="mb-2 ct_fs_20  text-center" style="line-height: 30px;">
+                        Due to an overwhelming number of inquiries, we have temporarily paused new client onboarding. To schedule a call or express your interest,
+                       </h4>
+                      
+                       <h4 class="mb-0 ct_fs_20  text-center"  style="line-height: 30px;">  Please complete the Contact Us form — our creative team will get back to you at the earliest opportunity.</h4>
+
+                  </div>
+                  <div class="modal-footer border-0 justify-content-center pb-5">
+                        <button type="button" class="ct_blue_btn_fill" (click)="closeModal21()" >Connect Now</button>
+                  </div>
+            </div>
+      </div>
+    </div>
+
