@@ -212,7 +212,7 @@ $(document).ready(function () {
 
   // Happy Customer Slider S
   $(".ct_happy_customer_slider").owlCarousel({
-    loop: true,
+    loop: false,
     margin: 30,
     nav: false,
     responsive: {
