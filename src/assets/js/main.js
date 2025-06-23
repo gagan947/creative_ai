@@ -52,7 +52,7 @@ $(document).ready(function () {
 
   // ct_recent_work_slider Brand Slider S
   $(".ct_testimonial_slider").owlCarousel({
-    loop: true,
+    loop: false,
     margin: 0,
     nav: true,
     responsive: {
@@ -212,7 +212,7 @@ $(document).ready(function () {
 
   // Happy Customer Slider S
   $(".ct_happy_customer_slider").owlCarousel({
-    loop: true,
+    loop: false,
     margin: 30,
     nav: false,
     responsive: {
