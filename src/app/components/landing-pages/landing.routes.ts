@@ -71,5 +71,11 @@ export const LandingRoutes: Routes = [
       {
             path: 'pricing', loadComponent: () => import('./pricing/pricing.component').then(c => c.PricingComponent)
       },
+      {
+            path:'terms-conditions',loadComponent: () => import('./terms-conditions/terms-conditions.component').then(c => c.TermsConditionsComponent)
+      },
+      {
+            path:'privacy-policy',loadComponent: () => import('./privacy-policy/privacy-policy.component').then(c => c.PrivacyPolicyComponent)
+      }
      
 ]

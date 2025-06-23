@@ -30,10 +30,7 @@ export class AppComponent {
 
   @ViewChild('myModal') modalRef!: ElementRef;
 
-  ngAfterViewInit() {
-    const modal = new bootstrap.Modal(this.modalRef.nativeElement);
-    modal.show();
-  }
+ 
 
   closeModal2() {
     this.closeModal.nativeElement.click();
