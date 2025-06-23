@@ -52,11 +52,10 @@ export class ApiService {
   };
 
   logout() {
-    localStorage.removeItem('tokenAuction');
+    localStorage.removeItem('tokenCTi');
     localStorage.removeItem('userDetailAuc');
     this.route.navigateByUrl('/');
   };
-
 
   private dataKey = 'auctionData';
 
