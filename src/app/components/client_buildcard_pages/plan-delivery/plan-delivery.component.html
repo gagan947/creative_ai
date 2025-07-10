@@ -232,7 +232,7 @@
                                                       <div class="" [ngClass]="{'rangeActive': rangeValue =='0'}">
                                                             <h6 class="mb-0 ct_fs_16 ct_fw_600">Standard</h6>
                                                             <p class="mb-0 ct_fs_14 ">
-                                                                  {{this.projectsData.speed === 'Fast' ?  projectsData.estimated_time + 2 : projectsData.estimated_time}}
+                                                                  {{this.projectsData.speed === 'Fast' ?  projectsData.estimated_time + 2 : this.projectsData.speed === 'Speedy' ?  projectsData.estimated_time + 4 : projectsData.estimated_time}}
                                                                   weeks
                                                             </p>
                                                             <p class="mb-0 ct_fs_14 ">{{projectCost | currency
@@ -242,7 +242,7 @@
                                                             [ngClass]="{'rangeActive': rangeValue =='2'}">
                                                             <h6 class="mb-0 ct_fs_16 ct_fw_600">Fast</h6>
                                                             <p class="mb-0 ct_fs_14 ">
-                                                                  {{this.projectsData.speed === 'Fast' ?  projectsData.estimated_time : projectsData.estimated_time - 2}}
+                                                                  {{this.projectsData.speed === 'Fast' ?  projectsData.estimated_time  : this.projectsData.speed === 'Speedy' ?  projectsData.estimated_time + 2 : projectsData.estimated_time - 2}}
                                                                   weeks
                                                             </p>
                                                             <p class="mb-0 ct_fs_14 ">{{projectSecondCost | currency
@@ -252,7 +252,7 @@
                                                             [ngClass]="{'rangeActive': rangeValue =='4'}">
                                                             <h6 class="mb-0 ct_fs_16 ct_fw_600">Speedy</h6>
                                                             <p class="mb-0 ct_fs_14 ">
-                                                                  {{this.projectsData.speed === 'Fast' ?  projectsData.estimated_time - 2 : projectsData.estimated_time - 4}}
+                                                                  {{this.projectsData.speed === 'Fast' ?  projectsData.estimated_time - 2 : this.projectsData.speed === 'Speedy' ?  projectsData.estimated_time : projectsData.estimated_time - 4}}
                                                                   weeks
                                                             </p>
                                                             <p class="mb-0 ct_fs_14 ">{{projectThirdCost | currency
