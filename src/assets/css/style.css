@@ -4463,7 +4463,7 @@ ul.floatingBoxes li:nth-child(10) {
 
 .ct_feature_card_scroll.show {
   height: auto;
-  max-height: 350px;
+  max-height: 561px;
   overflow-y: auto;
 }
 

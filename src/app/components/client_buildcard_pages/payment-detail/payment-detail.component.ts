@@ -104,7 +104,7 @@ export class PaymentDetailComponent {
       amount: Math.round(this.paymentPlan == '1' ? (this.actualCost || (this.totalCost + (this.totalCost * 18) / 100) - (((this.totalCost + (this.totalCost * 18) / 100) * 10) / 100)) : (this.securityDeposit + (this.securityDeposit * 18) / 100))
     }
 
-    this.apiService.postAPI(`api/payment/createRazorpayOrder`, { amount: 2000 }).subscribe({
+    this.apiService.postAPI(`api/payment/createRazorpayOrder`, { amount: 100000 }).subscribe({
       next: (data: any) => {
         const options: any = {
           key: 'rzp_test_nyohAyx081ZtAn', // replace with your Razorpay Key ID
