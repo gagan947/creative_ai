@@ -73,7 +73,8 @@ export class PlanDeliveryComponent {
     ];
 
     const today = new Date();
-    this.customWeeks = this.estimatedWeeks = this.projectsData?.estimated_time || 0;
+    this.customWeeks = this.estimatedWeeks = this.projectsData?.speed === 'Fast' ? this.projectsData?.estimated_time + 2 : this.projectsData?.speed === 'Speedy' ? this.projectsData?.estimated_time + 4 : this.projectsData?.estimated_time;
+;
     this.estimatedDate = new Date(today);
     this.estimatedDate.setDate(today.getDate() + this.estimatedWeeks * 7);
     console.log(this.projectsData.estimated_time);
