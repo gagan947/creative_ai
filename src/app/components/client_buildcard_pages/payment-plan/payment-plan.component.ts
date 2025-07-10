@@ -6,7 +6,8 @@ import { ApiService } from '../../../services/api.service';
 import { CommonModule } from '@angular/common';
 import { ProjectData, SelectedFeature } from '../../../models/sessionData';
 import { NzMessageService } from 'ng-zorro-antd/message';
-
+declare var bootstrap: any;
+declare var Calendly: any;
 @Component({
   selector: 'app-payment-plan',
   standalone: true,
@@ -135,5 +136,61 @@ export class PaymentPlanComponent {
         // this.message.error(err.error.message)
       },
     })
+  };
+
+  openCalendly() {
+    console.log("here1");
+    // Calendly.initPopupWidget({ url: 'https://calendly.com/amitholkar/30min' });
+    Calendly.initPopupWidget({ url: 'https://calendly.com/mohdfaraz-ctinfotech/30min' });
+  };
+
+  // ngAfterViewInit() {
+  //   const calendlyContainer = document.getElementById('calendly-inline-widget');
+  //   if (calendlyContainer) {
+  //     Calendly.initInlineWidget({
+  //       url: 'https://calendly.com/amitholkar/30min',
+  //       parentElement: calendlyContainer
+  //     });
+  //   }
+  // }
+
+  ngAfterViewInit() {
+    console.log("here2");
+    Calendly.initInlineWidget({
+      // url: 'https://calendly.com/amitholkar/30min',
+      url: 'https://calendly.com/mohdfaraz-ctinfotech/30min',
+      parentElement: document.getElementById('calendly-inline-widget'),
+      prefill: {},
+      utm: {},
+      onEventScheduled: (e: any) => {
+        console.log('Event scheduled:', e);
+        // this.sendConfirmationEmail();
+      }
+    });
+    window.addEventListener('message', this.handleCalendlyEvent.bind(this));
+  };
+
+  handleCalendlyEvent(e: MessageEvent) {
+    if (e.origin === 'https://calendly.com' && e.data.event === 'calendly.event_scheduled') {
+      console.log('Calendly event scheduled:', e.data);
+      this.sendConfirmationEmail();
+    }
+  };
+
+  sendConfirmationEmail(){
+    this.apiService.getApi(`api/user/sendClientEnquiryEmail?inquiryId=${this.projectsData.clientEnquryId}`).subscribe({
+      next: (res: any) => {
+        if (res.success) {
+          this.router.navigate(['/payment-detail'])
+        }
+      }, error(err) {
+        // this.message.error(err.error.message)
+      },
+    })
+  }
+
+  ngOnDestroy() {
+    // Clean up the listener to avoid memory leaks
+    window.removeEventListener('message', this.handleCalendlyEvent.bind(this));
   }
 }

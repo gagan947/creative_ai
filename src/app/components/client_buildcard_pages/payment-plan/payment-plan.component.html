@@ -434,8 +434,10 @@
 
                                           <div class="mt-5">
                                                 <a (click)="Navigate()"
-                                                      class="ct_schedule_call_btn w-100 d-flex justify-content-center align-items-center">Continue
+                                                      class="ct_schedule_call_btn w-100 d-flex justify-content-center align-items-center mb-2 ct_border_radius_5">Continue
                                                       to pay</a>
+                                                <a 
+                                                      class="ct_blue_outline_btn w-100 d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#calendlyModal">Schedule a call</a>
                                           </div>
                                     </div>
                               </div>
@@ -564,3 +566,18 @@
       </div>
 </div>
 <!-- Refrsh page modal E -->
+
+
+<div class="modal fade" id="calendlyModal" tabindex="-1" aria-labelledby="calendlyModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                  <div class="modal-header">
+                        <h5 class="modal-title" id="calendlyModalLabel">Schedule a Call</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                        <div id="calendly-inline-widget" style="min-width:320px;height:630px;"></div>
+                  </div>
+            </div>
+      </div>
+</div>

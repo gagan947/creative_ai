@@ -266,9 +266,9 @@
                                                                                     :
                                                                                     'INR'}}</span>
                                                                         </td>
-                                                                        <td><span class="ct_fw_600">0</span>
+                                                                        <td><span class="ct_fw_600">{{item.totalCustomisationPrice | currency : 'INR'}}</span>
                                                                         </td>
-                                                                        <td><span class="ct_fw_600">{{item.totalSubFeaturedPrice
+                                                                        <td><span class="ct_fw_600">{{(item.totalSubFeaturedPrice + item.totalCustomisationPrice)
                                                                                     |
                                                                                     currency
                                                                                     :
@@ -300,13 +300,13 @@
                                                                                     :
                                                                                     'INR'}}</span>
                                                                         </td>
-                                                                        <td><span class="">0</span>
+                                                                        <td><span class="">{{item2.customisationPrice | currency : 'INR'}}</span>
                                                                         </td>
-                                                                        <td><span class="">{{item2.subFeaturedPrice
-                                                                                    |
-                                                                                    currency
-                                                                                    :
-                                                                                    'INR'}}</span>
+                                                                        <td><span class="">{{(item2.subFeaturedPrice + item2.customisationPrice)
+                                                                              |
+                                                                              currency
+                                                                              :
+                                                                              'INR'}}</span>
                                                                         </td>
 
                                                                         <td><span class="">5

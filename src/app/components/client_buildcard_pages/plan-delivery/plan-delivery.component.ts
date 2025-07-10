@@ -51,6 +51,7 @@ export class PlanDeliveryComponent {
   constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router, private message: NzMessageService) {
     let projectData = sessionStorage.getItem('projectData');
     this.projectsData = JSON.parse(projectData!);
+    console.log(this.projectsData);
     const projectsFeatures: any[] = this.projectsData.selectdFeature;
 
     this.totalCost(projectsFeatures);
@@ -75,6 +76,7 @@ export class PlanDeliveryComponent {
     this.customWeeks = this.estimatedWeeks = this.projectsData?.estimated_time || 0;
     this.estimatedDate = new Date(today);
     this.estimatedDate.setDate(today.getDate() + this.estimatedWeeks * 7);
+    console.log(this.projectsData.estimated_time);
   }
 
   private updateCosts(): void {
