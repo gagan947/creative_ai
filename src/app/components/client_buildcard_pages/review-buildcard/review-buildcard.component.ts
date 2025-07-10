@@ -4,11 +4,12 @@ import { Router, RouterLink } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
 import { Feature } from '../../../models/projects';
 import { CommonModule } from '@angular/common';
+import { SidebarComponent } from "../sidebar/sidebar.component";
 
 @Component({
   selector: 'app-review-buildcard',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, SidebarComponent],
   templateUrl: './review-buildcard.component.html',
   styleUrl: './review-buildcard.component.css'
 })

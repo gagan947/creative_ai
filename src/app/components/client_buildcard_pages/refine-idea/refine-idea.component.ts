@@ -6,11 +6,12 @@ import { Feature, FeatureResponse } from '../../../models/projects';
 import { CommonModule } from '@angular/common';
 import { Location } from '@angular/common';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { SidebarComponent } from "../sidebar/sidebar.component";
 
 @Component({
   selector: 'app-refine-idea',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, SidebarComponent],
   templateUrl: './refine-idea.component.html',
   styleUrl: './refine-idea.component.css'
 })

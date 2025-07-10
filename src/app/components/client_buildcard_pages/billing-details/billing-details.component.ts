@@ -7,11 +7,12 @@ import { CommonModule } from '@angular/common';
 import { Country, State, City } from 'country-state-city'
 import { CountryISO, NgxIntlTelInputModule, SearchCountryField } from 'ngx-intl-tel-input-gg';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { SidebarComponent } from "../sidebar/sidebar.component";
 
 @Component({
   selector: 'app-billing-details',
   standalone: true,
-  imports: [NgxIntlTelInputModule, CommonModule, FormsModule, ReactiveFormsModule, RouterLink],
+  imports: [NgxIntlTelInputModule, CommonModule, FormsModule, ReactiveFormsModule, RouterLink, SidebarComponent],
   templateUrl: './billing-details.component.html',
   styleUrl: './billing-details.component.css'
 })

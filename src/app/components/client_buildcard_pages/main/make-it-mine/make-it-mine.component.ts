@@ -7,10 +7,11 @@ import { Location } from '@angular/common';
 
 import { ColorPickerModule } from 'ngx-color-picker';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { SidebarComponent } from "../../sidebar/sidebar.component";
 @Component({
   selector: 'app-make-it-mine',
   standalone: true,
-  imports: [RouterLink, FormsModule, CommonModule, ColorPickerModule],
+  imports: [RouterLink, FormsModule, CommonModule, ColorPickerModule, SidebarComponent],
   templateUrl: './make-it-mine.component.html',
   styleUrl: './make-it-mine.component.css'
 })

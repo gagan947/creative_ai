@@ -4,11 +4,12 @@ import { Router, RouterLink } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
 import { CommonModule } from '@angular/common';
 import { Project, ProjectResponse } from '../../../models/projects';
+import { SidebarComponent } from "../sidebar/sidebar.component";
 declare var Calendly: any;
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, SidebarComponent],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })

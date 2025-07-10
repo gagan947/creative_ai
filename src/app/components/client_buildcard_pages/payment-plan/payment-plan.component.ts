@@ -6,12 +6,13 @@ import { ApiService } from '../../../services/api.service';
 import { CommonModule } from '@angular/common';
 import { ProjectData, SelectedFeature } from '../../../models/sessionData';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { SidebarComponent } from "../sidebar/sidebar.component";
 declare var bootstrap: any;
 declare var Calendly: any;
 @Component({
   selector: 'app-payment-plan',
   standalone: true,
-  imports: [RouterLink, CommonModule, FormsModule],
+  imports: [RouterLink, CommonModule, FormsModule, SidebarComponent],
   templateUrl: './payment-plan.component.html',
   styleUrl: './payment-plan.component.css'
 })

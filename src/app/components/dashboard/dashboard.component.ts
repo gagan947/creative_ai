@@ -3,11 +3,12 @@ import { Router, RouterLink } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { CommonModule } from '@angular/common';
+import { SidebarComponent } from "../client_buildcard_pages/sidebar/sidebar.component";
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, SidebarComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
@@ -56,5 +57,14 @@ export class DashboardComponent {
         }
       }
     )
+  }
+
+  checkStatus(url: string): string {
+    switch (url) {
+      case '/payment-plan':
+        return 'Ready';
+      default:
+        return 'Draft';
+    }
   }
 }

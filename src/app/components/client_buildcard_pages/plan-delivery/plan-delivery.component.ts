@@ -6,11 +6,12 @@ import { ApiService } from '../../../services/api.service';
 import { CommonModule } from '@angular/common';
 import { ProjectData } from '../../../models/sessionData';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { SidebarComponent } from "../sidebar/sidebar.component";
 
 @Component({
   selector: 'app-plan-delivery',
   standalone: true,
-  imports: [RouterLink, CommonModule, FormsModule],
+  imports: [RouterLink, CommonModule, FormsModule, SidebarComponent],
   templateUrl: './plan-delivery.component.html',
   styleUrl: './plan-delivery.component.css'
 })
