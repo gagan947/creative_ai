@@ -27,6 +27,7 @@ export class BillingDetailsComponent {
   SearchCountryField = SearchCountryField
   CountryISO = CountryISO
   billingDetails: any;
+  countryName: string = '';
 
   constructor(private fb: FormBuilder, private apiService: ApiService, private message: NzMessageService, private router: Router) {
     let projectData = sessionStorage.getItem('projectData');
@@ -40,7 +41,8 @@ export class BillingDetailsComponent {
   };
 
   ngOnInit(): void {
-    this.countries = Country.getAllCountries()
+    this.countries = Country.getAllCountries();
+    
     if (this.billingDetails.company_location) {
       this.getStateByCountry({ target: { value: this.billingDetails.company_location } });
       this.getCityByState({ target: { value: this.billingDetails.state } });
@@ -48,7 +50,7 @@ export class BillingDetailsComponent {
 
     this.billingForm = this.fb.group({
       customer_type: [this.billingDetails.customer_type || 'individual', Validators.required],
-      company_name: [this.billingDetails.company_name || '', Validators.required],
+      company_name: [this.billingDetails.company_name || ''],
       email: [this.billingDetails.email || '', [Validators.required, Validators.email]],
       phone: [this.billingDetails.phone || '', Validators.required],
       company_location: [this.billingDetails.company_location || '', Validators.required],
@@ -57,11 +59,13 @@ export class BillingDetailsComponent {
       city: [this.billingDetails.city || '', Validators.required],
       state: [this.billingDetails.state || '', Validators.required],
       postal_code: [this.billingDetails.postal_code || '', [Validators.required, Validators.pattern(/^\d{5,6}$/)]],
+      full_name: [this.billingDetails.full_name || '', Validators.required],
     });
   };
 
   getStateByCountry(event: any) {
-    this.countryCode = event.target.value
+    this.countryCode = event.target.value;
+    this.countryName = this.countries.find((country: any) => country.isoCode === this.countryCode)?.name;
     this.states = State.getStatesOfCountry(this.countryCode);
   };
 
@@ -77,6 +81,7 @@ export class BillingDetailsComponent {
 
     let data = this.billingForm.value;
     data.phone = data.phone.number
+    data.company_location = this.countryName;
 
     let formData = {
       formNumber: 6,

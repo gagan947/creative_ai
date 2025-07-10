@@ -74,6 +74,7 @@ export class PlanDeliveryComponent {
 
     const today = new Date();
     this.customWeeks = this.estimatedWeeks = this.projectsData?.estimated_time || 0;
+    console.log(this.estimatedWeeks);
     this.estimatedDate = new Date(today);
     this.estimatedDate.setDate(today.getDate() + this.estimatedWeeks * 7);
     console.log(this.projectsData.estimated_time);
@@ -150,6 +151,8 @@ export class PlanDeliveryComponent {
 
   Navigate() {
 
+    console.log(this.estimatedWeeks);
+    return;
     let formData = {
       formNumber: 3,
       platforms: this.selectedDevices,
@@ -159,7 +162,8 @@ export class PlanDeliveryComponent {
       customisationPrice: this.totalCustomizeCost,
       durations: this.estimatedWeeks,
       totalCost: this.totalPrice,
-      currentRoutes: this.router.url
+      currentRoutes: this.router.url,
+      estimated_time: this.estimatedWeeks
     }
 
     this.apiService.postAPI(`api/user/addClientInquries?inquiryId=${this.projectsData.clientEnquryId}`, formData)
