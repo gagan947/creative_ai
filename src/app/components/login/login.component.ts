@@ -57,10 +57,10 @@ export class LoginComponent {
           },
           error: err => {
             // this.loading = false
-            this.message.error(err.error.message)
+            this.message.error('Something went wrong')
           }
         });
-    }else{
+    } else {
       this.loginForm.markAllAsTouched()
     }
   }

@@ -7,11 +7,11 @@ import { Subject, Observable, BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  // apiUrl = 'http://192.168.29.100:4004/';
+  apiUrl = 'http://192.168.29.241:4000/';
   // apiUrl = 'https://creativethoughts.ai:4000/';
-  apiUrl = 'http://localhost:4000/';
+  // apiUrl = 'http://localhost:4000/';
   // imageUrl = 'https://98.80.36.64:5000/images/';
-  imageUrl = 'http://192.168.29.241:4004/images/';
+  imageUrl = 'http://192.168.29.241:4000/images/';
 
   private clearInputSubject = new Subject<void>();
 
