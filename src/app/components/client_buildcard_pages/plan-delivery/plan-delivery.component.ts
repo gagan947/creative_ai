@@ -151,8 +151,7 @@ export class PlanDeliveryComponent {
 
   Navigate() {
 
-    console.log(this.estimatedWeeks);
-    return;
+    
     let formData = {
       formNumber: 3,
       platforms: this.selectedDevices,
@@ -170,7 +169,7 @@ export class PlanDeliveryComponent {
       .subscribe({
         next: (res: any) => {
           if (res.success) {
-            this.projectsData.estimated_time = this.estimatedWeeks
+            this.projectsData.estimated_time = this.estimatedWeeks;
 
             sessionStorage.setItem('projectData', JSON.stringify({ ...this.projectsData, ...{ finalCost: this.totalPrice }, ...{ projectId: this.id }, ...{ 'featuresCost': this.totalFeatureCost }, ...{ 'customisationCost': this.totalCustomizeCost }, ...{ platform: this.selectedDevices }, ...{ speed: this.rangeValue == '0' ? 'Standard' : this.rangeValue == '2' ? 'Fast' : 'Speedy' }, ...{ estimatedDate: this.estimatedDate }, ...{ 'PhasesDeliverables': this.PhasesDeliverables } }))
             this.router.navigate([`/review-buildcard`])

@@ -181,7 +181,6 @@ export class PaymentPlanComponent {
     this.apiService.getApi(`api/user/sendClientEnquiryEmail?inquiryId=${this.projectsData.clientEnquryId}`).subscribe({
       next: (res: any) => {
         if (res.success) {
-          this.router.navigate(['/payment-detail'])
         }
       }, error(err) {
         // this.message.error(err.error.message)

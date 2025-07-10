@@ -3379,6 +3379,7 @@ table.table.ct_compare_table {
 
   outline: none;
   border: 1px solid var(--dark_blue);
+  border-radius: 5px;
 }
 
 .ct_schedule_call_btn:hover {
