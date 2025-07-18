@@ -26,12 +26,15 @@ export class MakeItMineComponent {
   @ViewChild('logoBox') logoBox!: ElementRef;
   nameInvalid = false
   mobile_base = true;
+  estimatedWeeks: number | null | undefined
+  submitted: boolean = false
   constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router, public location: Location, private message: NzMessageService,) {
     let projectData = sessionStorage.getItem('projectData');
     this.projectsData = JSON.parse(projectData!);
     if (this.projectsData) {
       this.imagePreview = this.projectsData.projectLogo
       this.projectName = this.projectsData.projectName
+      this.estimatedWeeks = this.projectsData.estimated_time
     }
   }
 
@@ -63,7 +66,8 @@ export class MakeItMineComponent {
 
   Navigate(id: any) {
 
-    if (!this.projectName) {
+    if (this.projectName == '' || !this.estimatedWeeks) {
+      this.submitted = true
       return
     }
 
@@ -83,6 +87,7 @@ export class MakeItMineComponent {
             projectName: this.projectName,
             projectLogo: this.imagePreview,
             logoStyle: this.logoBox.nativeElement.getAttribute('style'),
+            estimated_time: this.estimatedWeeks
           }
 
           sessionStorage.setItem('projectData', JSON.stringify(projectData))
