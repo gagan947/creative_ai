@@ -31,7 +31,7 @@ export class PlanDeliveryComponent {
   rangeValue: string = '0';
   projectSecondCost!: number;
   projectThirdCost!: number;
-  devices: any[] = ['Android', 'iOS', 'Web', 'Mobile Site'];
+  devices: any[] = ['Android', 'iOS', 'Web'];
   estimatedDate: Date | undefined;
   estimatedWeeks: any;
   customWeeks: any;
@@ -75,21 +75,20 @@ export class PlanDeliveryComponent {
 
     const today = new Date();
     this.customWeeks = this.estimatedWeeks = this.projectsData?.speed === 'Fast' ? this.projectsData?.estimated_time + 2 : this.projectsData?.speed === 'Speedy' ? this.projectsData?.estimated_time + 4 : this.projectsData?.estimated_time;
-;
+    ;
     this.estimatedDate = new Date(today);
     this.estimatedDate.setDate(today.getDate() + this.estimatedWeeks * 7);
-    console.log(this.projectsData.estimated_time);
   }
 
   private updateCosts(): void {
     this.projectSecondCost = this.projectCost + (this.projectCost * 12) / 100;
-    this.projectThirdCost = this.projectCost + (this.projectCost * 36) / 100;
+    this.projectThirdCost = this.projectCost + (this.projectCost * 24) / 100;
 
     this.featureSecondCost = this.featureCost + (this.featureCost * 12) / 100;
-    this.featureThirdCost = this.featureCost + (this.featureCost * 36) / 100;
+    this.featureThirdCost = this.featureCost + (this.featureCost * 24) / 100;
 
     this.customizationSecondCost = this.customizationCost + (this.customizationCost * 12) / 100;
-    this.customizationThirdCost = this.customizationCost + (this.customizationCost * 36) / 100;
+    this.customizationThirdCost = this.customizationCost + (this.customizationCost * 24) / 100;
 
     this.totalPrice = this.projectCost;
     this.totalFeatureCost = this.featureCost;
@@ -102,9 +101,29 @@ export class PlanDeliveryComponent {
 
     if (index === -1) {
       this.selectedDevices.push(device);
+      switch (device) {
+        case 'iOS':
+          this.projectsData.estimated_time = +this.projectsData.estimated_time + 3;
+          this.estimatedWeeks = +this.estimatedWeeks + 3;
+          break;
+        case 'Web':
+          this.projectsData.estimated_time = +this.projectsData.estimated_time + 2;
+          this.estimatedWeeks = +this.estimatedWeeks + 2;
+          break;
+      }
     } else {
       if (this.selectedDevices.length > 1) {
         this.selectedDevices.splice(index, 1);
+        switch (device) {
+          case 'iOS':
+            this.projectsData.estimated_time = +this.projectsData.estimated_time - 3;
+            this.estimatedWeeks = +this.estimatedWeeks - 3;
+            break;
+          case 'Web':
+            this.projectsData.estimated_time = +this.projectsData.estimated_time - 2;
+            this.estimatedWeeks = +this.estimatedWeeks - 2;
+            break;
+        }
       }
     }
 
@@ -152,7 +171,7 @@ export class PlanDeliveryComponent {
 
   Navigate() {
 
-    
+
     let formData = {
       formNumber: 3,
       platforms: this.selectedDevices,

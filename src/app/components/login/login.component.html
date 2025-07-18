@@ -20,69 +20,84 @@
                   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="ct_mt_18">
                         <!-- Email Field -->
                         <div class="form-group mb-3">
-                          <label class="ct_fw_400 mb-2">Company Email <span class="ct_red_text">*</span></label>
-                          <div class="position-relative" >
-                            <img src="assets/img/message_icon.svg" alt="" class="ct_left_input_icon">
-                            <input 
-                              type="email" 
-                              formControlName="email" 
-                              class="form-control ct_input px-5" 
-                              placeholder="Enter email"
-                            />
-                          </div>
-                          <small class="text-danger" *ngIf="formControls['email'].invalid && formControls['email'].touched">
-                            Enter a valid email address.
-                          </small>
+                              <label class="ct_fw_400 mb-2">Company Email <span class="ct_red_text">*</span></label>
+                              <div class="position-relative">
+                                    <img src="assets/img/message_icon.svg" alt="" class="ct_left_input_icon">
+                                    <input type="email" formControlName="email" class="form-control ct_input px-5"
+                                          placeholder="Enter email" />
+                              </div>
+                              <small class="text-danger"
+                                    *ngIf="formControls['email'].invalid && formControls['email'].touched">
+                                    Enter a valid email address.
+                              </small>
                         </div>
-                      
+
                         <!-- Password Field -->
                         <div class="form-group mb-3">
-                          <label class="ct_fw_400 mb-2">Password <span class="ct_red_text">*</span></label>
-                          <div class="position-relative">
-                            <img src="assets/img/lock_icon.svg" alt="" class="ct_left_input_icon">
-                            <input 
-                              [type]="showPassword ? 'text' : 'password'" 
-                              formControlName="password" 
-                              class="form-control ct_input px-5" 
-                              placeholder="Enter password"
-                            />
-                            <button type="button" class="position-absolute end-0 top-50 translate-middle-y border-0 bg-transparent me-3" (click)="togglePasswordVisibility()">
-                              <i class="fa" [ngClass]="showPassword ? 'fa-eye' : 'fa-eye-slash'"></i>
-                            </button>
-                          </div>
-                          <small class="text-danger" *ngIf="formControls['password'].invalid && formControls['password'].touched">
-                            Password is required
-                          </small>
+                              <label class="ct_fw_400 mb-2">Password <span class="ct_red_text">*</span></label>
+                              <div class="position-relative">
+                                    <img src="assets/img/lock_icon.svg" alt="" class="ct_left_input_icon">
+                                    <input [type]="showPassword ? 'text' : 'password'" formControlName="password"
+                                          class="form-control ct_input px-5" placeholder="Enter password" />
+                                    <button type="button"
+                                          class="position-absolute end-0 top-50 translate-middle-y border-0 bg-transparent me-3"
+                                          (click)="togglePasswordVisibility()">
+                                          <i class="fa" [ngClass]="showPassword ? 'fa-eye' : 'fa-eye-slash'"></i>
+                                    </button>
+                              </div>
+                              <small class="text-danger"
+                                    *ngIf="formControls['password'].invalid && formControls['password'].touched">
+                                    Password is required
+                              </small>
                         </div>
-                      
+
                         <!-- Forgot Password -->
                         <a routerLink="/forgot-password" class="ct_forgot_link">Forgot your password?</a>
-                      
+
                         <!-- Submit Button -->
                         <div class="mt-5">
-                          <button type="submit" class="ct_blue_btn_fill py-3 w-100">
-                            Sign in
-                          </button>
+                              <button type="submit" class="ct_blue_btn_fill py-3 w-100">
+                                    Sign in
+                              </button>
                         </div>
-                      
+
                         <!-- Sign Up Link -->
-                        <p class="mb-0 mt-3 text-center">Don’t have an account? 
-                          <a routerLink="/signup">Sign up</a>
+                        <p class="mb-0 mt-3 text-center">Don’t have an account?
+                              <a routerLink="/signup">Sign up</a>
                         </p>
-                      </form>
-                      
+                  </form>
+
 
             </div>
       </div>
-      <div class="ct_login_right_bg">
-            <div class="ct_right_inner_bg">
-                  <h4 class="ct_fs_28 text-white">Very good works are waiting for you ☝️</h4>
-                  <h4 class="ct_fs_28 text-white">Login Now</h4>
-                  <div class="ct_login_right_img">
-                        <img src="assets/img/login_img.png" alt="">
-
+      <div class="ct_login_right_bg_1">
+            <div class="ct_right_inner_bg_1">
+                  <!-- <h4 class="ct_fs_28 text-white">Very good works are waiting for you ☝️</h4>
+                  <h4 class="ct_fs_28 text-white">Login Now</h4> -->
+                  <div class="">
+                        <img src="assets/img/logocti.png" alt="Creative Ai">
                   </div>
+                  <div class="">
+                        <img src="assets/img/login_img_2.png" alt="Creative Ai">
+                  </div>
+                  <p class="ct_fw_600 mb-0"><span class=" ct_fw_900">100K</span> Satisfied Clients</p>
 
+            </div>
+            <div>
+                  <ul>
+                        <li class="d-flex align-items-center gap-2">
+                              <img src="assets/img/check_svg.svg" alt="Creative Ai">
+                              <span>Trusted by Businesses Worldwide</span>
+                        </li>
+                        <li class="d-flex align-items-center gap-2">
+                              <img src="assets/img/check_svg.svg" alt="Creative Ai">
+                              <span>Zero Tech Knowledge Needed – Simple & Fast Setup</span>
+                        </li>
+                        <li class="d-flex align-items-center gap-2">
+                              <img src="assets/img/check_svg.svg" alt="Creative Ai">
+                              <span>CreativeThoughts.ai – Your Trusted App Development Partner</span>
+                        </li>
+                  </ul>
             </div>
       </div>
 

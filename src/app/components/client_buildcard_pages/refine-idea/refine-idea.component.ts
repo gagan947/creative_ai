@@ -27,8 +27,9 @@ export class RefineIdeaComponent {
     let projectData = sessionStorage.getItem('projectData');
     this.projectsData = JSON.parse(projectData!);
     this.projectsFeaturs = this.projectsData.selectdFeature
+    this.estimatedWeeks = this.projectsData.estimated_time
     if (this.projectsFeaturs && this.projectsFeaturs.length > 0) {
-      this.estimatedWeeks = this.projectsFeaturs[0].estimated_time ? this.projectsFeaturs[0].estimated_time : this.projectsFeaturs[1].estimated_time ? this.projectsFeaturs[1].estimated_time : this.projectsFeaturs[2].estimated_time
+      // this.estimatedWeeks = this.projectsFeaturs[0].estimated_time ? this.projectsFeaturs[0].estimated_time : this.projectsFeaturs[1].estimated_time ? this.projectsFeaturs[1].estimated_time : this.projectsFeaturs[2].estimated_time
       this.totalCost(this.projectsFeaturs)
     }
   }
@@ -46,7 +47,7 @@ export class RefineIdeaComponent {
         next: (res) => {
           if (res.success == true) {
             this.allFeatures = this.projectsFeaturs = res.data;
-            this.estimatedWeeks = res.data[0].estimated_time
+            // this.estimatedWeeks = res.data[0].estimated_time
             this.totalCost(this.projectsFeaturs)
           } else {
             // this.loading = false
@@ -155,7 +156,7 @@ export class RefineIdeaComponent {
 
             let customisationCost = this.projectsFeaturs.reduce((pre: any, next: { totalCustomisationPrice: any; }) => pre + next.totalCustomisationPrice, 0)
 
-            sessionStorage.setItem('projectData', JSON.stringify({ ...this.projectsData, ...totalCost, ...selectdFeature, ...{ 'featuresCost': featuresCost },...{ 'no_of_features': no_of_features }, ...{ 'customisationCost': customisationCost }, ...{ 'estimated_time': this.estimatedWeeks } }))
+            sessionStorage.setItem('projectData', JSON.stringify({ ...this.projectsData, ...totalCost, ...selectdFeature, ...{ 'featuresCost': featuresCost }, ...{ 'no_of_features': no_of_features }, ...{ 'customisationCost': customisationCost }, ...{ 'estimated_time': this.estimatedWeeks } }))
             this.router.navigate([`/plan-delivery/${this.id}`])
           } else {
             this.message.error(res.message);
@@ -237,5 +238,23 @@ export class RefineIdeaComponent {
     } else {
       this.projectsFeaturs = [...this.allFeatures];
     }
+  }
+
+  getEstimatedTime(item: any): number {
+    const subFeatured = Number(item.totalSubFeaturedPrice) || 0;
+    const customisation = Number(item.totalCustomisationPrice) || 0;
+    const cost = Number(this.totalPrice) || 1;
+    const weeks = Number(this.estimatedWeeks) || 0;
+
+    return Math.ceil(((subFeatured + customisation) / cost) * (weeks * 5 * 8));
+  }
+
+  getSubEstimatedTime(item: any): number {
+    const subFeatured = Number(item.subFeaturedPrice) || 0;
+    const customisation = Number(item.customisationPrice) || 0;
+    const cost = Number(this.totalPrice) || 1;
+    const weeks = Number(this.estimatedWeeks) || 0;
+
+    return Math.ceil(((subFeatured + customisation) / cost) * (weeks * 5 * 8));
   }
 }

@@ -27,4 +27,5 @@ export class ReviewBuildcardComponent {
       0
     );
   };
+
 }

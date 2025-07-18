@@ -401,7 +401,8 @@
                                                                               </div>
                                                                               <div>
                                                                                     <span
-                                                                                          class="ct_text_clr_7F8188 ct_fs_14">GRAND TOTAL
+                                                                                          class="ct_text_clr_7F8188 ct_fs_14">GRAND
+                                                                                          TOTAL
                                                                                     </span>
                                                                                     <p class="mb-0 mt-1 ct_fw_700">
                                                                                           {{totalPrice | currency
@@ -537,7 +538,8 @@
                                                                                                                                     class="ct_fw_600">₹1,26,844.69</span>
                                                                                                                         </td> -->
                                                                                                                         <td><span
-                                                                                                                                    class="ct_fw_600">5
+                                                                                                                                    class="ct_fw_600">
+                                                                                                                                    {{getEstimatedTime(item) | number : '1.0-2'}}
                                                                                                                                     HRS</span>
                                                                                                                         </td>
                                                                                                                         <td id="dropdownMenuButton1"
@@ -589,7 +591,8 @@
                                                                                                                         </td>
 
                                                                                                                         <td><span
-                                                                                                                                    class="">5
+                                                                                                                                    class="">
+                                                                                                                                    {{getSubEstimatedTime(item2) | number : '1.0-2'}}
                                                                                                                                     HRS</span>
                                                                                                                         </td>
                                                                                                                         <td id="dropdownMenuButton1"
@@ -862,8 +865,7 @@
 
                                                                                                                                     <ul class="dropdown-menu"
                                                                                                                                           aria-labelledby="dropdownMenuButton1">
-                                                                                                                                          <li><a class="dropdown-item"
-                                                                                                                                                      >Delete</a>
+                                                                                                                                          <li><a class="dropdown-item">Delete</a>
                                                                                                                                           </li>
 
                                                                                                                                     </ul>
