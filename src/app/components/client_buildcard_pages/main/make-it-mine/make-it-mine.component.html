@@ -22,7 +22,11 @@
                                                 <input type="text"
                                                       class="form-control ct_input ct_border_radius_10 ct_fs_14 ct_input_h_32"
                                                       placeholder="Enter Project Name" #project_name
-                                                      [value]="projectName">
+                                                      [value]="projectName" required (input)="updateName(project_name.value)">
+                                                <small *ngIf="nameInvalid"
+                                                      class="text-danger">
+                                                      Project name is required.
+                                                </small>
                                                 <button
                                                       class="ct_schedule_call_btn w-100 mt-3 justify-content-center ct_fs_14 ct_fw_500 py-2"
                                                       (click)="updateName(project_name.value)">Update

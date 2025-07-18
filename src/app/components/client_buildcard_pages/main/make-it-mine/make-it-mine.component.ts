@@ -24,6 +24,7 @@ export class MakeItMineComponent {
   selectedColor: any
   logoImg: File | undefined
   @ViewChild('logoBox') logoBox!: ElementRef;
+  nameInvalid = false
   mobile_base = true;
   constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router, public location: Location, private message: NzMessageService,) {
     let projectData = sessionStorage.getItem('projectData');
@@ -35,7 +36,12 @@ export class MakeItMineComponent {
   }
 
   updateName(name: any) {
-    this.projectName = name
+    this.projectName = name.trim();
+    if(!this.projectName){
+     this.nameInvalid = true
+    }else{
+      this.nameInvalid = false
+    }
   };
 
   onFileSelected(event: Event) {
@@ -57,7 +63,7 @@ export class MakeItMineComponent {
 
   Navigate(id: any) {
 
-    if (this.projectName == '') {
+    if (!this.projectName) {
       return
     }
 
